@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nic se NW & Teg – Kwartaal 4</title>
+<style>
+  :root{
+    --bg:#0b1026; --panel:#151c3d; --panel2:#1d2650; --text:#eef2ff; --muted:#a9b3d9;
+    --sun:#ffb703; --accent:#4cc9f0; --good:#2ecc71; --bad:#ff5d73; --pink:#f72585;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);
+    background:radial-gradient(ellipse at top,#1b2457 0%,var(--bg) 60%);min-height:100vh;font-size:18px;line-height:1.5}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.6;
+    background-image:radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 80%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 70% 30%,#fff,transparent),radial-gradient(1px 1px at 90% 70%,#fff,transparent),
+    radial-gradient(1px 1px at 50% 50%,#fff,transparent),radial-gradient(1.5px 1.5px at 85% 10%,#fff,transparent),
+    radial-gradient(1px 1px at 15% 60%,#fff,transparent),radial-gradient(1px 1px at 60% 90%,#fff,transparent);}
+  header{text-align:center;padding:24px 12px 8px;position:relative}
+  header h1{margin:0;font-size:2rem}
+  header p{margin:4px 0 0;color:var(--muted)}
+  .stars{color:var(--sun);font-weight:bold}
+  nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;position:sticky;top:0;z-index:5;
+    background:rgba(11,16,38,.9);backdrop-filter:blur(6px)}
+  nav button{border:0;border-radius:999px;padding:10px 16px;font-size:1rem;cursor:pointer;background:var(--panel2);color:var(--text)}
+  nav button.on{background:var(--sun);color:#1a1a1a;font-weight:bold}
+  main{max-width:1000px;margin:0 auto;padding:16px;position:relative}
+  section{display:none;animation:fade .3s}
+  section.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  h2{color:var(--sun);margin-top:8px}
+  h3{color:var(--accent);margin-bottom:6px}
+  .card{background:var(--panel);border-radius:16px;padding:16px 20px;margin:14px 0;border:1px solid #2a356d}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .big{font-size:1.4rem;font-weight:bold;color:var(--sun)}
+  .tip{background:#2b2350;border-left:5px solid var(--pink);padding:10px 14px;border-radius:10px;margin:12px 0}
+  .tip b{color:var(--pink)}
+  .bl{color:var(--muted);font-size:.85rem}
+  table{width:100%;border-collapse:collapse}
+  td,th{padding:8px;border-bottom:1px solid #2a356d;text-align:left}
+  th{color:var(--accent)}
+  /* planete */
+  .solar{display:flex;align-items:center;gap:10px;overflow-x:auto;padding:20px 6px}
+  .planet{border-radius:50%;cursor:pointer;flex:none;border:3px solid transparent;transition:transform .2s}
+  .planet:hover,.planet.sel{transform:scale(1.15);border-color:#fff}
+  .belt{flex:none;width:30px;height:90px;background:repeating-radial-gradient(circle,#8d7b68 0 2px,transparent 2px 7px);border-radius:8px;cursor:pointer}
+  .lbl{font-size:.75rem;text-align:center;color:var(--muted)}
+  .pwrap{display:flex;flex-direction:column;align-items:center;gap:6px;flex:none}
+  #pinfo ul{margin:6px 0 0 0;padding-left:20px}
+  .stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .stat{background:var(--panel2);border-radius:10px;padding:8px 12px}
+  .stat b{display:block;color:var(--sun)}
+  /* woordkaarte */
+  .flip{perspective:900px;height:170px;cursor:pointer}
+  .flip .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.done .in{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;border-radius:16px;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:14px;backface-visibility:hidden}
+  .front{background:linear-gradient(135deg,#3a0ca3,#4361ee);font-size:1.4rem;font-weight:bold}
+  .back{background:var(--panel2);transform:rotateY(180deg);font-size:1rem;border:2px solid var(--accent)}
+  select,.btn{font-size:1rem;padding:10px 16px;border-radius:12px;border:0;cursor:pointer}
+  .btn{background:var(--accent);color:#08122e;font-weight:bold}
+  .btn.alt{background:var(--panel2);color:var(--text)}
+  /* toets */
+  .opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:12px;border:2px solid #2a356d;
+    background:var(--panel2);color:var(--text);font-size:1.05rem;cursor:pointer}
+  .opt:hover{border-color:var(--accent)}
+  .opt.right{background:#145a32;border-color:var(--good)}
+  .opt.wrong{background:#5c1a26;border-color:var(--bad)}
+  .bar{height:12px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:10px 0}
+  .bar div{height:100%;background:linear-gradient(90deg,var(--accent),var(--sun));width:0;transition:width .3s}
+  .fb{font-weight:bold;margin-top:8px;min-height:1.5em}
+  /* dag en nag */
+  .dn{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;padding:10px}
+  .sunball{width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#fff3b0,#ffb703 60%,#fb8500);box-shadow:0 0 40px #ffb703}
+  .earth{width:120px;height:120px;border-radius:50%;position:relative;overflow:hidden;
+    background:linear-gradient(90deg,#4cc9f0 0 50%,#0a1a3a 50% 100%)}
+  .earth .map{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 40%,#2ecc71 0 14%,transparent 15%),radial-gradient(circle at 70% 65%,#2ecc71 0 12%,transparent 13%);animation:spin 6s linear infinite}
+  @keyframes spin{from{transform:translateX(-60%)}to{transform:translateX(60%)}}
+  .orbit{position:relative;width:260px;height:260px;margin:10px auto}
+  .orbit .ring{position:absolute;inset:0;border:2px dashed #3c4a8f;border-radius:50%}
+  .orbit .sunball{position:absolute;left:85px;top:85px}
+  .orbit .arm{position:absolute;inset:0;animation:rot 8s linear infinite}
+  .orbit .e{position:absolute;left:115px;top:-14px;width:30px;height:30px;border-radius:50%;background:#4cc9f0}
+  .orbit .m{position:absolute;left:150px;top:-18px;width:10px;height:10px;border-radius:50%;background:#ddd}
+  @keyframes rot{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🚀 Nic se Ruimte-avontuur</h1>
+  <p>Graad 6 NW &amp; Teg · Kwartaal 4 · <span class="stars" id="starCount">⭐ 0</span> sterre verdien</p>
+</header>
+
+<nav id="nav">
+  <button data-s="tuis" class="on">🏠 Begin</button>
+  <button data-s="son">☀️ Sonnestelsel</button>
+  <button data-s="planete">🪐 Planete</button>
+  <button data-s="mane">🌙 Mane</button>
+  <button data-s="beweging">🔄 Beweging</button>
+  <button data-s="teleskope">🔭 Teleskope</button>
+  <button data-s="verken">🤖 Verkenners</button>
+  <button data-s="kaarte">🃏 Woordkaarte</button>
+  <button data-s="toets">🏆 Toets jouself</button>
+</nav>
+
+<main>
+
+<!-- TUIS -->
+<section id="tuis" class="on">
+  <div class="card">
+    <h2>Hallo Nic! 👋</h2>
+    <p>Hier leer jy alles vir Kwartaal 4. Werk so:</p>
+    <ol>
+      <li><b>Lees</b> elke onderwerp bo-aan (Sonnestelsel tot Verkenners).</li>
+      <li><b>Speel</b> met die <b>Woordkaarte</b>. Tik 'n kaart om die antwoord te sien.</li>
+      <li><b>Toets jouself</b>. Elke regte antwoord gee jou 'n ⭐.</li>
+    </ol>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Onderwerp 14</h3>Die Sonnestelsel<br><span class="bl">bl. 167-182</span></div>
+    <div class="card"><h3>Onderwerp 15</h3>Beweging van die Aarde, planete en Maan<br><span class="bl">bl. 183-196</span></div>
+    <div class="card"><h3>Onderwerp 16</h3>Stelsels om die ruimte te bestudeer (teleskope)<br><span class="bl">bl. 197-206</span></div>
+    <div class="card"><h3>Onderwerp 17</h3>Stelsels om die Maan en Mars te verken<br><span class="bl">bl. 207-217</span></div>
+  </div>
+  <div class="tip"><b>Geheimpie om die planete te onthou:</b><br>
+    <b>M</b>y <b>V</b>ader <b>A</b>an <b>M</b>aandag <b>J</b>ellie <b>S</b>aam <b>U</b>it <b>N</b>ou<br>
+    = Mercurius, Venus, Aarde, Mars, Jupiter, Saturnus, Uranus, Neptunus</div>
+</section>
+
+<!-- SONNESTELSEL -->
+<section id="son">
+  <h2>☀️ Onderwerp 14: Die Sonnestelsel</h2>
+  <div class="card">
+    <h3>Wat is die sonnestelsel?</h3>
+    <p>Die <b>Son</b> en al die voorwerpe wat daaromheen beweeg.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Die Son</h3>
+      <ul>
+        <li>Die Son is 'n <b>ster</b> in die middel van ons sonnestelsel.</li>
+        <li>Sterre is balle <b>baie warm gas</b> wat hitte en lig uitstraal.</li>
+        <li>Die Son is die <b>enigste ster</b> in ons sonnestelsel.</li>
+        <li>Ander sterre is baie ver. Ons voel nie hul hitte nie.</li>
+      </ul>
+      <div class="stat"><b>± 6 000 °C</b>temperatuur van die Son</div>
+    </div>
+    <div class="card"><h3>Planete</h3>
+      <ul>
+        <li>'n Groot voorwerp wat om die Son <b>wentel</b>.</li>
+        <li>Planete bestaan <b>nie</b> uit warm gas soos sterre nie.</li>
+        <li>Daar is <b>8</b> planete.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Wentelbaan</h3>
+      <ul>
+        <li>Elke planeet het sy <b>eie wentelbaan</b> om die Son.</li>
+        <li>Die vorm is 'n <b>ellips</b> = 'n platgedrukte sirkel.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Asteroïede</h3>
+      <ul>
+        <li>Stukke <b>rots</b> wat om die Son wentel.</li>
+        <li>Meeste is tussen <b>Mars en Jupiter</b> = die <b>asteroïdegordel</b>.</li>
+        <li>Grootste asteroïde: <b>Ceres</b> (deursnee 1 000 km).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Elke planeet verskil (bl. 169)</h3>
+    <ol>
+      <li>Grootte</li><li>Wentelbaan</li><li>Afstand van die Son</li>
+      <li>Samestelling: rotsagtig of gas</li><li>Aantal mane</li>
+    </ol>
+    <table>
+      <tr><th>Binneste 4 planete</th><th>Buitenste 4 planete</th></tr>
+      <tr><td>Soliede, <b>rotsagtige</b> liggame<br>Mercurius, Venus, Aarde, Mars</td>
+          <td><b>Gasreuse</b> (enorme balle gas)<br>Jupiter, Saturnus, Uranus, Neptunus</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Ander woorde</h3>
+    <p><b>Atmosfeer</b> = die laag gas rondom 'n planeet.<br>
+       <b>Model</b> = 'n eenvoudiger weergawe van iets, wat ons help om die regte ding te verstaan.</p>
+  </div>
+</section>
+
+<!-- PLANETE -->
+<section id="planete">
+  <h2>🪐 Die 8 planete</h2>
+  <p>Tik op 'n planeet (of die asteroïdegordel) om meer te leer.</p>
+  <div class="card"><div class="solar" id="solar"></div></div>
+  <div class="card" id="pinfo"><p>👆 Kies 'n planeet.</p></div>
+  <div class="card">
+    <h3>Hoe lank om om die Son te wentel? (bl. 173)</h3>
+    <ul>
+      <li>Die Aarde vat <b>365 ¼ dae</b>. Ons rond dit af na 365.</li>
+      <li>Elke 4 jaar sit ons 'n <b>ekstra dag</b> by = <b>skrikkeljaar</b>.</li>
+      <li>Vir ander planete meet ons in <b>aarddae</b> en <b>aardjare</b>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- MANE -->
+<section id="mane">
+  <h2>🌙 Eenheid 2: Mane (bl. 176-182)</h2>
+  <div class="grid">
+    <div class="card"><h3>Wat is 'n maan?</h3>
+      <p>'n <b>Rotsagtige liggaam</b> wat om 'n <b>planeet</b> wentel.</p>
+      <ul>
+        <li>Mercurius en Venus het <b>geen</b> mane nie.</li>
+        <li>Sommige planete het oor die 60 mane.</li>
+        <li>Wetenskaplikes het nog nie al die mane gevind nie.</li>
+        <li>Die Aarde se maan se naam is "<b>Maan</b>".</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Gee 'n maan lig?</h3>
+      <p><b>Nee!</b> 'n Maan bestaan nie uit warm gas nie.</p>
+      <p>Net <b>sterre</b> straal hul eie hitte en lig uit.</p>
+      <p>Ons sien die Maan omdat die <b>Son se lig</b> daarop skyn.</p>
+    </div>
+  </div>
+  <div class="card"><h3>Die Maan se oppervlak</h3>
+    <p>Dit is <b>nie gelyk en glad</b> nie.</p>
+    <table>
+      <tr><th>Ligte gebiede</th><td>Berge</td></tr>
+      <tr><th>Donker gebiede</th><td><b>Vlaktes</b> = laagliggende, gelyk gebiede</td></tr>
+      <tr><th>Kraters</th><td>Groot ronde gate. Gevorm deur rotse wat lank gelede teen die Maan gebots het.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- BEWEGING -->
+<section id="beweging">
+  <h2>🔄 Onderwerp 15: Beweging van die Aarde, planete en Maan</h2>
+  <div class="card">
+    <h3>Rotasie = draai om jou eie as</h3>
+    <ul>
+      <li><b>As</b> = 'n denkbeeldige lyn deur die middel van iets.</li>
+      <li>Die Aarde se as loop van die <b>Noordpool</b> na die <b>Suidpool</b>.</li>
+      <li>Elke planeet roteer om sy eie as.</li>
+      <li>Die Aarde roteer van <b>Wes na Oos</b> (linksom, as jy van die Noordpool af kyk).</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Rotasie gee dag en nag (bl. 185)</h3>
+    <div class="dn"><div class="sunball"></div><div class="earth"><div class="map"></div></div></div>
+    <ul>
+      <li>Een keer om sy as draai vat <b>24 uur</b>.</li>
+      <li>Die kant na die Son toe = <b>dag</b>. Die ander kant = <b>nag</b>.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Omwenteling = een liggaam beweeg om 'n ander</h3>
+    <div class="orbit"><div class="ring"></div><div class="sunball"></div><div class="arm"><div class="e"></div><div class="m"></div></div></div>
+    <ul>
+      <li><b>Wentelbaan</b> = die pad wat 'n planeet volg.</li>
+      <li>Die Aarde vat <b>365 ¼ dae</b> om een keer om die Son te gaan = <b>1 jaar</b>.</li>
+      <li>3 uit elke 4 jaar het 365 dae.</li>
+      <li><b>Skrikkeljaar</b> = <b>366 dae</b>. Die ekstra dag is <b>29 Februarie</b>.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Die Maan beweeg ook</h3>
+    <table>
+      <tr><th></th><th>Hoe lank?</th></tr>
+      <tr><td>Maan <b>roteer</b> om sy eie as</td><td><b>28 dae</b></td></tr>
+      <tr><td>Maan <b>wentel</b> om die Aarde (linksom)</td><td><b>28 dae</b></td></tr>
+      <tr><td>Aarde roteer in dié tyd</td><td>28 keer</td></tr>
+    </table>
+    <div class="tip"><b>Onthou:</b> Rotasie en omwenteling vat ewe lank. Daarom wys <b>dieselfde kant</b> van die Maan altyd na die Aarde.</div>
+    <ul>
+      <li>Die Maan is die <b>naaste</b> voorwerp aan die Aarde.</li>
+      <li>Die Maan wentel om die Aarde. Die Aarde en Maan wentel <b>saam</b> om die Son.</li>
+      <li>Die Maan het nie sy eie wentelbaan om die Son nie.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TELESKOPE -->
+<section id="teleskope">
+  <h2>🔭 Onderwerp 16: Teleskope (bl. 198-206)</h2>
+  <div class="card">
+    <h3>Wat is 'n teleskoop?</h3>
+    <p>'n Instrument wat <b>veraf voorwerpe vergroot</b> en nader laat lyk.</p>
+    <p>Voor teleskope het ons min van die ruimte geweet, en baie verkeerde idees gehad.</p>
+    <p><b>Galileo Galilei</b>, 'n <b>Italiaanse</b> wetenskaplike, het die teleskoop gebruik om ver te sien. So het ons geleer dat sommige planete <b>mane</b> het.</p>
+  </div>
+  <div class="card">
+    <h3>Hoe werk 'n teleskoop? (bl. 199)</h3>
+    <table>
+      <tr><th>Deel</th><th>Werk</th></tr>
+      <tr><td>Lang buis</td><td>Van metaal of plastiek</td></tr>
+      <tr><td><b>Objektiewe lens</b> (voor)</td><td>Versamel lig van ver en bring dit saam tot 'n <b>fokus</b></td></tr>
+      <tr><td><b>Ooglens</b> (by jou oog)</td><td>"Sprei" die lig uit = <b>vergroot</b> dit</td></tr>
+    </table>
+    <p>'n <b>Vergrootglas</b> werk op dieselfde manier. <b>Lens</b> = 'n stuk glas wat lig buig.</p>
+    <p><b>Vergroting</b> = hoeveel groter dit lyk. Bv. x10 = 10 keer groter.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Optiese teleskope</h3>
+      <ul>
+        <li>Ons <b>kyk deur</b> hulle (bv. verkykers, kameralense).</li>
+        <li>Die gasse van die <b>atmosfeer</b> maak beelde wasig.</li>
+        <li>Daarom staan groot teleskope op <b>hoë berge</b> (dunner atmosfeer).</li>
+        <li>Op die platteland, waar minder lig is.</li>
+        <li>Gebruik gewoonlik in die <b>nag</b>.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Radioteleskope</h3>
+      <ul>
+        <li>Ruimteliggame straal <b>radiogolwe</b> uit. Ons oë kan dit nie sien nie.</li>
+        <li>Geen lense of spieëls. Ons kyk nie daardeur nie.</li>
+        <li>Het 'n <b>skottel</b> om radiogolwe op te vang.</li>
+        <li>Moet ver van selfoon- en radionetwerke wees.</li>
+        <li>'n Groep wat saamwerk = <b>opstelling / reeks</b>. Gee 'n beter beeld.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Teleskope in die ruimte</h3>
+      <ul>
+        <li>Met <b>vuurpyle</b> die ruimte in gestuur. Werk nou as <b>satelliete</b>.</li>
+        <li>Kyk <b>nie</b> deur die Aarde se atmosfeer nie.</li>
+        <li>Stuur foto's terug na die Aarde.</li>
+        <li><b>Hubble</b> = bekendste. Gelanseer <b>1990</b>. Werk tot <b>2030</b>.</li>
+        <li>Ruimtevaarders op pendeltuie diens dit.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <h3>🇿🇦 Gevallestudie: Teleskope in Suid-Afrika</h3>
+    <p>SA het helder lug en goeie weer. Teleskope word ver van dorpe gebou, weg van ligte.</p>
+    <table>
+      <tr><th>SALT</th><td>Groot <b>optiese</b> teleskoop by <b>Sutherland</b>, Karoo, Noord-Kaap</td></tr>
+      <tr><th>KAT-7 &amp; MeerKAT</th><td>Groep <b>radioteleskope</b> in die Karoo</td></tr>
+      <tr><th>SKA</th><td>Square Kilometre Array. Die kragtigste radioteleskoop-reeks ooit. Naby <b>Carnarvon</b>, Noord-Kaap. 50 keer meer akkuraat.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- VERKENNERS -->
+<section id="verken">
+  <h2>🤖 Onderwerp 17: Die Maan en Mars verken (bl. 207-217)</h2>
+  <div class="card">
+    <h3>Verkenningsvoertuig</h3>
+    <p>'n Voertuig met spesiale wiele en asse om op die Maan of ander planete te ry.</p>
+    <p>Dit help mense om die ruimte van naderby te sien. Tot nou net op die <b>Maan</b> en <b>Mars</b>.</p>
+  </div>
+  <div class="card">
+    <h3>📅 Tydlyn</h3>
+    <table>
+      <tr><th>1969 (20 Julie)</th><td><b>Neil Armstrong</b> = eerste mens op die Maan</td></tr>
+      <tr><th>1970</th><td><b>Rusland</b> laat 2 afstandbeheerde robotverkenners op die Maan land</td></tr>
+      <tr><th>1971 &amp; 1972</th><td><b>Apollo</b>-sendings: ruimtevaarders ry met maanverkenners (soos duinebesies)</td></tr>
+      <tr><th>Sedert 1972</th><td>Geen mens was weer op die Maan nie</td></tr>
+      <tr><th>Afgelope 15 jaar</th><td>VSA laat 4 klein robotverkenners op Mars land</td></tr>
+      <tr><th>2012 (Augustus)</th><td><b>Curiosity</b> land op Mars</td></tr>
+    </table>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Robotverkenners</h3>
+      <ul>
+        <li><b>Robot</b> = masjien wat op sy eie beweeg en werk doen.</li>
+        <li>Gaan na plekke wat vir mense moeilik is.</li>
+        <li><b>Kommunikasiestelsels</b> om boodskappe te stuur en te kry.</li>
+        <li>Het <b>kameras</b> en <b>meganiese arms</b>.</li>
+        <li>Het <b>sonpanele</b> vir energie van die Son.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Curiosity 🚙</h3>
+      <ul>
+        <li>NASA se robotverkenner op Mars.</li>
+        <li>Was <b>8 maande</b> op pad na Mars.</li>
+        <li>Omtrent so groot soos 'n <b>motor</b>, maar stadiger.</li>
+        <li>Het <b>17 kameras</b>.</li>
+        <li>Soek na tekens van lewe. Het bewys gevind dat daar <b>water</b> was.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Mense op Mars?</h3>
+      <ul>
+        <li>Nog <b>geen</b> mens was op Mars nie.</li>
+        <li>Mars is die naaste planeet, maar nog baie ver.</li>
+        <li>Heen en terug vat <b>2 jaar</b>.</li>
+        <li>Geen lug om asem te haal nie.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Toekoms op die Maan</h3>
+      <ul>
+        <li>NASA wil 'n <b>basis</b> op die Maan bou.</li>
+        <li>NASA het <b>2 prototipes</b> gebou:
+          <ol><li>Maanvragmotor (met ruimtepak bestuur)</li><li>Verkenner soos 'n kampeerwa (geen ruimtepak nodig)</li></ol></li>
+        <li>Elke wiel het sy <b>eie as</b> en kan in enige rigting draai.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WOORDKAARTE -->
+<section id="kaarte">
+  <h2>🃏 Woordkaarte</h2>
+  <p>Lees die woord. Sê die betekenis hardop. Tik dan om te kyk!</p>
+  <p><select id="kfilter"></select> <button class="btn alt" id="shuffle">🔀 Skommel</button></p>
+  <div class="grid" id="cards"></div>
+</section>
+
+<!-- TOETS -->
+<section id="toets">
+  <h2>🏆 Toets jouself</h2>
+  <div class="card" id="quiz"></div>
+</section>
+
+</main>
+<footer>Gebaseer op Juffrou Natasha se Opsommings · Platinum Handboek · Graad 6 NW &amp; Teg Kwartaal 4</footer>
+
+<script>
+// ---------- Navigasie ----------
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); document.getElementById(b.dataset.s).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+// ---------- Sterre ----------
+let stars = +(localStorage.getItem('nicStars')||0);
+function addStar(){stars++;localStorage.setItem('nicStars',stars);showStars();}
+function showStars(){document.getElementById('starCount').textContent='⭐ '+stars;}
+showStars();
+
+// ---------- Planete ----------
+const P=[
+ {n:'Mercurius',c:'radial-gradient(circle at 30% 30%,#d9d9d9,#7d7d7d)',s:28,t:'168 °C',d:'4 878 km',a:'60 milj km',m:'Geen',f:['Rotsagtige planeet','Bedek met fyn sand','Groot kraters','Enigste planeet <b>sonder atmosfeer</b>']},
+ {n:'Venus',c:'radial-gradient(circle at 30% 30%,#fff1c1,#d4a35a)',s:40,t:'500 °C',d:'12 000 km',a:'108 milj km',m:'Geen',f:['Rotsagtig met baie <b>vulkane</b>','Dik atmosfeer van <b>koolstofdioksied</b> vang hitte vas','Wit wolke, maar nie van water nie','Geen water']},
+ {n:'Aarde',c:'radial-gradient(circle at 30% 30%,#8fd3ff,#1f6fb2 60%,#2e8b57)',s:42,t:'15 °C',d:'12 750 km',a:'150 milj km',m:'1',f:['Bedek met grond en water','Atmosfeer met <b>suurstof</b> en koolstofdioksied','Water maak dit blou = "<b>blou planeet</b>"','Enigste planeet met <b>lewe</b>']},
+ {n:'Mars',c:'radial-gradient(circle at 30% 30%,#ff9a76,#b23a1a)',s:32,t:'-55 °C',d:'6 787 km',a:'240 milj km',m:'2',f:['"<b>Rooi planeet</b>": rooi stof','Vulkaniese berge, bv. <b>Olympus Mons</b> (28 km hoog)','Bevrore water by die pole','Droë rivierbeddings','Dun atmosfeer']},
+ {belt:true},
+ {n:'Jupiter',c:'repeating-linear-gradient(0deg,#e3c08d 0 8px,#b07a4f 8px 14px)',s:90,t:'-145 °C',d:'142 800 km',a:'800 milj km',m:'64',f:['<b>Grootste</b>: al die ander planete pas daarin','Gasplaneet: waterstof en helium','Sterk winde maak dit streperig','<b>Reuse rooi kol</b> = storm (oor 800 km/h)','3 dun donker ringe']},
+ {n:'Saturnus',c:'radial-gradient(circle at 30% 30%,#fff2b3,#d9b25f)',s:76,ring:true,t:'-141 °C',d:'120 660 km',a:'1 400 milj km',m:'62',f:['Gasplaneet: waterstof en helium','So lig dat dit dalk op water kan <b>dryf</b>','Geel bane deur vinnige wind','Helder <b>ringe van bevrore water</b>']},
+ {n:'Uranus',c:'radial-gradient(circle at 30% 30%,#d6fbff,#4fc3c7)',s:56,t:'-216 °C',d:'51 118 km',a:'3 000 milj km',m:'27',f:['"<b>Ysreus</b>": bevrore gas','Metaan maak dit groenblou','As is gekantel: lyk of dit <b>op sy sy lê</b>','9 donker en 2 helder ringe']},
+ {n:'Neptunus',c:'radial-gradient(circle at 30% 30%,#9ab8ff,#2846b8)',s:54,t:'-218 °C',d:'49 528 km',a:'4 500 milj km',m:'13',f:['Ysreus soos Uranus, ook blougroen','<b>Sterkste winde</b>: tot 1 400 km/h','Verskeie donker ringe','Verste van die Son']}
+];
+const solar=document.getElementById('solar'), pinfo=document.getElementById('pinfo');
+solar.innerHTML='<div class="pwrap"><div class="sunball" style="width:80px;height:80px"></div><div class="lbl">Son</div></div>';
+P.forEach((p,i)=>{
+  const w=document.createElement('div'); w.className='pwrap';
+  if(p.belt){w.innerHTML='<div class="belt"></div><div class="lbl">Asteroïde-<br>gordel</div>';
+    w.onclick=()=>{pinfo.innerHTML='<h3>Asteroïdegordel</h3><p>Stukke rots tussen <b>Mars en Jupiter</b> se wentelbane. Die grootste is <b>Ceres</b> (1 000 km).</p>';};}
+  else{
+    const ringCss=p.ring?'box-shadow:0 0 0 6px rgba(230,200,120,.35);':'';
+    w.innerHTML=`<div class="planet" style="width:${p.s}px;height:${p.s}px;background:${p.c};${ringCss}"></div><div class="lbl">${i<4?i+1:i}. ${p.n}</div>`;
+    w.onclick=()=>{
+      document.querySelectorAll('.planet').forEach(x=>x.classList.remove('sel')); w.firstChild.classList.add('sel');
+      pinfo.innerHTML=`<h3>${p.n}</h3><ul>${p.f.map(x=>'<li>'+x+'</li>').join('')}</ul>
+      <div class="stats"><div class="stat"><b>${p.t}</b>gem. temperatuur</div><div class="stat"><b>${p.d}</b>deursnee</div>
+      <div class="stat"><b>${p.a}</b>van die Son</div><div class="stat"><b>${p.m}</b>mane</div></div>`;
+    };
+  }
+  solar.appendChild(w);
+});
+
+// ---------- Woordkaarte ----------
+const K=[
+ ['Sonnestelsel','Die Son en al die voorwerpe wat daaromheen beweeg','14'],
+ ['Ster',"'n Enorme bal brandende gas in die ruimte",'14'],
+ ['Planeet',"'n Groot voorwerp wat om die Son wentel",'14'],
+ ['Maan',"'n Soliede, rotsagtige liggaam wat om 'n planeet wentel",'14'],
+ ['Asteroïede','Stukke rots wat om die Son wentel','14'],
+ ['Atmosfeer',"Die laag gas rondom 'n planeet of ander voorwerp in die ruimte",'14'],
+ ['Model',"'n Eenvoudiger weergawe van iets wat ons help om die werklike ding beter te verstaan",'14'],
+ ['Ellips','Die vorm van die wentelbaan: soos \'n platgedrukte sirkel','14'],
+ ['Kraters','Groot ronde gate op die Maan','14'],
+ ['Vlaktes','Laagliggende, gelyk gebiede (donker kolle op die Maan)','14'],
+ ['Rotasie',"Die draaibeweging van 'n voorwerp om sy eie as",'15'],
+ ['As',"'n Denkbeeldige lyn deur die middelpunt van iets",'15'],
+ ['Omwenteling',"Beweging van een liggaam om 'n ander een",'15'],
+ ['Wentelbaan','Die pad wat elke planeet om die Son volg','15'],
+ ['Skrikkeljaar','366 dae. Ekstra dag is 29 Februarie','15'],
+ ['Teleskoop',"'n Instrument wat veraf voorwerpe vergroot en hulle nader laat lyk",'16'],
+ ['Ruimteliggame','Al die planete, sterre, mane en ander stukke rots in die ruimte','16'],
+ ['Lens',"'n Stuk glas wat lig verbuig",'16'],
+ ['Beeld',"Prent wat deur lig gevorm en op 'n skerm gefokus word",'16'],
+ ['Fokus','Waar lig by \'n punt bymekaar kom','16'],
+ ['Vergroot','Groter maak','16'],
+ ['Vergrootglas',"'n Lens wat klein voorwerpe vergroot en in die hand gehou word",'16'],
+ ['Opties','Deur ons oë gebruik','16'],
+ ['Radiogolwe','Onsigbare golwe wat deur ruimteliggame uitgestraal word, soos liggolwe maar nie dieselfde nie','16'],
+ ['Reeks',"'n Groep teleskope wat saam werk",'16'],
+ ['Ruimtevaarder',"Persoon wat opgelei is om in 'n ruimtetuig te reis",'17'],
+ ['Robot','Masjien wat op sy eie kan beweeg en take soos mense verrig','17'],
+ ['Ruimte',"Die gebied buite die Aarde se atmosfeer waar die sterre en planete is",'17'],
+ ['Ruimtetuig',"'n Voertuig wat deur die ruimte beweeg",'17'],
+ ['Onbeman','Sonder mense aan boord om die ruimtetuig te hanteer','17'],
+ ['Sonpaneel',"'n Paneel wat ontwerp is om energie uit die Son te absorbeer",'17'],
+ ['Meganiese arm','Masjien wat soos \'n arm met gewrigte beweeg, goed vasvat en werk doen','17'],
+ ['NASA','Nasionale Lugvaart- en Ruimte-administrasie van die VSA','17'],
+ ['Prototipe',"Eerste volgrootte werkende model van 'n nuwe voertuig of masjien",'17'],
+ ['Aanpas','Om iets te verander sodat dit beter werk','17'],
+ ['Helling',"'n Afdraand wat 2 verskillende vlakke verbind",'17']
+];
+const kf=document.getElementById('kfilter');
+kf.innerHTML='<option value="">Alle onderwerpe</option><option value="14">Onderwerp 14</option><option value="15">Onderwerp 15</option><option value="16">Onderwerp 16</option><option value="17">Onderwerp 17</option>';
+let kList=[...K];
+function drawCards(){
+  const box=document.getElementById('cards'); box.innerHTML='';
+  kList.filter(k=>!kf.value||k[2]===kf.value).forEach(k=>{
+    const d=document.createElement('div'); d.className='flip';
+    d.innerHTML=`<div class="in"><div class="face front">${k[0]}</div><div class="face back">${k[1]}</div></div>`;
+    d.onclick=()=>d.classList.toggle('done'); box.appendChild(d);
+  });
+}
+kf.onchange=drawCards;
+document.getElementById('shuffle').onclick=()=>{kList.sort(()=>Math.random()-.5);drawCards();};
+drawCards();
+
+// ---------- Toets ----------
+const Q=[
+ ['Wat is die Son?',["'n Ster","'n Planeet","'n Maan","'n Asteroïde"]],
+ ['Hoeveel planete is daar in ons sonnestelsel?',['8','9','7','10']],
+ ['Hoe warm is die Son omtrent?',['6 000 °C','600 °C','60 °C','60 000 °C']],
+ ['Watter vorm het \'n wentelbaan?',["'n Ellips (platgedrukte sirkel)","'n Vierkant","'n Driehoek","'n Reguit lyn"]],
+ ['Waar is die asteroïdegordel?',['Tussen Mars en Jupiter','Tussen Aarde en Mars','Tussen Venus en Aarde','Ná Neptunus']],
+ ['Wat is die grootste asteroïde?',['Ceres','Hubble','Curiosity','Olympus Mons']],
+ ['Hoe is die binneste 4 planete?',['Rotsagtig','Gasreuse','Van ys gemaak','Brandende gas']],
+ ['Watter planeet het geen atmosfeer nie?',['Mercurius','Venus','Mars','Neptunus']],
+ ['Watter planeet word die "blou planeet" genoem?',['Aarde','Neptunus','Uranus','Venus']],
+ ['Watter planeet word die "rooi planeet" genoem?',['Mars','Jupiter','Venus','Mercurius']],
+ ['Watter planeet is die grootste?',['Jupiter','Saturnus','Aarde','Neptunus']],
+ ['Watter planeet is so lig dat dit dalk op water kan dryf?',['Saturnus','Jupiter','Mars','Mercurius']],
+ ['Watter planeet lyk of dit op sy sy lê?',['Uranus','Neptunus','Saturnus','Venus']],
+ ['Watter planeet het die sterkste winde (1 400 km/h)?',['Neptunus','Jupiter','Aarde','Mars']],
+ ['Wat is die reuse rooi kol op Jupiter?',["'n Storm van warrelende gasse","'n Vulkaan","'n See","'n Krater"]],
+ ['Waarvan is Saturnus se helder ringe gemaak?',['Bevrore water','Stof','Sand','Vuur']],
+ ['Wat is die hoogste vulkaniese berg op Mars?',['Olympus Mons','Ceres','Apollo','Hubble']],
+ ['Watter 2 planete het geen mane nie?',['Mercurius en Venus','Aarde en Mars','Uranus en Neptunus','Jupiter en Saturnus']],
+ ['Hoekom kan ons die Maan sien?',['Die Son se lig skyn daarop','Die Maan maak sy eie lig','Die Maan brand','Die Aarde skyn daarop']],
+ ['Wat is kraters?',['Groot ronde gate','Hoë berge','Gelyk vlaktes','Riviere']],
+ ['Wat is rotasie?',["Draai om jou eie as","Beweeg om 'n ander liggaam","Val na die Son","Staan stil"]],
+ ['Hoe lank vat die Aarde om een keer om sy as te draai?',['24 uur','28 dae','365 dae','12 uur']],
+ ['Wat gee vir ons dag en nag?',['Die Aarde se rotasie','Die Maan se omwenteling','Die Son wat draai','Wolke']],
+ ['In watter rigting roteer die Aarde?',['Wes na Oos','Oos na Wes','Noord na Suid','Suid na Noord']],
+ ['Hoe lank vat die Aarde om een keer om die Son te gaan?',['365 ¼ dae','24 uur','28 dae','30 dae']],
+ ['Hoeveel dae het \'n skrikkeljaar?',['366','365','364','367']],
+ ['Wat is die ekstra dag in \'n skrikkeljaar?',['29 Februarie','31 Desember','1 Januarie','30 Junie']],
+ ['Hoe lank vat die Maan om om die Aarde te wentel?',['28 dae','24 uur','365 dae','7 dae']],
+ ['Hoekom sien ons altyd dieselfde kant van die Maan?',['Rotasie en omwenteling vat ewe lank','Die Maan draai nie','Die Aarde draai nie','Die ander kant is te donker']],
+ ['Wie het die teleskoop gebruik om ver die ruimte in te sien?',['Galileo Galilei','Neil Armstrong','Curiosity','Hubble']],
+ ['Watter lens versamel die lig van veraf voorwerpe?',['Objektiewe lens','Ooglens','Vergrootglas','Spieël']],
+ ['Wat doen die ooglens?',['Vergroot die beeld','Versamel lig','Vang radiogolwe','Stuur foto\'s']],
+ ['Hoekom staan groot optiese teleskope op hoë berge?',['Die atmosfeer is dunner','Dit is warmer','Daar is meer ligte','Dit is nader aan die Maan']],
+ ['Wat vang \'n radioteleskoop op?',['Radiogolwe','Lig deur \'n lens','Klank','Wind']],
+ ['Wat is die bekendste ruimteteleskoop?',['Hubble','SALT','Curiosity','Apollo']],
+ ['Wanneer is Hubble die ruimte in gestuur?',['1990','1969','2012','2030']],
+ ['Waar is die SALT-teleskoop?',['Sutherland','Carnarvon','Kaapstad','Pretoria']],
+ ['Wie was die eerste mens op die Maan?',['Neil Armstrong','Galileo Galilei','Curiosity','Ceres']],
+ ['Wanneer het Neil Armstrong op die Maan geloop?',['20 Julie 1969','1990','2012','1972']],
+ ['Wat is Curiosity?',['\'n Robotverkenner op Mars','\'n Teleskoop','\'n Ruimtevaarder','\'n Maan']],
+ ['Wanneer het Curiosity op Mars geland?',['Augustus 2012','Julie 1969','1990','1972']],
+ ['Hoeveel kameras het Curiosity?',['17','2','64','8']],
+ ['Wat het Curiosity op Mars gevind?',['Bewys dat daar water was','Mense','Bome','\'n Nuwe maan']],
+ ['Hoe lank vat \'n reis na Mars en terug?',['2 jaar','2 dae','2 maande','20 jaar']],
+ ['Wat gebruik robotverkenners vir energie?',['Sonpanele','Petrol','Steenkool','Wind']],
+ ['Wat beteken "onbeman"?',['Sonder mense aan boord','Met baie mense','Met robotte en mense','Net een mens']]
+];
+let order=[],qi=0,score=0,answered=false;
+function startQuiz(n){
+  order=Q.map((q,i)=>i).sort(()=>Math.random()-.5).slice(0,n); qi=0; score=0; showQ();
+}
+function showQ(){
+  const box=document.getElementById('quiz');
+  if(qi>=order.length){
+    const pct=Math.round(score/order.length*100);
+    const msg=pct>=90?'🌟 Fantasties, Nic! Jy is \'n ruimte-kenner!':pct>=70?'🚀 Baie goed! Nog net \'n bietjie oefen.':pct>=50?'👍 Goeie poging! Lees weer die onderwerpe en probeer weer.':'💪 Moenie moed opgee nie! Kyk weer na die woordkaarte.';
+    box.innerHTML=`<h3>Klaar!</h3><p class="big">${score} uit ${order.length} (${pct}%)</p><p>${msg}</p>
+      <button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn alt" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;
+    return;
+  }
+  answered=false;
+  const q=Q[order[qi]], right=q[1][0];
+  const opts=[...q[1]].sort(()=>Math.random()-.5);
+  box.innerHTML=`<div>Vraag ${qi+1} van ${order.length} · Telling: ${score}</div>
+    <div class="bar"><div style="width:${qi/order.length*100}%"></div></div>
+    <h3>${q[0]}</h3><div id="opts"></div><div class="fb" id="fb"></div>`;
+  const o=document.getElementById('opts');
+  opts.forEach(t=>{
+    const b=document.createElement('button'); b.className='opt'; b.innerHTML=t;
+    b.onclick=()=>{
+      if(answered) return; answered=true;
+      const fb=document.getElementById('fb');
+      if(t===right){b.classList.add('right'); score++; addStar(); fb.innerHTML='✅ Reg! +1 ⭐';}
+      else{b.classList.add('wrong'); [...o.children].find(x=>x.innerHTML===right).classList.add('right'); fb.innerHTML='❌ Die antwoord is: '+right;}
+      const nx=document.createElement('button'); nx.className='btn'; nx.style.marginTop='10px';
+      nx.textContent=qi+1<order.length?'Volgende ➜':'Sien my telling'; nx.onclick=()=>{qi++;showQ();};
+      fb.appendChild(document.createElement('br')); fb.appendChild(nx);
+    };
+    o.appendChild(b);
+  });
+}
+document.getElementById('quiz').innerHTML=`<p>Hoeveel vrae wil jy doen?</p>
+  <button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn alt" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;
+</script>
+</body>
+</html>

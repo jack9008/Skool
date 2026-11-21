@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Josua se NW & Teg – Kwartaal 4</title>
+<style>
+  :root{
+    --bg:#0b1026; --panel:#151c3d; --panel2:#1d2650; --text:#eef2ff; --muted:#a9b3d9;
+    --sun:#ffb703; --accent:#4cc9f0; --good:#2ecc71; --bad:#ff5d73; --pink:#f72585;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);
+    background:radial-gradient(ellipse at top,#1b2457 0%,var(--bg) 60%);min-height:100vh;font-size:19px;line-height:1.55}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.6;
+    background-image:radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 80%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 70% 30%,#fff,transparent),radial-gradient(1px 1px at 90% 70%,#fff,transparent),
+    radial-gradient(1px 1px at 50% 50%,#fff,transparent),radial-gradient(1.5px 1.5px at 85% 10%,#fff,transparent),
+    radial-gradient(1px 1px at 15% 60%,#fff,transparent),radial-gradient(1px 1px at 60% 90%,#fff,transparent);}
+  header{text-align:center;padding:24px 12px 8px}
+  header h1{margin:0;font-size:2rem}
+  header p{margin:4px 0 0;color:var(--muted)}
+  .stars{color:var(--sun);font-weight:bold}
+  nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;position:sticky;top:0;z-index:5;
+    background:rgba(11,16,38,.92);backdrop-filter:blur(6px)}
+  nav button{border:0;border-radius:999px;padding:10px 16px;font-size:1rem;cursor:pointer;background:var(--panel2);color:var(--text)}
+  nav button.on{background:var(--sun);color:#1a1a1a;font-weight:bold}
+  main{max-width:1000px;margin:0 auto;padding:16px}
+  section{display:none;animation:fade .3s}
+  section.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  h2{color:var(--sun);margin-top:8px}
+  h3{color:var(--accent);margin-bottom:6px}
+  .card{background:var(--panel);border-radius:16px;padding:16px 20px;margin:14px 0;border:1px solid #2a356d}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .big{font-size:1.4rem;font-weight:bold;color:var(--sun)}
+  .tip{background:#2b2350;border-left:5px solid var(--pink);padding:10px 14px;border-radius:10px;margin:12px 0}
+  .tip b{color:var(--pink)}
+  .bl{color:var(--muted);font-size:.85rem}
+  table{width:100%;border-collapse:collapse}
+  td,th{padding:8px;border-bottom:1px solid #2a356d;text-align:left;vertical-align:top}
+  th{color:var(--accent)}
+  .stat{display:inline-block;background:var(--panel2);border-radius:10px;padding:8px 12px;margin:4px}
+  .stat b{display:block;color:var(--sun)}
+  .chips span{display:inline-block;background:var(--panel2);border-radius:99px;padding:6px 12px;margin:4px}
+  /* aarde */
+  .earthbig{width:150px;height:150px;border-radius:50%;margin:10px auto;position:relative;overflow:hidden;
+    background:#1f6fb2;box-shadow:0 0 0 10px rgba(76,201,240,.25),0 0 30px rgba(76,201,240,.4)}
+  .earthbig .land{position:absolute;inset:0;background:
+    radial-gradient(ellipse 22% 30% at 30% 40%,#2e8b57 98%,transparent),
+    radial-gradient(ellipse 15% 20% at 65% 65%,#2e8b57 98%,transparent),
+    radial-gradient(ellipse 12% 10% at 75% 25%,#2e8b57 98%,transparent);animation:slide 10s linear infinite}
+  @keyframes slide{from{transform:translateX(-40%)}to{transform:translateX(40%)}}
+  .legend{text-align:center;color:var(--muted);font-size:.9rem}
+  /* flits en bal */
+  .dn{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;padding:10px}
+  .sunball{width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#fff3b0,#ffb703 60%,#fb8500);box-shadow:0 0 40px #ffb703}
+  .earth{width:120px;height:120px;border-radius:50%;position:relative;overflow:hidden;
+    background:linear-gradient(90deg,#4cc9f0 0 50%,#0a1a3a 50% 100%)}
+  .earth .map{position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,#2ecc71 0 14%,transparent 15%),radial-gradient(circle at 70% 65%,#2ecc71 0 12%,transparent 13%);animation:spin 6s linear infinite}
+  @keyframes spin{from{transform:translateX(-60%)}to{transform:translateX(60%)}}
+  .beam{width:80px;height:24px;background:linear-gradient(90deg,rgba(255,220,120,.9),rgba(255,220,120,0))}
+  /* wentelbaan */
+  .orbit{position:relative;width:260px;height:260px;margin:10px auto}
+  .orbit .ring{position:absolute;inset:0;border:2px dashed #3c4a8f;border-radius:50%}
+  .orbit .sunball{position:absolute;left:85px;top:85px}
+  .orbit .arm{position:absolute;inset:0;animation:rot 10s linear infinite reverse}
+  .orbit .e{position:absolute;left:115px;top:-14px;width:30px;height:30px;border-radius:50%;background:#4cc9f0}
+  @keyframes rot{to{transform:rotate(360deg)}}
+  /* afstand */
+  .race{position:relative;height:120px;background:var(--panel2);border-radius:12px;margin:10px 0;overflow:hidden}
+  .lane{position:absolute;left:10px;right:10px;height:40px;display:flex;align-items:center}
+  .lane .goal{position:absolute;right:0;font-size:1.6rem}
+  .lane .ship{position:absolute;left:0;font-size:1.6rem;transition:left 0s}
+  /* maanfases */
+  .moonbox{display:flex;flex-direction:column;align-items:center;gap:10px}
+  #moonCanvas{background:transparent}
+  input[type=range]{width:100%;max-width:420px}
+  .phasebar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+  .phasebar button{border:0;border-radius:10px;padding:6px 10px;background:var(--panel2);color:var(--text);cursor:pointer;font-size:.9rem}
+  .phasebar button.on{background:var(--accent);color:#08122e;font-weight:bold}
+  /* vuurpyl */
+  .launch{position:relative;height:280px;background:linear-gradient(#0a1030,#1b2457 70%,#2e4a2e 70%);border-radius:14px;overflow:hidden}
+  .rocket{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);font-size:3.2rem;transition:bottom 2.5s ease-in}
+  .rocket.go{bottom:320px}
+  .flame{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);font-size:2rem;opacity:0}
+  .rocket.go + .flame{opacity:1;animation:flick .2s infinite}
+  @keyframes flick{50%{transform:translateX(-50%) scale(1.2)}}
+  .arrows{display:flex;justify-content:space-around;margin-top:8px}
+  /* woordkaarte */
+  .flip{perspective:900px;height:170px;cursor:pointer}
+  .flip .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.done .in{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;border-radius:16px;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:14px;backface-visibility:hidden}
+  .front{background:linear-gradient(135deg,#3a0ca3,#4361ee);font-size:1.4rem;font-weight:bold}
+  .back{background:var(--panel2);transform:rotateY(180deg);font-size:1rem;border:2px solid var(--accent)}
+  select,.btn{font-size:1rem;padding:10px 16px;border-radius:12px;border:0;cursor:pointer}
+  .btn{background:var(--accent);color:#08122e;font-weight:bold}
+  .btn.alt{background:var(--panel2);color:var(--text)}
+  /* toets */
+  .opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:12px;border:2px solid #2a356d;
+    background:var(--panel2);color:var(--text);font-size:1.05rem;cursor:pointer}
+  .opt:hover{border-color:var(--accent)}
+  .opt.right{background:#145a32;border-color:var(--good)}
+  .opt.wrong{background:#5c1a26;border-color:var(--bad)}
+  .bar{height:12px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:10px 0}
+  .bar div{height:100%;background:linear-gradient(90deg,var(--accent),var(--sun));transition:width .3s}
+  .fb{font-weight:bold;margin-top:8px;min-height:1.5em}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌍 Josua se Ruimte-avontuur</h1>
+  <p>Graad 4 NW &amp; Teg · Kwartaal 4 · <span class="stars" id="starCount">⭐ 0</span> sterre verdien</p>
+</header>
+
+<nav id="nav">
+  <button data-s="tuis" class="on">🏠 Begin</button>
+  <button data-s="aarde">🌍 Planeet Aarde</button>
+  <button data-s="ruimte">✨ Aarde &amp; Ruimte</button>
+  <button data-s="son">☀️ Die Son</button>
+  <button data-s="maan">🌙 Die Maan</button>
+  <button data-s="fases">🌗 Maanfases</button>
+  <button data-s="stories">📖 Maanstories</button>
+  <button data-s="vuurpyl">🚀 Vuurpyle</button>
+  <button data-s="kaarte">🃏 Woordkaarte</button>
+  <button data-s="toets">🏆 Toets jouself</button>
+</nav>
+
+<main>
+
+<!-- TUIS -->
+<section id="tuis" class="on">
+  <div class="card">
+    <h2>Hallo Josua! 👋</h2>
+    <p>Hier leer jy alles vir Kwartaal 4. Werk so:</p>
+    <ol>
+      <li><b>Lees</b> elke oortjie bo-aan, een vir een.</li>
+      <li><b>Speel</b> met die prentjies. Party beweeg as jy op 'n knoppie druk!</li>
+      <li><b>Woordkaarte</b>: sê die betekenis hardop, tik dan om te kyk.</li>
+      <li><b>Toets jouself</b>. Elke regte antwoord gee jou 'n ⭐.</li>
+    </ol>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Onderwerp 14</h3>Planeet Aarde<br><span class="bl">bl. 153-162</span></div>
+    <div class="card"><h3>Onderwerp 15</h3>Die Son en sy uitwerking op die Aarde<br><span class="bl">bl. 163-173</span></div>
+    <div class="card"><h3>Onderwerp 16</h3>Die Maan<br><span class="bl">bl. 175-185</span></div>
+    <div class="card"><h3>Onderwerp 17</h3>Vuurpylstelsels<br><span class="bl">bl. 187-191</span></div>
+  </div>
+</section>
+
+<!-- AARDE -->
+<section id="aarde">
+  <h2>🌍 Onderwerp 14: Planeet Aarde</h2>
+  <div class="card">
+    <h3>Die Aarde is rond en van rots gemaak (bl. 154)</h3>
+    <div class="earthbig"><div class="land"></div></div>
+    <p class="legend">🟦 water &nbsp; 🟩 land &nbsp; dun blou rand = lug</p>
+    <ul>
+      <li>Lank gelede het mense gedink die Aarde is <b>plat</b>. Hulle was bang hulle val van die rand af!</li>
+      <li><b>Foto's uit die ruimte</b> wys die Aarde is <b>rond soos 'n bal</b>.</li>
+      <li>'n Ronde vorm soos 'n bal heet 'n <b>sfeer</b>.</li>
+      <li>Die Aarde is van <b>rots</b> gemaak. Bo is die rots hard.</li>
+      <li>In die <b>middel</b> van die Aarde is die rots so warm dat dit <b>gesmelt</b> het.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Die oppervlak = land, water en lug (bl. 155)</h3>
+    <table>
+      <tr><th>🟫 Land</th><td>Van rots gemaak. Onder die sand en grond is <b>harde rots</b>.<br><b>Grond</b> = sand gemeng met dooie blare en plante.</td></tr>
+      <tr><th>🟦 Water</th><td>Groot stukke water bedek die Aarde. Onder die water is ook rots.<br>Die oppervlak het berge en hol plekke. Water lê in die hol plekke, <b>soos in 'n wasbak</b>.</td></tr>
+      <tr><th>☁️ Lug</th><td>'n Laag lug lê om die Aarde.</td></tr>
+    </table>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Meeste is water (bl. 157)</h3>
+      <div class="stat"><b>Meer as 50%</b>is water</div>
+      <ul>
+        <li>Daarom lyk die Aarde <b>blou</b> uit die ruimte.</li>
+        <li>Die meeste water is <b>sout seewater</b>.</li>
+        <li>Groot sout water = <b>oseane</b>.</li>
+        <li>Kleiner sout water = <b>seë</b>.</li>
+        <li>Water met land rondom = 'n <b>meer</b>.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Land: vastelande en eilande (bl. 158)</h3>
+      <ul>
+        <li>Daar is <b>sewe vastelande</b>.</li>
+        <li><b>Suid-Afrika</b> is heel in die suide van die <b>Afrika</b>-vasteland.</li>
+        <li><b>Eiland</b> = 'n kleiner stuk land met water rondom.</li>
+      </ul>
+      <p class="bl">Ekstra, om te weet:</p>
+      <div class="chips"><span>Afrika</span><span>Asië</span><span>Europa</span><span>Noord-Amerika</span><span>Suid-Amerika</span><span>Australië</span><span>Antarktika</span></div>
+    </div>
+    <div class="card"><h3>Lug = atmosfeer (bl. 158)</h3>
+      <ul>
+        <li>'n Dun laag lug om die Aarde = <b>atmosfeer</b>.</li>
+        <li>Dit gaan omtrent <b>600 km</b> hoog.</li>
+        <li>Dit het die gasse wat lewende dinge nodig het om <b>asem te haal</b>.</li>
+        <li>Dit is soos 'n <b>kombers</b>. Dit hou die Aarde warm genoeg.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>'n Tuiste vir lewende dinge (bl. 159)</h3>
+      <ul>
+        <li>Plante, diere en mense woon op die Aarde.</li>
+        <li>Elkeen se spesiale plek om te woon = 'n <b>habitat</b>.</li>
+        <li>Die Aarde het baie verskillende habitatte.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RUIMTE -->
+<section id="ruimte">
+  <h2>✨ Eenheid 2: Die Aarde en die ruimte (bl. 160-161)</h2>
+  <div class="card">
+    <h3>Die Aarde is 'n planeet</h3>
+    <ul>
+      <li><b>Planeet</b> = 'n groot voorwerp wat om 'n <b>ster</b> beweeg.</li>
+      <li>Ons Son is 'n ster. Die Aarde beweeg altyd om die Son.</li>
+      <li>Die Son het <b>8 planete</b>. Die Aarde is een.</li>
+      <li>Die <b>ruimte</b> is soos 'n oneindige donkerte bo die atmosfeer, vol sterre en planete.</li>
+      <li><b>Ruimtevaarders</b> = mense wat met ruimteskepe in die ruimte reis.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Dag en nag: die bal en die flits</h3>
+    <div class="dn"><div class="sunball"></div><div class="beam"></div><div class="earth"><div class="map"></div></div></div>
+    <p>Die <b>flits</b> is die Son. Die <b>bal</b> is die Aarde wat draai. Net die helfte na die flits is lig.</p>
+    <p>Ons sien die Son net in die <b>dag</b>, as ons kant na die Son toe gedraai is.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>☀️ Die Son</h3>'n Helder ster, naby genoeg dat ons dit kan sien.</div>
+    <div class="card"><h3>🌙 Die Maan</h3>Die <b>naaste</b> voorwerp in die ruimte. Koud en donker. 'n Helder Maan is eintlik die <b>Son se lig</b> wat op die Maan weerkaats.</div>
+    <div class="card"><h3>⭐ Sterre</h3>Daar is <b>miljoene</b>. Ons sien net party, as klein liggies, want hulle is ver. In die dag skyn hulle ook, maar die Son is te helder.</div>
+  </div>
+</section>
+
+<!-- SON -->
+<section id="son">
+  <h2>☀️ Onderwerp 15: Die Son en die Aarde (bl. 163-173)</h2>
+  <div class="grid">
+    <div class="card"><h3>Die Son is 'n ster</h3>
+      <ul>
+        <li>Alle sterre is groot <b>bolle warm gas</b>.</li>
+        <li>Die warm gas gee <b>hitte en lig</b> af. Dit is soorte <b>energie</b>.</li>
+        <li>Soos by 'n vuur: jy voel die hitte en sien die lig.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Baie groot en baie ver</h3>
+      <div class="stat"><b>110 keer</b>groter omtrek as die Aarde</div>
+      <div class="stat"><b>150 miljoen km</b>van die Aarde af</div>
+      <p>Die Son is ons <b>naaste ster</b>. Ander sterre is nog verder. Dit lyk groot, want dit is naby.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Eenheid 2: Beweging om die Son (bl. 167-169)</h3>
+    <div class="orbit"><div class="ring"></div><div class="sunball"></div><div class="arm"><div class="e"></div></div></div>
+    <ul>
+      <li>Die Aarde beweeg om die Son in 'n <b>wentelbaan</b>.</li>
+      <li>Dit beweeg <b>antikloksgewys</b> (teen die klok in).</li>
+      <li>Elke dag is die Aarde op 'n ander plek in sy wentelbaan.</li>
+      <li>"<b>Sol</b>" is Latyn vir Son. Daarom sê ons <b>solarstelsel</b> = <b>sonnestelsel</b>.</li>
+      <li><b>Sonnestelsel</b> = die Son en alles wat om dit beweeg. Die Son is die <b>enigste ster</b> daarin, in die middel.</li>
+    </ul>
+    <div class="tip"><b>8 planete:</b> almal is groot sfere. Hulle maak <b>nie</b> hul eie lig nie, want hulle is nie van warm gas nie. Elke planeet het 'n naam, 'n eie afstand van die Son en 'n eie wentelbaan. Hulle verskil in grootte en hoe hulle lyk.</div>
+  </div>
+  <div class="card">
+    <h3>Eenheid 3: Die Son en lewe (bl. 170-172)</h3>
+    <p>Die Aarde kry die <b>regte hoeveelheid</b> lig en hitte. Lewe het <b>water en energie</b> nodig.</p>
+    <h3>Die energieketting</h3>
+    <p class="big" style="text-align:center">☀️ Son ➜ 🌱 Plante ➜ 🐄 Diere</p>
+    <p>Alle lewende dinge het energie nodig vir die <b>sewe lewensprosesse</b>.</p>
+    <ul>
+      <li><b>Sade</b> het hitte nodig om te groei.</li>
+      <li><b>Diere</b> het hitte nodig vir hul lewensprosesse.</li>
+      <li>Nie alle plekke kry ewe veel hitte nie.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Die Son se hitte en die watersiklus</h3>
+    <p class="big" style="text-align:center">☀️ Hitte ➜ 💨 Verdamping ➜ ☁️ Wolke ➜ 🌧️ Reën ➜ 🏞️ Riviere ➜ 🌊 See</p>
+    <ul>
+      <li><b>Reën</b> gee plante water en maak riviere en damme vol.</li>
+      <li><b>Riviere</b> neem reënwater na die see.</li>
+      <li>Die Son se hitte laat water <b>verdamp</b>.</li>
+      <li>Te warm? Al die water sal verdamp. Te koud? Al die water sal vries.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- MAAN -->
+<section id="maan">
+  <h2>🌙 Onderwerp 16: Die Maan (bl. 175-179)</h2>
+  <div class="grid">
+    <div class="card"><h3>'n Bal van rots</h3>
+      <ul>
+        <li>Die Maan is <b>rond</b> en van <b>rots</b> gemaak.</li>
+        <li>Bedek met stof en gebreekte rotse. <b>Geen regte grond</b> nie.</li>
+        <li>Ruimtevaarders het klippe teruggebring. Dit is <b>dieselfde</b> as rotse op Aarde.</li>
+        <li>Die oppervlak is nie glad nie. Dit het <b>kraters</b> = ronde gate van goed wat daarop geval het.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Geen water en lug</h3>
+      <ul>
+        <li><b>Geen lug</b>: lewende dinge kan nie daar asem haal nie.</li>
+        <li><b>Geen water</b>: geen riviere, oseane of reën.</li>
+        <li>Daar is geen plante of diere nie.</li>
+        <li>Dalk is daar <b>ys</b> in baie diep kraters.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Die Maan is nader as die Son (bl. 178)</h3>
+    <table>
+      <tr><th>Aarde ➜ Son</th><td><b>150 000 000 km</b></td></tr>
+      <tr><th>Aarde ➜ Maan</th><td><b>384 400 km</b></td></tr>
+    </table>
+    <p>As jy in <b>8 sekondes</b> by die Son kan kom, kom jy in <b>1,5 sekondes</b> by die Maan. Druk die knoppie!</p>
+    <div class="race">
+      <div class="lane" style="top:15px"><span class="ship" id="s1">🚀</span><span class="goal">🌙</span></div>
+      <div class="lane" style="top:65px"><span class="ship" id="s2">🚀</span><span class="goal">☀️</span></div>
+    </div>
+    <button class="btn" id="raceBtn">▶ Vlieg!</button> <span id="raceTxt"></span>
+  </div>
+</section>
+
+<!-- FASES -->
+<section id="fases">
+  <h2>🌗 Eenheid 2: Fases van die Maan (bl. 180-181)</h2>
+  <div class="card">
+    <ul>
+      <li>Die Maan maak <b>nie sy eie lig</b> nie. Ons sien dit omdat die <b>Son se lig</b> daarop skyn.</li>
+      <li>Die Maan is rond. Die Son kan net op <b>een helfte</b> skyn.</li>
+      <li>Die vorm wat ons sien verander elke dag. Elke vorm is 'n <b>fase</b>.</li>
+    </ul>
+  </div>
+  <div class="card moonbox">
+    <h3>Skuif om die Maan te sien verander</h3>
+    <canvas id="moonCanvas" width="200" height="200"></canvas>
+    <div class="big" id="phaseName">Nuwemaan</div>
+    <input type="range" id="phaseSlider" min="0" max="7" step="1" value="0">
+    <div class="phasebar" id="phaseBar"></div>
+  </div>
+  <div class="tip"><b>Onthou:</b> Die fases kom altyd in <b>dieselfde volgorde</b>. Dit herhaal elke <b>29½ dae</b>. Volmaan vandag? Dan weer Volmaan oor 29½ dae.</div>
+</section>
+
+<!-- STORIES -->
+<section id="stories">
+  <h2>📖 Eenheid 3: Maanstories (bl. 184-185)</h2>
+  <div class="card">
+    <p>Mense kyk al eeue lank na die Maan en wonder daaroor.</p>
+    <ul>
+      <li>Party mense gebruik die fases om te weet wanneer om <b>oeste te plant</b>.</li>
+      <li>In verskillende gelowe wys fases <b>belangrike dae</b> aan.</li>
+    </ul>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>San-storie 🔪</h3><p><b>Hoekom die Maan sy vorm verander.</b></p>
+      <p>Die Maan was 'n man wat die Son kwaad gemaak het. Die Son sny stukkies af met sy skerp strale. As net 'n dun skyfie oor is, smeek die Maan. Dan laat die Son hom weer groot word. Dan begin alles weer.</p></div>
+    <div class="card"><h3>Tswana-geloof 👩‍🍼</h3><p><b>Die merke op die Maan.</b></p>
+      <p>Die vroeë Tswana-mense het 'n <b>vrou met 'n baba op haar rug</b> op die Maan gesien. Ander het 'n mens met 'n <b>bondel hout</b> op die rug gesien.</p></div>
+    <div class="card"><h3>Sotho, Venda, Tswana 🥣</h3><p><b>Die punte van 'n dun Maan.</b></p>
+      <p>Die Maan is 'n <b>bak met siektes</b>. Punte <b>op</b>: siektes bly in, mense is veilig. Punte <b>af</b>: siektes val uit. Dan bly mense saans binne.</p></div>
+    <div class="card"><h3>Xhosa-storie 🌊</h3><p><b>Hoe ons 'n nuwe Maan kry.</b></p>
+      <p>Die see maak 'n groot gat toe. In die gat is baie nuwe mane. As een Maan klaar is, kom 'n nuwe een uit die gat.</p></div>
+  </div>
+</section>
+
+<!-- VUURPYL -->
+<section id="vuurpyl">
+  <h2>🚀 Onderwerp 17: Vuurpylstelsels (bl. 187-191)</h2>
+  <div class="card">
+    <h3>'n Vuurpyl is 'n stelsel</h3>
+    <ul>
+      <li><b>Stelsel</b> = dele wat <b>saamwerk</b> om iets te laat gebeur.</li>
+      <li>Alle stelsels het <b>energie</b> nodig om te werk.</li>
+      <li>Vuurpyle neem mense, toerusting en ruimtetuie die ruimte in.</li>
+      <li>Dit het baie energie nodig om aan die <b>swaartekrag</b> te ontsnap en deur die atmosfeer te gaan.</li>
+      <li>Dit <b>verbrand brandstof</b> vir energie. Brandstof op? Dan val dit terug Aarde toe.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Lanseer die vuurpyl!</h3>
+    <div class="launch"><div class="rocket" id="rocket">🚀</div><div class="flame">🔥</div></div>
+    <div class="arrows"><span>⬇️ Warm gasse skiet <b>af</b></span><span>⬆️ Vuurpyl gaan <b>op</b></span></div>
+    <p><button class="btn" id="launchBtn">🔥 Lanseer</button></p>
+    <ol>
+      <li>Vloeibare of vaste <b>brandstof brand</b> in die vuurpyl.</li>
+      <li><b>Warm gasse</b> skiet <b>afwaarts</b> by die onderkant uit.</li>
+      <li>Die vuurpyl word baie vinnig <b>opwaarts</b> gestoot. Ons sê dit word <b>aangedryf</b>.</li>
+    </ol>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Sterk en lig</h3>
+      <ul>
+        <li>Elke kilogram het brandstof nodig.</li>
+        <li>Hoe <b>ligter</b> die vuurpyl, hoe <b>meer</b> kan dit dra.</li>
+        <li>Die <b>vorm</b> help dit om deur die lug te klief.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Sir Isaac Newton 🍎</h3>
+      <ul>
+        <li>Wetenskaplike wat omtrent <b>300 jaar gelede</b> geleef het.</li>
+        <li>Alles beweeg volgens dieselfde reëls (wette).</li>
+        <li><b>Derde wet</b>: vir elke stoot in een rigting is daar 'n <b>gelyke stoot</b> in die <b>teenoorgestelde</b> rigting.</li>
+        <li>Dit verduidelik hoe <b>ballonne</b> en <b>vuurpyle</b> beweeg.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Probeer self 🎈</h3>
+      <p>Blaas 'n ballon op en los dit. Die lug skiet <b>agtertoe</b> uit. Die ballon vlieg <b>vorentoe</b>. Net soos 'n vuurpyl!</p>
+    </div>
+  </div>
+</section>
+
+<!-- WOORDKAARTE -->
+<section id="kaarte">
+  <h2>🃏 Woordkaarte</h2>
+  <p>Lees die woord. Sê die betekenis hardop. Tik dan om te kyk!</p>
+  <p><select id="kfilter"></select> <button class="btn alt" id="shuffle">🔀 Skommel</button></p>
+  <div class="grid" id="cards"></div>
+</section>
+
+<!-- TOETS -->
+<section id="toets">
+  <h2>🏆 Toets jouself</h2>
+  <div class="card" id="quiz"></div>
+</section>
+
+</main>
+<footer>Gebaseer op Juffrou Natasha se Opsommings · Platinum Handboek · Graad 4 NW &amp; Teg Kwartaal 4</footer>
+
+<script>
+// ---------- Navigasie ----------
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); document.getElementById(b.dataset.s).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+// ---------- Sterre ----------
+let stars=+(localStorage.getItem('josuaStars')||0);
+function addStar(){stars++;localStorage.setItem('josuaStars',stars);showStars();}
+function showStars(){document.getElementById('starCount').textContent='⭐ '+stars;}
+showStars();
+
+// ---------- Resies na Maan en Son ----------
+document.getElementById('raceBtn').onclick=()=>{
+  const s1=document.getElementById('s1'), s2=document.getElementById('s2'), t=document.getElementById('raceTxt');
+  [s1,s2].forEach(s=>{s.style.transition='none';s.style.left='0';});
+  void s1.offsetWidth;
+  s1.style.transition='left 1.5s linear'; s2.style.transition='left 8s linear';
+  s1.style.left='calc(100% - 70px)'; s2.style.left='calc(100% - 70px)';
+  t.textContent='';
+  setTimeout(()=>t.textContent='🌙 Maan bereik in 1,5 sekondes!',1500);
+  setTimeout(()=>t.textContent='☀️ Son bereik in 8 sekondes. Die Maan is baie nader!',8000);
+};
+
+// ---------- Maanfases ----------
+const phases=['Nuwemaan','Sekel','1ste kwartier','Bolmaan','Volmaan','Bolmaan','3de kwartier','Sekel'];
+const cv=document.getElementById('moonCanvas'), cx=cv.getContext('2d');
+function drawMoon(i){
+  const f=i/8, r=80, c=100;
+  const DARK='#2a2f45', LIGHT='#f4f1de';
+  cx.clearRect(0,0,200,200);
+  cx.fillStyle=DARK; cx.beginPath(); cx.arc(c,c,r,0,Math.PI*2); cx.fill();
+  if(i!==0){
+    // Soos in Suid-Afrika gesien: groeiende maan is links verlig
+    const waxing=f<0.5;
+    cx.fillStyle=LIGHT; cx.beginPath();
+    if(waxing) cx.arc(c,c,r,Math.PI/2,Math.PI*1.5); else cx.arc(c,c,r,-Math.PI/2,Math.PI/2);
+    cx.closePath(); cx.fill();
+    const w=Math.abs(r*Math.cos(f*2*Math.PI));
+    const gibbous=f>0.25&&f<0.75;
+    if(w>0.5){cx.fillStyle=gibbous?LIGHT:DARK; cx.beginPath(); cx.ellipse(c,c,w,r,0,0,Math.PI*2); cx.fill();}
+  }
+  cx.strokeStyle='#555'; cx.lineWidth=2; cx.beginPath(); cx.arc(c,c,r,0,Math.PI*2); cx.stroke();
+  document.getElementById('phaseName').textContent=phases[i];
+  document.querySelectorAll('#phaseBar button').forEach((b,j)=>b.classList.toggle('on',j===i));
+  document.getElementById('phaseSlider').value=i;
+}
+const pb=document.getElementById('phaseBar');
+phases.forEach((p,i)=>{const b=document.createElement('button');b.textContent=(i+1)+'. '+p;b.onclick=()=>drawMoon(i);pb.appendChild(b);});
+document.getElementById('phaseSlider').oninput=e=>drawMoon(+e.target.value);
+drawMoon(0);
+
+// ---------- Vuurpyl ----------
+document.getElementById('launchBtn').onclick=()=>{
+  const r=document.getElementById('rocket');
+  if(r.classList.contains('go')){r.classList.remove('go');return;}
+  r.classList.add('go');
+  setTimeout(()=>r.classList.remove('go'),3500);
+};
+
+// ---------- Woordkaarte ----------
+const K=[
+ ['Kenmerk',"'n Interessante of opmerklike deel van iets",'14'],
+ ['Sfeer',"'n Ronde vorm, soos 'n bal",'14'],
+ ['Oppervlak','Die buitekant of die boonste laag van iets','14'],
+ ['Grond','Sand wat met dooie of verrotte materiaal gemeng is','14'],
+ ['Wateroppervlak',"Groot areas water wat die Aarde se rotsagtige oppervlak bedek",'14'],
+ ['Oseane',"Die grootste dele van die Aarde se soutwater",'14'],
+ ['Seë','Kleiner soutwateroppervlakke','14'],
+ ['Vasteland',"Een van die sewe groot dele van die Aarde se land",'14'],
+ ['Eiland',"'n Stuk land kleiner as 'n vasteland, met see rondom",'14'],
+ ['Meer',"'n Groot oppervlak water met land rondom",'14'],
+ ['Atmosfeer',"Die dun laag lug om die Aarde, soos 'n kombers",'14'],
+ ['Habitat','Die spesiale plek waar \'n plant, dier of mens leef','14'],
+ ['Planeet',"'n Groot voorwerp wat om 'n ster beweeg",'14'],
+ ['Sterre',"Voorwerpe in die ruimte wat hul eie lig afgee. 'n Groot bol baie warm gas",'14'],
+ ['Son',"'n Baie helder ster wat lig en hitte aan die Aarde gee",'14'],
+ ['Maan',"'n Koue, ronde voorwerp wat altyd om die Aarde beweeg",'14'],
+ ['Ruimtevaarders','Mense wat met ruimteskepe in die ruimte reis','14'],
+ ['Energie','Hitte en lig is soorte energie','15'],
+ ['Wentelbaan','Die pad (baan) wat die Aarde om die Son volg','15'],
+ ['Sonnestelsel','Die Son en al die voorwerpe wat rondom dit beweeg','15'],
+ ['Sol','Die Latynse woord vir Son','15'],
+ ['Antikloksgewys','Teen die klok in. So beweeg die Aarde om die Son','15'],
+ ['Energieketting','Son ➜ plante ➜ diere','15'],
+ ['Verdamping','Die Son se hitte laat water in die lug opgaan','15'],
+ ['Kraters','Ronde gate wat gemaak is deur iets wat op die Maan geval het','16'],
+ ['Fases van die Maan','Die veranderende patroon van sonlig op die Maan','16'],
+ ['Fase','Elke verligte vorm van die Maan','16'],
+ ['Vuurpyl','Lang, hoë struktuur wat die ruimte ingestuur kan word','17'],
+ ['Lanseer',"Om 'n ruimtetuig die ruimte in te stuur",'17'],
+ ['Swaartekrag','Die aantrekkingskrag wat dinge op die Aarde hou','17'],
+ ['Nutslas','Die mense, toerusting of ruimtetuie wat \'n vuurpyl dra','17'],
+ ['Voertuig',"'n Masjien wat mense of goed van een plek na 'n ander vervoer",'17'],
+ ['Aandryf','Om iets vorentoe te stoot of te laat beweeg','17'],
+ ['Stelsel','Verskillende dele wat saamwerk om iets te laat gebeur','17']
+];
+const kf=document.getElementById('kfilter');
+kf.innerHTML='<option value="">Alle onderwerpe</option><option value="14">Onderwerp 14</option><option value="15">Onderwerp 15</option><option value="16">Onderwerp 16</option><option value="17">Onderwerp 17</option>';
+let kList=[...K];
+function drawCards(){
+  const box=document.getElementById('cards'); box.innerHTML='';
+  kList.filter(k=>!kf.value||k[2]===kf.value).forEach(k=>{
+    const d=document.createElement('div'); d.className='flip';
+    d.innerHTML=`<div class="in"><div class="face front">${k[0]}</div><div class="face back">${k[1]}</div></div>`;
+    d.onclick=()=>d.classList.toggle('done'); box.appendChild(d);
+  });
+}
+kf.onchange=drawCards;
+document.getElementById('shuffle').onclick=()=>{kList.sort(()=>Math.random()-.5);drawCards();};
+drawCards();
+
+// ---------- Toets (eerste antwoord is reg) ----------
+const Q=[
+ ['Watter vorm het die Aarde?',['Rond, soos \'n bal','Plat, soos \'n bord','Vierkantig','Soos \'n driehoek']],
+ ['Wat wys ons dat die Aarde rond is?',['Foto\'s uit die ruimte','Die wolke','Die reën','Die wind']],
+ ['Wat is \'n sfeer?',['\'n Ronde vorm, soos \'n bal','\'n Plat vorm','\'n Groot meer','\'n Ster']],
+ ['Waarvan is die Aarde gemaak?',['Rots','Gas','Ys','Sand alleen']],
+ ['Hoe is die rots in die middel van die Aarde?',['So warm dat dit gesmelt het','Yskoud','Sag soos sand','Van water gemaak']],
+ ['Wat is grond?',['Sand gemeng met dooie blare en plante','Net harde rots','Seewater','Lug']],
+ ['Waarmee is die meeste van die Aarde bedek?',['Water','Sand','Bome','Ys']],
+ ['Hoekom lyk die Aarde blou uit die ruimte?',['Meeste van die Aarde is water','Die lug is blou geverf','Daar is baie blou blomme','Die Son is blou']],
+ ['Hoe proe die meeste water op Aarde?',['Sout','Soet','Suur','Bitter']],
+ ['Wat noem ons die grootste sout watermassas?',['Oseane','Mere','Riviere','Damme']],
+ ['Wat is \'n meer?',['Water met land rondom','Land met water rondom','\'n Klein see','\'n Rivier']],
+ ['Wat is \'n eiland?',['\'n Stuk land met water rondom','\'n Groot see','\'n Berg','\'n Vasteland']],
+ ['Hoeveel vastelande is daar?',['7','5','8','10']],
+ ['Op watter vasteland is Suid-Afrika?',['Afrika','Europa','Asië','Australië']],
+ ['Wat is die atmosfeer?',['Die laag lug om die Aarde','Die water in die see','Die rots in die middel','\'n Ster']],
+ ['Hoe hoog gaan die atmosfeer omtrent?',['600 km','6 km','60 000 km','6 m']],
+ ['Waarom is die atmosfeer soos \'n kombers?',['Dit hou die Aarde warm genoeg','Dit is sag','Dit is wit','Dit hou die reën weg']],
+ ['Wat is \'n habitat?',['Die plek waar \'n dier of plant leef','\'n Soort ster','\'n Vuurpyl','\'n Maanfase']],
+ ['Wat is \'n planeet?',['\'n Groot voorwerp wat om \'n ster beweeg','\'n Bal warm gas','\'n Klein klip','\'n Wolk']],
+ ['Hoeveel planete het die Son?',['8','9','7','1']],
+ ['Waarom kan ons sterre nie in die dag sien nie?',['Die Son is te helder','Hulle skyn net in die nag','Hulle slaap','Die wolke steek hulle weg']],
+ ['Waarvan is die Son gemaak?',['Warm gas','Rots','Water','Ys']],
+ ['Wat gee die Son af?',['Hitte en lig','Reën en wind','Sneeu','Klank']],
+ ['Hoe ver is die Son van die Aarde?',['Omtrent 150 miljoen km','150 km','384 400 km','600 km']],
+ ['Hoeveel keer groter is die Son se omtrek as die Aarde s\'n?',['110 keer','2 keer','10 keer','1 000 keer']],
+ ['Waarom lyk die Son vir ons so groot?',['Dit is naby aan ons','Dit is die grootste ster','Dit is warm','Dit is geel']],
+ ['Wat is \'n wentelbaan?',['Die pad wat die Aarde om die Son volg','\'n Soort vuurpyl','\'n Rivier','\'n Maanstorie']],
+ ['In watter rigting beweeg die Aarde om die Son?',['Antikloksgewys','Kloksgewys','Op en af','Dit staan stil']],
+ ['Wat beteken "sol"?',['Son in Latyn','Maan in Latyn','Ster in Engels','Aarde in Latyn']],
+ ['Hoeveel sterre is daar in ons sonnestelsel?',['1, die Son','8','Miljoene','Geen']],
+ ['Waarom maak planete nie hul eie lig nie?',['Hulle is nie van warm gas nie','Hulle is te klein','Hulle is te ver','Hulle slaap']],
+ ['Hoe gaan die energieketting?',['Son ➜ plante ➜ diere','Diere ➜ plante ➜ Son','Plante ➜ Son ➜ diere','Maan ➜ Son ➜ plante']],
+ ['Wat het sade nodig om te groei?',['Hitte','Sneeu','Maanlig','Wind']],
+ ['Wat laat water verdamp?',['Die Son se hitte','Die Maan','Die wind alleen','Die swaartekrag']],
+ ['Wat sal gebeur as dit te koud is op Aarde?',['Al die water sal vries','Al die water sal verdamp','Dit sal meer reën','Niks']],
+ ['Waarvan is die Maan gemaak?',['Rots','Kaas','Warm gas','Water']],
+ ['Wat is kraters?',['Ronde gate op die Maan','Berge op die Maan','Seë op die Maan','Sterre']],
+ ['Is daar lug en water op die Maan?',['Nee, geen lug en geen water nie','Ja, baie','Net lug','Net water']],
+ ['Hoe ver is die Maan van die Aarde?',['384 400 km','150 000 000 km','600 km','110 km']],
+ ['Wat is nader aan die Aarde?',['Die Maan','Die Son','Ander sterre','Hulle is ewe ver']],
+ ['Waarom kan ons die Maan sien?',['Die Son se lig skyn daarop','Die Maan maak sy eie lig','Die Maan brand','Die Aarde skyn daarop']],
+ ['Wat is die fases van die Maan?',['Die veranderende patroon van sonlig op die Maan','Die gate op die Maan','Stories oor die Maan','Die Maan se kleur']],
+ ['Elke hoeveel dae herhaal die maanfases?',['29½ dae','7 dae','365 dae','1 dag']],
+ ['Watter fase kom ná Nuwemaan?',['Sekel','Volmaan','3de kwartier','Bolmaan']],
+ ['Watter fase kom ná 1ste kwartier?',['Bolmaan','Nuwemaan','Sekel','3de kwartier']],
+ ['In die San-storie, wie sny stukkies van die Maan af?',['Die Son','Die see','\'n Vrou','\'n Vuurpyl']],
+ ['Wat het die Tswana-mense op die Maan gesien?',['\'n Vrou met \'n baba op haar rug','\'n Haas','\'n Vuurpyl','\'n Vis']],
+ ['In die Xhosa-storie, waar kom nuwe mane vandaan?',['Uit \'n gat wat die see toemaak','Van die Son','Uit die wolke','Uit \'n berg']],
+ ['Wat is \'n stelsel?',['Dele wat saamwerk om iets te laat gebeur','\'n Soort ster','\'n Krater','\'n Eiland']],
+ ['Wat het alle stelsels nodig om te werk?',['Energie','Water','Wind','Mense']],
+ ['Wat is swaartekrag?',['Die krag wat dinge op die Aarde hou','Die krag van die wind','Hitte van die Son','\'n Vuurpyl se brandstof']],
+ ['Wat beteken lanseer?',['\'n Ruimtetuig die ruimte in stuur','\'n Vuurpyl bou','Op die Maan loop','Brandstof koop']],
+ ['Wat is \'n nutslas?',['Die mense en goed wat \'n vuurpyl dra','Die brandstof','Die vuurpyl se vorm','Die lanseerplek']],
+ ['Hoekom moet \'n vuurpyl lig wees?',['Dan kan dit meer goed dra','Dan lyk dit mooi','Dan is dit stadiger','Dan het dit meer brandstof nodig']],
+ ['Wie het die derde wet oor stoot ontdek?',['Sir Isaac Newton','Neil Armstrong','Galileo','Die San-mense']],
+ ['Wat sê Newton se derde wet?',['Elke stoot het \'n gelyke stoot in die teenoorgestelde rigting','Alles val op','Warm gas is swaar','Vuurpyle het nie brandstof nodig nie']],
+ ['Waarheen skiet die warm gasse uit \'n vuurpyl?',['Afwaarts (na onder)','Opwaarts','Na links','Nêrens']],
+ ['Wat werk op dieselfde manier as \'n vuurpyl?',['\'n Ballon wat jy los','\'n Fiets','\'n Boot met seile','\'n Vlieër']]
+];
+let order=[],qi=0,score=0,answered=false;
+function startQuiz(n){order=Q.map((q,i)=>i).sort(()=>Math.random()-.5).slice(0,n);qi=0;score=0;showQ();}
+function menu(){return `<button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn alt" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;}
+function showQ(){
+  const box=document.getElementById('quiz');
+  if(qi>=order.length){
+    const pct=Math.round(score/order.length*100);
+    const msg=pct>=90?'🌟 Fantasties, Josua! Jy is \'n ruimte-kenner!':pct>=70?'🚀 Baie goed! Nog net \'n bietjie oefen.':pct>=50?'👍 Goeie poging! Lees weer en probeer weer.':'💪 Moenie moed opgee nie! Kyk weer na die woordkaarte.';
+    box.innerHTML=`<h3>Klaar!</h3><p class="big">${score} uit ${order.length} (${pct}%)</p><p>${msg}</p>`+menu();
+    return;
+  }
+  answered=false;
+  const q=Q[order[qi]], right=q[1][0], opts=[...q[1]].sort(()=>Math.random()-.5);
+  box.innerHTML=`<div>Vraag ${qi+1} van ${order.length} · Telling: ${score}</div>
+    <div class="bar"><div style="width:${qi/order.length*100}%"></div></div>
+    <h3>${q[0]}</h3><div id="opts"></div><div class="fb" id="fb"></div>`;
+  const o=document.getElementById('opts');
+  opts.forEach(t=>{
+    const b=document.createElement('button'); b.className='opt'; b.textContent=t;
+    b.onclick=()=>{
+      if(answered) return; answered=true;
+      const fb=document.getElementById('fb');
+      if(t===right){b.classList.add('right');score++;addStar();fb.textContent='✅ Reg! +1 ⭐';}
+      else{b.classList.add('wrong');[...o.children].find(x=>x.textContent===right).classList.add('right');fb.textContent='❌ Die antwoord is: '+right;}
+      const nx=document.createElement('button'); nx.className='btn'; nx.style.marginTop='10px';
+      nx.textContent=qi+1<order.length?'Volgende ➜':'Sien my telling'; nx.onclick=()=>{qi++;showQ();};
+      fb.appendChild(document.createElement('br')); fb.appendChild(nx);
+    };
+    o.appendChild(b);
+  });
+}
+document.getElementById('quiz').innerHTML='<p>Hoeveel vrae wil jy doen?</p>'+menu();
+</script>
+</body>
+</html>
