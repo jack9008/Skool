@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nic se Aardrykskunde – Kwartaal 4</title>
+<style>
+  :root{--bg:#0d1f17;--panel:#14302a;--panel2:#1c4038;--text:#eefaf3;--muted:#a7c9b9;
+    --sun:#ffc857;--accent:#5ad1a0;--good:#2ecc71;--bad:#ff5d73;--pink:#ff8fab}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);font-size:18px;line-height:1.5;
+    background:radial-gradient(ellipse at top,#1d4a3c 0%,var(--bg) 65%);min-height:100vh}
+  header{text-align:center;padding:24px 12px 8px}
+  header h1{margin:0;font-size:2rem}
+  header p{margin:4px 0 0;color:var(--muted)}
+  .back{position:absolute;left:14px;top:14px;color:var(--muted);text-decoration:none;font-size:.95rem}
+  .stars{color:var(--sun);font-weight:bold}
+  nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;position:sticky;top:0;z-index:5;background:rgba(13,31,23,.92);backdrop-filter:blur(6px)}
+  nav button{border:0;border-radius:999px;padding:10px 16px;font-size:1rem;cursor:pointer;background:var(--panel2);color:var(--text)}
+  nav button.on{background:var(--sun);color:#1a1a1a;font-weight:bold}
+  main{max-width:1000px;margin:0 auto;padding:16px}
+  section{display:none;animation:fade .3s} section.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  h2{color:var(--sun);margin-top:8px} h3{color:var(--accent);margin-bottom:6px}
+  .card{background:var(--panel);border-radius:16px;padding:16px 20px;margin:14px 0;border:1px solid #2b5a4d}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .big{font-size:1.4rem;font-weight:bold;color:var(--sun)}
+  .tip{background:#3a2a3a;border-left:5px solid var(--pink);padding:10px 14px;border-radius:10px;margin:12px 0}
+  .tip b{color:var(--pink)}
+  .bl{color:var(--muted);font-size:.85rem}
+  table{width:100%;border-collapse:collapse} td,th{padding:8px;border-bottom:1px solid #2b5a4d;text-align:left;vertical-align:top} th{color:var(--accent)}
+  .stat{display:inline-block;background:var(--panel2);border-radius:10px;padding:8px 12px;margin:4px} .stat b{display:block;color:var(--sun)}
+  .chips span{display:inline-block;background:var(--panel2);border-radius:99px;padding:6px 12px;margin:4px}
+  .tabs{display:flex;gap:8px;margin-bottom:10px} .tabs button{border:0;border-radius:10px;padding:8px 12px;cursor:pointer;background:var(--panel2);color:var(--text)}
+  .tabs button.on{background:var(--accent);color:#08221a;font-weight:bold}
+  .bars .row{display:grid;grid-template-columns:120px 1fr 90px;gap:8px;align-items:center;margin:5px 0;font-size:.95rem}
+  .bars .b{height:20px;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--sun));transition:width .5s}
+  .bars .v{color:var(--muted);text-align:right}
+  .dots{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .dots div{background:var(--panel2);border-radius:12px;height:140px;position:relative;overflow:hidden}
+  .dots i{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--sun)}
+  .dots span{position:absolute;bottom:6px;left:10px;font-size:.9rem}
+  .calc{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .calc input{width:140px;font-size:1rem;padding:8px;border-radius:10px;border:0}
+  .place{cursor:pointer}
+  .place .letter{display:inline-block;width:34px;height:34px;border-radius:50%;background:var(--sun);color:#1a1a1a;font-weight:bold;text-align:center;line-height:34px;margin-right:8px}
+  .place .more{display:none;margin-top:8px} .place.open .more{display:block}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:10px 0}
+  .chain span{background:var(--panel2);border-radius:12px;padding:8px 12px} .chain i{font-style:normal;color:var(--sun);font-size:1.3rem}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .tl{border-left:4px solid var(--accent);margin-left:10px;padding-left:18px}
+  .tl div{position:relative;margin:0 0 14px}
+  .tl div::before{content:"";position:absolute;left:-27px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--sun)}
+  .flip{perspective:900px;height:170px;cursor:pointer}
+  .flip .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.done .in{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;backface-visibility:hidden}
+  .front{background:linear-gradient(135deg,#1b7a5a,#2fa37b);font-size:1.4rem;font-weight:bold}
+  .back{background:var(--panel2);transform:rotateY(180deg);font-size:1rem;border:2px solid var(--accent)}
+  .btn{font-size:1rem;padding:10px 16px;border-radius:12px;border:0;cursor:pointer;background:var(--accent);color:#08221a;font-weight:bold}
+  .btn.alt{background:var(--panel2);color:var(--text)}
+  .opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:12px;border:2px solid #2b5a4d;background:var(--panel2);color:var(--text);font-size:1.05rem;cursor:pointer}
+  .opt:hover{border-color:var(--accent)} .opt.right{background:#145a32;border-color:var(--good)} .opt.wrong{background:#5c1a26;border-color:var(--bad)}
+  .bar{height:12px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:10px 0}
+  .bar div{height:100%;background:linear-gradient(90deg,var(--accent),var(--sun))}
+  .fb{font-weight:bold;margin-top:8px;min-height:1.5em}
+  @media (max-width:600px){.vs,.dots{grid-template-columns:1fr}.bars .row{grid-template-columns:90px 1fr 70px}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="vakke.html">⬅ Vakke</a>
+  <h1>🗺️ Nic se Aardrykskunde</h1>
+  <p>Graad 6 SW Geografie · Kwartaal 4 · <span class="stars" id="starCount">⭐ 0</span> sterre verdien</p>
+</header>
+
+<nav id="nav">
+  <button data-s="tuis" class="on">🏠 Begin</button>
+  <button data-s="bev">👥 Bevolking</button>
+  <button data-s="hoekom">📍 Hoekom daar?</button>
+  <button data-s="land">🌾 Landelik &amp; stedelik</button>
+  <button data-s="wereld">🌍 Die wêreld</button>
+  <button data-s="rio">🇧🇷 Rio de Janeiro</button>
+  <button data-s="kaarte">🃏 Woordkaarte</button>
+  <button data-s="toets">🏆 Toets jouself</button>
+</nav>
+
+<main>
+<section id="tuis" class="on">
+  <div class="card">
+    <h2>Onderwerp 4: Bevolking. Hoekom mense woon waar hulle woon</h2>
+    <p class="bl">bl. 74-97</p>
+    <ol>
+      <li><b>Lees</b> elke oortjie bo-aan.</li>
+      <li><b>Speel</b> met die grafieke en die rekenmasjien.</li>
+      <li><b>Woordkaarte</b>: sê die betekenis hardop, tik dan om te kyk.</li>
+      <li><b>Toets jouself</b>. Elke regte antwoord gee 'n ⭐.</li>
+    </ol>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Eenheid 1</h3>Mense en provinsies in SA<br><span class="bl">bl. 76-81</span></div>
+    <div class="card"><h3>Eenheid 2</h3>Hoekom mense woon waar hulle woon<br><span class="bl">bl. 82-86</span></div>
+    <div class="card"><h3>Eenheid 3</h3>Landelike en stedelike gebiede<br><span class="bl">bl. 87-89</span></div>
+    <div class="card"><h3>Eenheid 4</h3>Mense oor die wêreld heen<br><span class="bl">bl. 90-93</span></div>
+    <div class="card"><h3>Eenheid 5</h3>Rio de Janeiro: 'n gevallestudie<br><span class="bl">bl. 94</span></div>
+  </div>
+</section>
+
+<section id="bev">
+  <h2>👥 Eenheid 1: Mense en provinsies (bl. 76-81)</h2>
+  <div class="card">
+    <table>
+      <tr><th>Bevolking</th><td>Al die mense wat in 'n plek of land bly</td></tr>
+      <tr><th>Bevolkingsdigtheid</th><td>Die getal mense in 'n gebied</td></tr>
+      <tr><th>Bevolkingsverspreiding</th><td>Hoe mense oor 'n gebied versprei is</td></tr>
+      <tr><th>Vestig</th><td>Gaan woon</td></tr>
+    </table>
+    <div class="stat"><b>± 51 miljoen</b>mense in SA</div>
+    <div class="stat"><b>9</b>provinsies</div>
+  </div>
+  <div class="card">
+    <h3>Hoë en lae digtheid</h3>
+    <div class="dots"><div id="dHigh"><span>🏙️ Stad: <b>hoë</b> digtheid</span></div><div id="dLow"><span>🚜 Plaas: <b>lae</b> digtheid</span></div></div>
+    <ul>
+      <li>Meer mense in 'n gebied = <b>groter</b> bevolkingsdigtheid.</li>
+      <li>Dorpe en stede het <b>hoë</b> digtheid. Plase en dorpies het <b>laer</b> digtheid.</li>
+      <li>Mense vestig nie eweredig nie. In SA is die verspreiding <b>oneweredig</b>.</li>
+      <li>Kaarte gebruik <b>kolletjies</b>. Een kolletjie kan bv. <b>50 000 mense</b> wees.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Die 9 provinsies (bl. 79)</h3>
+    <div class="tabs"><button class="on" data-k="pop">Bevolking</button><button data-k="area">Grootte (km²)</button></div>
+    <div class="bars" id="bars"></div>
+    <p class="bl">Getalle is omtrent, soos op die grafieke in die opsomming.</p>
+    <div class="tip"><b>Kyk!</b> Noord-Kaap is die <b>grootste</b>, maar het die <b>minste</b> mense. Gauteng is die <b>kleinste</b>, maar het die <b>meeste</b> mense. Grootte sê nie veel oor digtheid nie.</div>
+  </div>
+  <div class="card">
+    <h3>Gemiddelde bevolkingsdigtheid (bl. 80)</h3>
+    <p class="big" style="text-align:center">mense ÷ oppervlakte = mense per km²</p>
+    <p><b>Voorbeeld uit die boek:</b> Mpumalanga: 3 700 000 ÷ 79 490 km² = <b>46,5 mense per km²</b></p>
+    <div class="calc">
+      <input id="cPop" type="number" value="3700000"> ÷ <input id="cArea" type="number" value="79490"> km² =
+      <b id="cOut" class="big"></b>
+    </div>
+    <p class="bl">Verander die getalle en kyk wat gebeur.</p>
+  </div>
+</section>
+
+<section id="hoekom">
+  <h2>📍 Eenheid 2: Hoekom mense woon waar hulle woon (bl. 82-86)</h2>
+  <div class="card">
+    <h3>5 redes</h3>
+    <div class="chips"><span>1. Klimaat</span><span>2. Plantegroei</span><span>3. Natuurlike kenmerke</span><span>4. Hulpbronne en werk</span><span>5. Wette en geskiedenis</span></div>
+  </div>
+  <p>Tik op elke plek om meer te lees.</p>
+  <div class="grid">
+    <div class="card place"><span class="letter">A</span><b>Goeie boerdery-grond</b>
+      <div class="more">Goeie natuurlike hulpbronne, baie water en 'n <b>matige klimaat</b>. Goed om gewasse te plant. <b>Graslande</b> gee goeie weiding vir beeste.</div></div>
+    <div class="card place"><span class="letter">B</span><b>Kimberley 💎</b>
+      <div class="more">Was eers 'n plaas. Toe word <b>diamante</b> gevind. Mense kom van oral af om dit te myn. Spoorlyne en paaie word gebou vir handel. Vandag: 'n <b>mynbou- en vervoersentrum</b>.</div></div>
+    <div class="card place"><span class="letter">C</span><b>Krugerwildtuin 🦁</b>
+      <div class="more">Die <b>San</b> het meer as 2 000 jaar gelede hier gewoon. Hulle het wilde diere gejag en plante en vrugte geëet. Toe kom swart boere, en later Boeresetlaars. <b>Paul Kruger</b> het dit 'n <b>nasionale park</b> gemaak. Vandag mag niemand daar jag of boer nie.</div></div>
+    <div class="card place"><span class="letter">D</span><b>Wette uit die verlede ⚖️</b>
+      <div class="more">Sekere wette het party mense <b>verbied</b> om in dorpe te woon. Die regering het hulle na ander grond <b>verskuif</b>. Mense woon steeds daar, as <b>bestaansboere</b> of met klein besighede.</div></div>
+    <div class="card place"><span class="letter">E</span><b>Durban 🐘</b>
+      <div class="more">Swart boere het eerste hier gewoon. Goeie <b>grond en 'n rivier</b> gee goeie visvang. Handelaars uit <b>Europa</b> kom vir olifantjag en <b>ivoor</b>. 'n <b>Baai</b> maak 'n goeie hawe.</div></div>
+    <div class="card place"><span class="letter">F</span><b>Kaapstad ⛵</b>
+      <div class="more">Lank gelede het mense langs die kus van seekos geleef. Omtrent <b>500 jaar gelede</b> word <b>Tafelbaai</b> 'n stop op die <b>handelsroete</b> tussen <b>Europa en Indië</b>. Skepe koop vars groente. Vandag: 'n besige hawe, en <b>Tafelberg</b> trek toeriste.</div></div>
+  </div>
+  <div class="card">
+    <table>
+      <tr><th>Stedelik</th><td>Baie geboue en paaie, soos 'n dorp of stad. Baie soorte werk.</td></tr>
+      <tr><th>Landelik</th><td>Die platteland, soos 'n plaas of dorpie. <b>Yler</b> bevolk. Mense plant gewasse en hou diere aan.</td></tr>
+      <tr><th>Bestaansboer</th><td>Produseer net genoeg kos vir homself en sy gesin.</td></tr>
+      <tr><th>Handelsroete</th><td>'n Roete wat handelskepe volg.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="land">
+  <h2>🌾 Eenheid 3: Landelike en stedelike gebiede (bl. 87-89)</h2>
+  <div class="card">
+    <p>Baie mense <b>trek</b> van die platteland na stede.</p>
+    <div class="stat"><b>± 60%</b>van SA woon in stede</div>
+  </div>
+  <div class="vs">
+    <div class="card"><h3>🚜 Landelik</h3>
+      <ul>
+        <li><b>Kommersiële plase</b>: boere saai gewasse en hou diere aan om te <b>verkoop</b>.</li>
+        <li>Baie <b>bestaansboere</b>. Hulle het min grond, en maak net kos vir hulself.</li>
+        <li>Hulle kan baie <b>arm</b> wees.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>🏙️ Stedelik</h3>
+      <ul>
+        <li>Baie mense woon naby mekaar.</li>
+        <li>Paaie en winkels is <b>besiger</b>.</li>
+        <li>Meer <b>vreemdelinge</b>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Hoekom trek mense stad toe? (bl. 88)</h3>
+    <div class="grid">
+      <div class="stat"><b>1. 💼 Werk</b>baie werk, en baie soorte</div>
+      <div class="stat"><b>2. 🏫 Skole en 🏥 dokters</b>skole en mediese geriewe</div>
+      <div class="stat"><b>3. 🏦 Dienste</b>bv. banke</div>
+      <div class="stat"><b>4. 🎬 Vermaak</b>bv. flieks, restaurante</div>
+      <div class="stat"><b>5. 🏃 Aktiwiteite</b>ekonomies en ontspanning</div>
+    </div>
+  </div>
+</section>
+
+<section id="wereld">
+  <h2>🌍 Eenheid 4: Mense oor die wêreld (bl. 90-93)</h2>
+  <div class="card">
+    <div class="stat"><b>Meer as 7 miljard</b>mense op Aarde</div>
+    <p>3 belangrike redes waarom mense êrens <b>vestig</b>:</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>1. 🌡️ Klimaat</h3>Dit is makliker om in 'n <b>gematigde</b> klimaat te leef as in baie warm of baie koue plekke.</div>
+    <div class="card"><h3>2. 💧 Water</h3>
+      <ul>
+        <li>Almal het water nodig om te leef en kos te maak.</li>
+        <li>Meeste mense woon waar dit baie <b>reën</b>, of naby <b>riviere</b>.</li>
+        <li>Riviere begin in <b>berge</b> en vloei na droë gebiede. Mense in droë gebiede woon langs riviere.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>3. ⛏️ Minerale en energie</h3>Nedersettings ontstaan waar <b>minerale</b> ontgin kan word.</div>
+  </div>
+  <div class="card">
+    <h3>Hoe woon mense op moeilike plekke?</h3>
+    <table>
+      <tr><th>🏜️ Droë woestyn</th><td>Pype bring water van ander plekke af.</td></tr>
+      <tr><th>🥶 Koue gebiede</th><td>Brandstof word ingebring om warm te bly.</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Waardevolle minerale en energiebronne (bl. 93)</h3>
+    <p><b>Minerale:</b></p>
+    <div class="chips"><span>Goud</span><span>Diamante</span><span>Koper</span><span>Ystererts</span><span>Uraan</span></div>
+    <p><b>Energie:</b></p>
+    <div class="chips"><span>Olie</span><span>Steenkool</span><span>Natuurlike gas</span></div>
+    <p>Waar hierdie hulpbronne ontdek is, het <b>meer mense</b> kom woon.</p>
+  </div>
+</section>
+
+<section id="rio">
+  <h2>🇧🇷 Eenheid 5: Rio de Janeiro (bl. 94)</h2>
+  <div class="card">
+    <p><b>Rio de Janeiro</b> is 'n groot stad in <b>Brasilië</b>. Dit is bekend vir lang <b>strande</b> en pragtige <b>baaie</b>.</p>
+    <p><b>Slaaf</b> = 'n mens wat deur ander besit word en sonder betaling werk.</p>
+  </div>
+  <div class="card">
+    <h3>Hoe Rio gegroei het</h3>
+    <div class="tl">
+      <div><b>A. Meer as 500 jaar gelede 🌳</b><br>Net groepies <b>Brasiliaanse Indiane</b> woon hier, in die tropiese woude.</div>
+      <div><b>B. Europeërs kom ⛵</b><br>Ontdekkingsreisigers seil oor die <b>Atlantiese Oseaan</b>. Die baaie is goeie hawens. Hulle wil <b>hout</b> hê en handel met die Indiane.</div>
+      <div><b>C. Suiker 🌿</b><br>Die klimaat en heuwels is goed vir <b>suikerriet</b>. Duisende <b>slawe</b> word uit <b>Afrika</b> gebring om op die plase te werk.</div>
+      <div><b>D. Net meer as 300 jaar gelede 🥇💎</b><br><b>Goud en diamante</b> word land-in ontdek. Nog setlaars kom. Die hawe word 'n besige handelsentrum.</div>
+      <div><b>E. Koffie ☕</b><br>Die wêreld wil koffie drink. Koffie groei goed in die <b>warm, nat</b> klimaat. Mense trek soontoe om koffie te maak en te verkoop.</div>
+      <div><b>F. Vandag 🏖️</b><br>'n Besige handelsentrum. <b>Meer toeriste</b> as enige ander stad in die suidelike halfrond. Mense geniet strande, natuur, sport, musiek en feeste.</div>
+    </div>
+    <div class="chain"><span>🪵 Hout</span><i>➜</i><span>🌿 Suiker</span><i>➜</i><span>🥇 Goud en 💎</span><i>➜</i><span>☕ Koffie</span><i>➜</i><span>🏖️ Toeriste</span></div>
+  </div>
+</section>
+
+<section id="kaarte">
+  <h2>🃏 Woordkaarte</h2>
+  <p>Lees die woord. Sê die betekenis hardop. Tik dan om te kyk! <button class="btn alt" id="shuffle">🔀 Skommel</button></p>
+  <div class="grid" id="cards"></div>
+</section>
+
+<section id="toets">
+  <h2>🏆 Toets jouself</h2>
+  <div class="card" id="quiz"></div>
+</section>
+</main>
+<footer>Gebaseer op Juffrou Natasha se Opsommings · Platinum Handboek · Graad 6 SW Geografie Kwartaal 4</footer>
+
+<script>
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); document.getElementById(b.dataset.s).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+let stars=+(localStorage.getItem('nicGeoStars')||0);
+function addStar(){stars++;localStorage.setItem('nicGeoStars',stars);showStars();}
+function showStars(){document.getElementById('starCount').textContent='⭐ '+stars;}
+showStars();
+
+// kolletjies
+function dots(id,n){const d=document.getElementById(id);for(let i=0;i<n;i++){const e=document.createElement('i');e.style.left=(5+Math.random()*88)+'%';e.style.top=(5+Math.random()*70)+'%';d.appendChild(e);}}
+dots('dHigh',90); dots('dLow',8);
+
+// provinsies (omtrent, Sensus 2011)
+const PR=[['Oos-Kaap',6.6,169000],['Vrystaat',2.7,130000],['Gauteng',12.3,18000],['KwaZulu-Natal',10.3,94000],['Limpopo',5.4,126000],['Mpumalanga',4.0,76000],['Noord-Kaap',1.1,373000],['Noordwes',3.5,105000],['Wes-Kaap',5.8,130000]];
+function drawBars(k){
+  const max=k==='pop'?12.3:373000;
+  document.getElementById('bars').innerHTML=PR.map(p=>{const v=k==='pop'?p[1]:p[2];
+    return `<div class="row"><span>${p[0]}</span><div class="b" style="width:${v/max*100}%"></div><span class="v">${k==='pop'?v.toLocaleString('af-ZA')+' milj':v.toLocaleString('af-ZA')}</span></div>`;}).join('');
+}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');drawBars(b.dataset.k);});
+drawBars('pop');
+
+// rekenmasjien
+function calc(){const p=+document.getElementById('cPop').value,a=+document.getElementById('cArea').value;
+  document.getElementById('cOut').textContent=a>0?(Math.round(p/a*10)/10).toLocaleString('af-ZA')+' mense per km²':'?';}
+['cPop','cArea'].forEach(i=>document.getElementById(i).oninput=calc); calc();
+
+// plekke
+document.querySelectorAll('.place').forEach(p=>p.onclick=()=>p.classList.toggle('open'));
+
+// woordkaarte
+const K=[
+ ['Bevolking','Al die mense wat in \'n plek of land bly'],
+ ['Bevolkingsdigtheid','Die getal mense in \'n gebied'],
+ ['Vestig','Gaan woon'],
+ ['Bevolkingsverspreiding','Hoe mense oor \'n gebied versprei is'],
+ ['Oneweredig','Meer mense woon in sommige dele as in ander'],
+ ['Gemiddelde bevolkingsdigtheid','Getal mense ÷ oppervlakte van die gebied'],
+ ['Stedelik','\'n Gebied met baie geboue en paaie, soos \'n dorp of stad'],
+ ['Landelik','Die platteland, soos \'n plaas of \'n dorpie'],
+ ['Bestaansboer','Iemand wat genoeg kos produseer om homself en sy gesin te voed'],
+ ['Handelsroete','\'n Roete wat deur handelskepe gevolg word'],
+ ['Kommersiële plaas','Plaas waar boere gewasse en diere produseer om te verkoop'],
+ ['Gematigde klimaat','Nie te warm en nie te koud nie'],
+ ['Nedersetting','\'n Plek waar mense woon, soos \'n dorp of stad'],
+ ['Slaaf','\'n Mens wat deur ander besit word en sonder betaling vir hulle werk']
+];
+let kList=[...K];
+function drawCards(){const box=document.getElementById('cards');box.innerHTML='';
+  kList.forEach(k=>{const d=document.createElement('div');d.className='flip';
+    d.innerHTML=`<div class="in"><div class="face front">${k[0]}</div><div class="face back">${k[1]}</div></div>`;
+    d.onclick=()=>d.classList.toggle('done');box.appendChild(d);});}
+document.getElementById('shuffle').onclick=()=>{kList.sort(()=>Math.random()-.5);drawCards();};
+drawCards();
+
+// toets (eerste antwoord is reg)
+const Q=[
+ ['Wat is bevolking?',['Al die mense wat in \'n plek woon','Die grootte van \'n land','Die getal diere in \'n park','Die weer in \'n plek']],
+ ['Wat beteken vestig?',['Gaan woon','Weggaan','Boer','Handel dryf']],
+ ['Omtrent hoeveel mense woon in SA?',['51 miljoen','5 miljoen','7 miljard','500 000']],
+ ['Hoeveel provinsies het SA?',['9','7','10','5']],
+ ['Waar is die bevolkingsdigtheid hoër?',['In dorpe en stede','Op plase','In die woestyn','Op klein dorpies']],
+ ['Hoe is die bevolking in SA versprei?',['Oneweredig','Eweredig','Almal woon in een stad','Niemand woon op plase nie']],
+ ['Wat wys kolletjies op \'n bevolkingskaart?',['Hoeveel mense waar woon','Waar riviere is','Waar berge is','Waar dit reën']],
+ ['Hoe werk jy gemiddelde bevolkingsdigtheid uit?',['Mense ÷ oppervlakte','Mense × oppervlakte','Oppervlakte − mense','Mense + oppervlakte']],
+ ['Wat is Mpumalanga se bevolkingsdigtheid volgens die boek?',['46,5 mense per km²','465 mense per km²','4,6 mense per km²','79 490 mense per km²']],
+ ['Watter provinsie is die grootste?',['Noord-Kaap','Gauteng','Wes-Kaap','Limpopo']],
+ ['Watter provinsie is die kleinste, maar het die meeste mense?',['Gauteng','Noord-Kaap','Vrystaat','Noordwes']],
+ ['Wat is \'n stedelike gebied?',['\'n Dorp of stad met baie geboue en paaie','\'n Plaas','\'n Woud','\'n Woestyn']],
+ ['Wat is \'n landelike gebied?',['Die platteland, soos \'n plaas of dorpie','\'n Groot stad','\'n Hawe','\'n Lughawe']],
+ ['Wat is \'n bestaansboer?',['Iemand wat net genoeg kos vir sy gesin maak','Iemand wat baie kos verkoop','Iemand wat in \'n stad werk','\'n Handelaar']],
+ ['Wat is \'n handelsroete?',['\'n Roete wat handelskepe volg','\'n Pad na die skool','\'n Rivier','\'n Spoorlyn na Kimberley']],
+ ['Watter een is NIE een van die 5 redes waarom mense êrens woon nie?',['Die kleur van die huise','Klimaat','Plantegroei','Hulpbronne en werk']],
+ ['Wat is in Kimberley gevind?',['Diamante','Olie','Koffie','Suiker']],
+ ['Wat is Kimberley vandag?',['\'n Mynbou- en vervoersentrum','\'n Nasionale park','\'n Woestyn','\'n Hawestad']],
+ ['Wie het meer as 2 000 jaar gelede in die Kruger-gebied gewoon?',['Die San','Europeërs','Brasiliaanse Indiane','Boeresetlaars']],
+ ['Wie het die Kruger-gebied \'n nasionale park gemaak?',['Paul Kruger','Die San','\'n Handelaar uit Indië','Die Brasiliane']],
+ ['Mag mense vandag in die Krugerwildtuin jag?',['Nee, dit is onwettig','Ja, altyd','Net op Sondae','Net met \'n boot']],
+ ['Hoekom het handelaars uit Europa na Durban gekom?',['Vir olifantjag en ivoor','Vir diamante','Vir koffie','Vir sneeu']],
+ ['Wat het Durban \'n goeie hawe gegee?',['\'n Baai','\'n Berg','\'n Woestyn','\'n Myn']],
+ ['Wat het Tafelbaai 500 jaar gelede geword?',['\'n Stop op die handelsroete tussen Europa en Indië','\'n Diamantmyn','\'n Nasionale park','\'n Koffieplaas']],
+ ['Wat het skepe by Tafelbaai gekoop?',['Vars groente','Diamante','Ivoor','Olie']],
+ ['Watter berg trek toeriste na Kaapstad?',['Tafelberg','Olympus Mons','Drakensberg','Kilimanjaro']],
+ ['Omtrent hoeveel van SA se mense woon in stede?',['60%','10%','100%','25%']],
+ ['Wat doen boere op kommersiële plase?',['Hulle saai en hou diere aan om te verkoop','Hulle maak net kos vir hulself','Hulle werk in fabrieke','Hulle myn goud']],
+ ['Waarom trek mense van die platteland na die stad?',['Vir werk, skole, dienste en vermaak','Omdat dit stiller is','Omdat daar minder mense is','Om te boer']],
+ ['Wat is \'n nadeel van die stad?',['Besiger paaie en meer vreemdelinge','Geen skole nie','Geen werk nie','Geen winkels nie']],
+ ['Omtrent hoeveel mense woon op Aarde?',['Meer as 7 miljard','51 miljoen','1 miljoen','700']],
+ ['Watter 3 dinge bepaal waar mense in die wêreld vestig?',['Klimaat, water, minerale en energie','Kleur, grootte, vorm','Sport, musiek, feeste','Skole, banke, flieks']],
+ ['In watter klimaat is dit die maklikste om te leef?',['\'n Gematigde klimaat','\'n Baie warm klimaat','\'n Baie koue klimaat','Geen klimaat']],
+ ['Waar woon die meeste mense?',['Waar dit baie reën of naby riviere','In woestyne','Op ys','Bo-op berge']],
+ ['Waar begin riviere?',['In die berge','In die see','In die woestyn','In stede']],
+ ['Hoe kry mense in droë woestyne water?',['Pype bring water van ander plekke','Hulle drink seewater','Hulle kry nie water nie','Uit sneeu']],
+ ['Wat doen mense in koue gebiede om warm te bly?',['Brandstof word ingebring','Hulle trek almal weg','Hulle eet ys','Niks']],
+ ['Watter een is \'n mineraal?',['Goud','Olie','Steenkool','Natuurlike gas']],
+ ['Watter een is \'n energiebron?',['Steenkool','Diamante','Koper','Uraan']],
+ ['In watter land is Rio de Janeiro?',['Brasilië','Suid-Afrika','Indië','Portugal']],
+ ['Waarvoor is Rio bekend?',['Lang strande en pragtige baaie','Sneeu en ys','Woestyne','Diamantmyne']],
+ ['Wie het meer as 500 jaar gelede rondom Rio gewoon?',['Brasiliaanse Indiane','Die San','Europeërs','Boeresetlaars']],
+ ['Wat wou die Europeërs eerste uit Rio se woude hê?',['Hout','Koffie','Goud','Ivoor']],
+ ['Wat is \'n slaaf?',['\'n Mens wat deur ander besit word en sonder betaling werk','\'n Ryk handelaar','\'n Toeris','\'n Boer wat sy eie kos maak']],
+ ['Waarvoor is slawe uit Afrika na Rio gebring?',['Om op suikerplase te werk','Om koffie te drink','Om toeriste te wees','Om skepe te bou']],
+ ['Wat is net meer as 300 jaar gelede land-in van Rio ontdek?',['Goud en diamante','Olie','Steenkool','Suiker']],
+ ['Waarom groei koffie goed in Brasilië?',['Die klimaat is warm en nat','Dit is koud','Dit is droog','Dit sneeu']],
+ ['Wat is Rio vandag?',['\'n Besige handelsentrum met baie toeriste','\'n Klein dorpie','\'n Woestyn','\'n Plaas']]
+];
+let order=[],qi=0,score=0,answered=false;
+function menu(){return `<p>Hoeveel vrae wil jy doen?</p><button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn alt" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;}
+function startQuiz(n){order=Q.map((q,i)=>i).sort(()=>Math.random()-.5).slice(0,n);qi=0;score=0;showQ();}
+function showQ(){
+  const box=document.getElementById('quiz');
+  if(qi>=order.length){const pct=Math.round(score/order.length*100);
+    const msg=pct>=90?'🌟 Fantasties, Nic!':pct>=70?'🚀 Baie goed! Nog net \'n bietjie oefen.':pct>=50?'👍 Goeie poging! Lees weer en probeer weer.':'💪 Moenie moed opgee nie! Kyk weer na die woordkaarte.';
+    box.innerHTML=`<h3>Klaar!</h3><p class="big">${score} uit ${order.length} (${pct}%)</p><p>${msg}</p>`+menu();return;}
+  answered=false;
+  const q=Q[order[qi]],right=q[1][0],opts=[...q[1]].sort(()=>Math.random()-.5);
+  box.innerHTML=`<div>Vraag ${qi+1} van ${order.length} · Telling: ${score}</div><div class="bar"><div style="width:${qi/order.length*100}%"></div></div><h3>${q[0]}</h3><div id="opts"></div><div class="fb" id="fb"></div>`;
+  const o=document.getElementById('opts');
+  opts.forEach(t=>{const b=document.createElement('button');b.className='opt';b.textContent=t;
+    b.onclick=()=>{if(answered)return;answered=true;const fb=document.getElementById('fb');
+      if(t===right){b.classList.add('right');score++;addStar();fb.textContent='✅ Reg! +1 ⭐';}
+      else{b.classList.add('wrong');[...o.children].find(x=>x.textContent===right).classList.add('right');fb.textContent='❌ Die antwoord is: '+right;}
+      const nx=document.createElement('button');nx.className='btn';nx.style.marginTop='10px';
+      nx.textContent=qi+1<order.length?'Volgende ➜':'Sien my telling';nx.onclick=()=>{qi++;showQ();};
+      fb.appendChild(document.createElement('br'));fb.appendChild(nx);};
+    o.appendChild(b);});
+}
+document.getElementById('quiz').innerHTML=menu();
+</script>
+</body>
+</html>

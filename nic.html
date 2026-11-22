@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nic se NW & Teg – Kwartaal 4</title>
+<title>Nic se NW & Teg – Kwartaal 3 & 4</title>
 <style>
   :root{
     --bg:#0b1026; --panel:#151c3d; --panel2:#1d2650; --text:#eef2ff; --muted:#a9b3d9;
@@ -87,16 +87,39 @@
   @keyframes rot{to{transform:rotate(360deg)}}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+  .navlbl{align-self:center;color:var(--muted);font-size:.85rem;margin-left:6px}
+  .sym{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+  .sym div{background:var(--panel2);border-radius:12px;padding:10px;text-align:center;font-size:.9rem}
+  .sym svg{width:100%;height:60px}
+  .sym svg *{stroke:var(--text);stroke-width:3;fill:none}
+  #circ svg{width:100%;max-width:420px;display:block;margin:0 auto}
+  #circ .w{stroke:var(--text);stroke-width:4;fill:none}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:10px 0}
+  .chain span{background:var(--panel2);border-radius:12px;padding:8px 12px}
+  .chain i{font-style:normal;color:var(--sun);font-size:1.3rem}
+  .sort{display:flex;flex-wrap:wrap;gap:8px}
+  .sort div{background:var(--panel2);border-radius:12px;padding:8px 10px;border:2px solid transparent}
+  .sort div.ok{border-color:var(--good)} .sort div.no{border-color:var(--bad)}
+  .sort button{border:0;border-radius:8px;padding:4px 8px;margin-left:4px;cursor:pointer;font-size:.85rem}
+  .warn{background:#4a1e1e;border-left:5px solid var(--bad);padding:10px 14px;border-radius:10px;margin:12px 0}
+  .chips span{display:inline-block;background:var(--panel2);border-radius:99px;padding:6px 12px;margin:4px}
 </style>
 </head>
 <body>
 <header>
-  <h1>🚀 Nic se Ruimte-avontuur</h1>
-  <p>Graad 6 NW &amp; Teg · Kwartaal 4 · <span class="stars" id="starCount">⭐ 0</span> sterre verdien</p>
+  <a href="vakke.html" style="position:absolute;left:14px;top:14px;color:var(--muted);text-decoration:none">⬅ Vakke</a>
+  <h1>🔬 Nic se NWT</h1>
+  <p>Graad 6 NW &amp; Teg · Kwartaal 3 &amp; 4 · <span class="stars" id="starCount">⭐ 0</span> sterre verdien</p>
 </header>
 
 <nav id="nav">
   <button data-s="tuis" class="on">🏠 Begin</button>
+  <span class="navlbl">Kwartaal 3:</span>
+  <button data-s="stroom">⚡ Stroombane</button>
+  <button data-s="geleiers">🔌 Geleiers</button>
+  <button data-s="stelsels">⚙️ Stelsels</button>
+  <button data-s="krag">🏭 Elektrisiteit</button>
+  <span class="navlbl">Kwartaal 4:</span>
   <button data-s="son">☀️ Sonnestelsel</button>
   <button data-s="planete">🪐 Planete</button>
   <button data-s="mane">🌙 Mane</button>
@@ -120,6 +143,14 @@
       <li><b>Toets jouself</b>. Elke regte antwoord gee jou 'n ⭐.</li>
     </ol>
   </div>
+  <h3 style="color:var(--sun)">Kwartaal 3</h3>
+  <div class="grid">
+    <div class="card"><h3>Onderwerp 10</h3>Elektriese stroombane<br><span class="bl">bl. 113-124</span></div>
+    <div class="card"><h3>Onderwerp 11</h3>Elektriese geleiers en isoleerders<br><span class="bl">bl. 125-134</span></div>
+    <div class="card"><h3>Onderwerp 12</h3>Stelsels om probleme op te los<br><span class="bl">bl. 135-146</span></div>
+    <div class="card"><h3>Onderwerp 13</h3>Hoofstroomelektrisiteit<br><span class="bl">bl. 147-166</span></div>
+  </div>
+  <h3 style="color:var(--sun)">Kwartaal 4</h3>
   <div class="grid">
     <div class="card"><h3>Onderwerp 14</h3>Die Sonnestelsel<br><span class="bl">bl. 167-182</span></div>
     <div class="card"><h3>Onderwerp 15</h3>Beweging van die Aarde, planete en Maan<br><span class="bl">bl. 183-196</span></div>
@@ -127,8 +158,258 @@
     <div class="card"><h3>Onderwerp 17</h3>Stelsels om die Maan en Mars te verken<br><span class="bl">bl. 207-217</span></div>
   </div>
   <div class="tip"><b>Geheimpie om die planete te onthou:</b><br>
-    <b>M</b>y <b>V</b>ader <b>A</b>an <b>M</b>aandag <b>J</b>ellie <b>S</b>aam <b>U</b>it <b>N</b>ou<br>
+    <b>M</b>a <b>V</b>ra <b>A</b>ltyd <b>M</b>eer <b>J</b>ellie <b>S</b>e <b>U</b>ncle <b>N</b>eels<br>
     = Mercurius, Venus, Aarde, Mars, Jupiter, Saturnus, Uranus, Neptunus</div>
+</section>
+
+<!-- ===== KWARTAAL 3 ===== -->
+<!-- STROOMBANE -->
+<section id="stroom">
+  <h2>⚡ Onderwerp 10: Elektriese stroombane (bl. 113-124)</h2>
+  <div class="card">
+    <h3>Wat is 'n stroombaan? (bl. 114)</h3>
+    <ul>
+      <li><b>Elektriese stroombaan</b> = 'n stelsel wat energie van een plek na 'n ander dra.</li>
+      <li>Elektrisiteit vloei uit die bron (bv. 'n sel), na waar dit nodig is, en <b>terug</b> na die bron.</li>
+      <li>Die pad moet 'n <b>geslote lus</b> wees.</li>
+      <li>Dit kan van draad wees, of metaalplaatjies op 'n bord = <b>stroombaanpanele</b>.</li>
+      <li>Stroombane kan baie groot wees, soos die een wat krag na ons huise bring.</li>
+    </ul>
+  </div>
+  <div class="card" id="circ">
+    <h3>Probeer self: druk die skakelaar</h3>
+    <svg viewBox="0 0 400 220">
+      <line class="w" x1="40" y1="40" x2="160" y2="40"/>
+      <line class="w" x1="240" y1="40" x2="360" y2="40"/>
+      <line class="w" x1="360" y1="40" x2="360" y2="180"/>
+      <line class="w" x1="360" y1="180" x2="230" y2="180"/>
+      <line class="w" x1="170" y1="180" x2="40" y2="180"/>
+      <line class="w" x1="40" y1="180" x2="40" y2="40"/>
+      <!-- sel -->
+      <line class="w" x1="190" y1="160" x2="190" y2="200" style="stroke-width:3"/>
+      <line class="w" x1="210" y1="168" x2="210" y2="192" style="stroke-width:8"/>
+      <line class="w" x1="170" y1="180" x2="190" y2="180"/><line class="w" x1="210" y1="180" x2="230" y2="180"/>
+      <text x="200" y="215" fill="#a9b3d9" font-size="14" text-anchor="middle">sel</text>
+      <!-- skakelaar -->
+      <circle cx="160" cy="40" r="5" fill="#eef2ff"/><circle cx="240" cy="40" r="5" fill="#eef2ff"/>
+      <line id="swArm" class="w" x1="160" y1="40" x2="232" y2="12"/>
+      <text x="200" y="70" fill="#a9b3d9" font-size="14" text-anchor="middle">skakelaar</text>
+      <!-- gloeilamp -->
+      <circle id="bulb" cx="360" cy="110" r="22" fill="#0b1026" stroke="#eef2ff" stroke-width="4"/>
+      <line class="w" x1="345" y1="95" x2="375" y2="125"/><line class="w" x1="375" y1="95" x2="345" y2="125"/>
+      <text x="330" y="150" fill="#a9b3d9" font-size="14" text-anchor="end">gloeilamp</text>
+    </svg>
+    <p style="text-align:center"><button class="btn" id="swBtn">Skakel AAN</button></p>
+    <p id="swTxt" style="text-align:center">Die skakelaar is <b>oop</b>. Daar is 'n gaping. Geen stroom vloei nie.</p>
+  </div>
+  <div class="card">
+    <h3>Komponente van 'n eenvoudige stroombaan (bl. 115-117)</h3>
+    <table>
+      <tr><th>1. Energiebron</th><td><b>Selle en batterye</b>. 'n Sel het 'n <b>positiewe (+)</b> en <b>negatiewe (−)</b> kant. Twee selle moet reg gekoppel word.</td></tr>
+      <tr><th>2. Geleidingsmateriaal</th><td><b>Drade</b> dra die stroom. Gemaak van <b>koper</b>. Bedek met plastiek = <b>isolering</b>, sodat stroom nie vloei waar dit nie moet nie.</td></tr>
+      <tr><th>3. Toestelle</th><td>Mensgemaak vir 'n taak. Verander elektriese energie na lig, klank of beweging.</td></tr>
+    </table>
+    <p><b>Elektriese stroom</b> = die beweging van elektriese ladings deur 'n geleier.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>💡 Gloeilamp</h3>Elektries ➜ <b>lig</b>. Dit is 'n <b>lewerings- of uitsettoestel</b>. Soorte: kompakte fluoorlamp, gloeilamp, flitslampie.</div>
+    <div class="card"><h3>🔔 Gonser</h3>Elektries ➜ <b>klank</b>. Vir waarskuwings en deurklokkies.</div>
+    <div class="card"><h3>⚙️ Motor</h3>Elektries ➜ <b>beweging</b>. Die stroom laat die as draai. In waaiers, wasmasjiene, bore en snyers.</div>
+  </div>
+  <div class="card">
+    <h3>'n Ononderbroke pad (bl. 118)</h3>
+    <ul>
+      <li>Die pad moet volledig wees, met <b>geen gapings</b> nie.</li>
+      <li>'n <b>Skakelaar</b> laat stroom <b>begin of stop</b>. So skakel jy iets aan of af sonder om dit uit te prop.</li>
+      <li>Alle elektriese toestelle het skakelaars.</li>
+    </ul>
+    <div class="chips"><span>1. Ligskakelaar</span><span>2. Elektroniese toestelskakelaar</span><span>3. Knopskakelaar</span><span>4. Inlyn-skakelaar</span></div>
+  </div>
+  <div class="card">
+    <h3>Eenheid 2: Stroombaandiagramme (bl. 121-123)</h3>
+    <p><b>Stroombaandiagram</b> = 'n tekening van 'n stroombaan met <b>standaard simbole</b>. Almal oor die wêreld gebruik dieselfde simbole.</p>
+    <div class="sym">
+      <div><svg viewBox="0 0 120 60"><line x1="0" y1="30" x2="52" y2="30"/><line x1="52" y1="10" x2="52" y2="50"/><line x1="68" y1="20" x2="68" y2="40" style="stroke-width:7"/><line x1="68" y1="30" x2="120" y2="30"/></svg>Sel</div>
+      <div><svg viewBox="0 0 120 60"><line x1="0" y1="30" x2="30" y2="30"/><line x1="30" y1="10" x2="30" y2="50"/><line x1="44" y1="20" x2="44" y2="40" style="stroke-width:7"/><line x1="44" y1="30" x2="76" y2="30" style="stroke-dasharray:4 4"/><line x1="76" y1="10" x2="76" y2="50"/><line x1="90" y1="20" x2="90" y2="40" style="stroke-width:7"/><line x1="90" y1="30" x2="120" y2="30"/></svg>Battery</div>
+      <div><svg viewBox="0 0 120 60"><line x1="0" y1="30" x2="42" y2="30"/><circle cx="60" cy="30" r="18"/><line x1="47" y1="17" x2="73" y2="43"/><line x1="73" y1="17" x2="47" y2="43"/><line x1="78" y1="30" x2="120" y2="30"/></svg>Gloeilamp</div>
+      <div><svg viewBox="0 0 120 60"><line x1="0" y1="40" x2="40" y2="40"/><circle cx="40" cy="40" r="3"/><line x1="40" y1="40" x2="78" y2="16"/><circle cx="80" cy="40" r="3"/><line x1="80" y1="40" x2="120" y2="40"/></svg>Skakelaar (oop)</div>
+      <div><svg viewBox="0 0 120 60"><line x1="0" y1="40" x2="40" y2="40"/><circle cx="40" cy="40" r="3"/><line x1="40" y1="40" x2="80" y2="40"/><circle cx="80" cy="40" r="3"/><line x1="80" y1="40" x2="120" y2="40"/></svg>Skakelaar (toe)</div>
+      <div><svg viewBox="0 0 120 60"><line x1="0" y1="30" x2="42" y2="30"/><circle cx="60" cy="30" r="18"/><text x="60" y="37" text-anchor="middle" font-size="20" style="fill:#eef2ff;stroke:none">M</text><line x1="78" y1="30" x2="120" y2="30"/></svg>Motor</div>
+      <div><svg viewBox="0 0 120 60"><line x1="0" y1="45" x2="40" y2="45"/><line x1="40" y1="45" x2="40" y2="38"/><path d="M38 38 A22 22 0 0 1 82 38 Z"/><line x1="80" y1="45" x2="80" y2="38"/><line x1="80" y1="45" x2="120" y2="45"/></svg>Gonser</div>
+      <div><svg viewBox="0 0 120 60"><line x1="0" y1="30" x2="120" y2="30"/></svg>Draad (geleier)</div>
+    </div>
+    <table style="margin-top:12px">
+      <tr><th>Serie-stroombaan</th><td>Alles op <b>een pad</b>, een na die ander.</td></tr>
+      <tr><th>Parallelle stroombaan</th><td>Die stroom het <b>meer as een pad</b>.</td></tr>
+      <tr><th>Konvensionele stroom</th><td>Vloei van <b>positiewe</b> ladings: van <b>+ na −</b>.</td></tr>
+      <tr><th>Ware stroom</th><td>Vloei van <b>negatiewe</b> ladings: van <b>− na +</b>.</td></tr>
+    </table>
+    <p class="bl">In vaste metale beweeg die positiewe ladings (protone) nie. In gesmelte metaal en ioniese oplossings kan hulle wel beweeg.</p>
+  </div>
+</section>
+
+<!-- GELEIERS -->
+<section id="geleiers">
+  <h2>🔌 Onderwerp 11: Geleiers en isoleerders (bl. 125-134)</h2>
+  <div class="grid">
+    <div class="card"><h3>✅ Geleiers</h3>
+      <p>Materiaal waardeur elektrisiteit <b>kan</b> vloei.</p>
+      <ul>
+        <li>Meeste <b>metale</b>. Ook <b>water</b>, en soutwater.</li>
+        <li>Beste geleiers: <b>silwer</b> en <b>koper</b>.</li>
+        <li>Metale neem elektrisiteit van een deel van die stelsel na 'n ander.</li>
+        <li>Die toestel verander dit in lig, hitte, klank of beweging.</li>
+      </ul>
+      <p><b>Oordrag</b> = energie beweeg van een deel na 'n ander.</p>
+    </div>
+    <div class="card"><h3>⛔ Isoleerders</h3>
+      <p>Materiaal waardeur elektrisiteit <b>nie</b> kan vloei nie.</p>
+      <div class="chips"><span>Rubber</span><span>Plastiek</span><span>Keramiek</span><span>Glas</span></div>
+      <ul>
+        <li><b>Plastiek en rubber</b> hou die stroom binne die draad. Dit keer brand en skade.</li>
+        <li>Alle drade, skakelaars en toestelle moet geïsoleer wees.</li>
+        <li>Stukkende isolering moet vervang word, deur 'n <b>elektrisiën</b>.</li>
+        <li><b>Glas en keramiek</b> hou drade aan kragpale. Die stroom kan nie na die metaalpaal toe vloei nie.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Speletjie: geleier of isoleerder?</h3>
+    <div class="sort" id="sortBox"></div>
+    <p class="fb" id="sortTxt"></p>
+  </div>
+  <div class="card">
+    <h3>Veiligheid (bl. 130-131)</h3>
+    <ul>
+      <li>Ons liggame is meestal <b>water</b>. Daarom gelei ons elektrisiteit.</li>
+      <li>Raak <b>nie</b> aan iemand wat aan 'n lewendige draad vas is nie. Die stroom kan na jou toe vloei.</li>
+      <li>Gebruik iets wat <b>nie</b> gelei nie, soos 'n houtstok.</li>
+    </ul>
+    <div class="warn"><b>Elektriese brand?</b> Moenie water gebruik nie! Gebruik <b>sand</b> of 'n <b>chemiese brandblusser</b>.</div>
+    <h3>Wenke vir veilige gebruik</h3>
+    <ol>
+      <li>Prop die ketel of strykyster <b>uit</b> en skakel die muurprop af voor jy water ingooi.</li>
+      <li>Moenie 'n toestel gebruik as jy <b>kaal drade</b> sien nie.</li>
+      <li>Moenie elektriese toestelle in die <b>badkamer</b> gebruik nie.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h3>Vaardigheid: interpreteer inligting (bl. 127)</h3>
+    <p><b>Interpreteer</b> = verduidelik wat iets beteken. In wetenskap verduidelik jy die resultate van 'n ondersoek.</p>
+    <ol>
+      <li><b>Neem waar</b> wat verander, en wat dieselfde bly.</li>
+      <li><b>Teken aan</b>: 'n tabel, diagram of sinne.</li>
+      <li><b>Dink na</b>: Hoekom het dit verander? Is daar patrone? Was dit soos jy voorspel het?</li>
+      <li><b>Skryf neer</b> wat jy geleer het, en wat jy nie kan verduidelik nie.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- STELSELS -->
+<section id="stelsels">
+  <h2>⚙️ Onderwerp 12: Stelsels om probleme op te los (bl. 135-146)</h2>
+  <div class="card">
+    <h3>Wat is 'n stelsel?</h3>
+    <p>Twee of meer onderdele wat <b>saamwerk</b> om 'n werk te doen. Haal een deel uit, en dit werk nie meer nie.</p>
+    <p><b>'n Fiets is 'n stelsel:</b></p>
+    <div class="chain"><span>🦵 Trap pedale<br><b>inset</b></span><i>➜</i><span>⚙️ Kettings en ratte<br><b>oordrag</b></span><i>➜</i><span>🚲 Beweging (kineties)<br><b>uitset</b></span></div>
+    <p>'n <b>Elektriese stroombaan</b> is ook 'n stelsel. Die <b>battery</b> is die insetkomponent. Die sel stoor elektriese energie. Drade dra dit na waar dit nodig is.</p>
+  </div>
+  <div class="card">
+    <h3>Inset, proses, uitset (bl. 141)</h3>
+    <table>
+      <tr><th>Inset</th><td>Wat gaan in? Bv. energie uit 'n battery of hoofstroom.</td></tr>
+      <tr><th>Proses</th><td>Hoe die inset na uitset verander. Bv. stroom verhit die element.</td></tr>
+      <tr><th>Uitset</th><td>Wat kom uit? Bv. lig uit 'n gloeilamp, hitte uit 'n verwarmer.</td></tr>
+    </table>
+    <p><b>Stelseldiagram vir 'n elektriese ketel:</b></p>
+    <div class="chain"><span><b>Inset</b><br>Elektriese energie uit die kragbron</span><i>➜</i><span><b>Proses</b><br>Stroom beweeg deur die element, wat hitte gee</span><i>➜</i><span><b>Uitset</b><br>Hitte kook die water</span></div>
+    <p class="bl">In 'n watermeule verander vallende water se potensiële energie in bewegingsenergie.</p>
+  </div>
+  <div class="card">
+    <h3>Stroombane los probleme op (bl. 137-140)</h3>
+    <p>Bv. straatligte, alarms, elektriese hekke, verkeersligte, waaiers, verwarmers en speelgoed.</p>
+    <div class="chips"><span>Selle</span><span>Gloeilampe</span><span>Geleierdrade</span><span>Alarms</span><span>Skakelaars</span></div>
+    <table style="margin-top:10px">
+      <tr><th>Gee beweging</th><td>Speelgoedkarretjie: 2 selle gee energie aan 'n motor. Ook elektriese hekke, waaiers.</td></tr>
+      <tr><th>Gee lig</th><td>Flits: 'n sel en 'n gloeilamp. Ook straatligte, verkeersligte, LED's.</td></tr>
+      <tr><th>Gee klank</th><td>Deurklokkie: 'n <b>gonser</b>. Ook 'n digitale wekker.</td></tr>
+      <tr><th>Gee hitte</th><td>Verwarmer: 'n <b>element</b> van baie dun draadjies wat warm word. Ook haardroër, strykyster, broodrooster.</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Hoe om 'n stroombaandiagram te teken (bl. 140)</h3>
+    <ol>
+      <li>Gebruik 'n <b>skerp potlood</b> en 'n <b>liniaal</b>.</li>
+      <li>Teken drade <b>reguit</b>, al is hulle nie in die regte lewe reguit nie.</li>
+      <li>Voeg komponente <b>een vir een</b> by, met drade tussen hulle.</li>
+      <li>Moenie die verbindings tussen drade en komponente teken nie.</li>
+      <li>Meer as een sel? Teken hulle <b>een na die ander</b>.</li>
+      <li>Teken die stroombaan as 'n <b>reghoek</b>.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- KRAG -->
+<section id="krag">
+  <h2>🏭 Onderwerp 13: Hoofstroomelektrisiteit (bl. 147-166)</h2>
+  <div class="card">
+    <h3>Fossielbrandstowwe (bl. 148-149)</h3>
+    <p><b>Steenkool, olie en natuurlike gas</b> = fossielbrandstowwe. Hulle stoor energie van die <b>Son</b>.</p>
+    <div class="chain"><span>☀️ Son gee energie</span><i>➜</i><span>🌿🦕 Plante en diere</span><i>➜</i><span>💀 Hulle vrek</span><i>➜</i><span>⬇️🔥 Druk en hitte, miljoene jare</span><i>➜</i><span>⚫ Steenkool, olie, gas</span></div>
+    <p>Hulle is <b>nie-herwinbaar</b>. Opgebruik? Dan kan dit nie vervang word nie.</p>
+  </div>
+  <div class="card">
+    <h3>Steenkool-kragstasie (bl. 150)</h3>
+    <div class="chain"><span>⚫ Steenkool brand</span><i>➜</i><span>♨️ Stoomketel kook water</span><i>➜</i><span>💨 Stoom draai turbine</span><i>➜</i><span>⚡ Opwekker maak krag</span><i>➜</i><span>🔁 Transformator</span><i>➜</i><span>🏠 Huise</span></div>
+    <table>
+      <tr><th>Kragstasie</th><td>Plek waar elektrisiteit opgewek word</td></tr>
+      <tr><th>Turbine</th><td>Die draaiende lemme van 'n masjien</td></tr>
+      <tr><th>Opwekker</th><td>Masjien wat elektrisiteit opwek</td></tr>
+      <tr><th>Transformator</th><td>Verander hoeveel energie die elektrisiteit dra</td></tr>
+      <tr><th>Stoomketel</th><td>Masjien wat water kook</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Die koste van elektrisiteit (bl. 154-158)</h3>
+    <ul>
+      <li><b>Infrastruktuur</b> = die strukture en goed wat nodig is sodat iets werk.</li>
+      <li>Kragstasies kos <b>honderde miljarde rande</b>. Instandhouding kos ook miljarde.</li>
+      <li>Ons betaal vir die <b>hoeveelheid energie</b> wat ons toestelle gebruik.</li>
+      <li>Elke toestel het 'n <b>wattverbruik-taksering</b> in <b>W</b> (watt).</li>
+    </ul>
+    <div class="stat"><b>2 000 W</b>ketel</div> <div class="stat"><b>1 000 W</b>strykyster</div> <div class="stat"><b>14 W</b>radio</div>
+    <p>Verwarmingstoestelle gebruik die meeste. Dit hang ook af van <b>hoe lank</b> jy dit gebruik.</p>
+    <p><b>1 000 W vir 1 uur = 1 eenheid.</b> Vir 1 eenheid gebruik Eskom:</p>
+    <div class="stat"><b>± ½ kg</b>steenkool</div> <div class="stat"><b>1½ liter</b>water</div> <div class="stat"><b>155 g</b>as (afval)</div> <div class="stat"><b>1 kg</b>koolstofdioksied</div>
+    <p>Dit besoedel die lug. Dit kan <b>brongitis</b> en <b>asma</b> veroorsaak.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>💡 Spaar energie</h3>
+      <ul>
+        <li><b>Energiebesparende gloeilampe</b>: tot <b>75%</b> minder krag, hou tot <b>9 keer</b> langer.</li>
+        <li><b>Geisers</b> (warmwatertoestel) gebruik die meeste elektrisiteit.</li>
+        <li>'n <b>Songeiser</b> gebruik die Son se energie om water te verhit.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>⚠️ Onwettige aansluitings (bl. 159-160)</h3>
+      <ul>
+        <li>Bedrading nie deur 'n <b>gekwalifiseerde elektrisiën</b> gedoen nie, of teen die wet.</li>
+        <li>Bv. kabels uit ander huise, of drade aan kragpale om krag te <b>steel</b>.</li>
+        <li>Dit is <b>gevaarlik</b>. Mense kan doodgeskok word.</li>
+      </ul>
+      <p class="bl">Koerantberig: 'n kind in Chesterville is in 2011 dood deur 'n onwettige aansluiting.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Herwinbare energie (bl. 161-163)</h3>
+    <p><b>Herwinbaar</b> = raak <b>nie</b> op nie. <b>Nie-herwinbaar</b> = raak op, bv. steenkool.</p>
+    <table>
+      <tr><th>💨 Windkrag</th><td>Wind draai die lemme van 'n turbine, soos 'n windpomp. Agter die wiel is 'n <b>opwekker</b>. Baie saam = 'n <b>windplaas</b>.</td></tr>
+      <tr><th>💧 Waterkrag</th><td>Vallende water draai turbines = <b>hidroëlektries</b>. Water uit groot damme vloei deur pype. Bv. <b>Gariep</b>-kragstasie.</td></tr>
+      <tr><th>☀️ Sonkrag</th><td><b>Sonpanele</b> het <b>fotovoltaïese selle</b>. Dit verander sonlig in elektrisiteit. Dit word in 'n battery gestoor.</td></tr>
+    </table>
+  </div>
 </section>
 
 <!-- SONNESTELSEL -->
@@ -412,7 +693,7 @@
 </section>
 
 </main>
-<footer>Gebaseer op Juffrou Natasha se Opsommings · Platinum Handboek · Graad 6 NW &amp; Teg Kwartaal 4</footer>
+<footer>Gebaseer op Juffrou Natasha se Opsommings · Platinum Handboek · Graad 6 NW &amp; Teg Kwartaal 3 &amp; 4</footer>
 
 <script>
 // ---------- Navigasie ----------
@@ -428,6 +709,35 @@ let stars = +(localStorage.getItem('nicStars')||0);
 function addStar(){stars++;localStorage.setItem('nicStars',stars);showStars();}
 function showStars(){document.getElementById('starCount').textContent='⭐ '+stars;}
 showStars();
+
+// ---------- Stroombaan ----------
+let swOn=false;
+document.getElementById('swBtn').onclick=()=>{
+  swOn=!swOn;
+  const arm=document.getElementById('swArm'), bulb=document.getElementById('bulb');
+  arm.setAttribute('y2', swOn?40:12); arm.setAttribute('x2', swOn?240:232);
+  bulb.setAttribute('fill', swOn?'#ffd166':'#0b1026');
+  bulb.style.filter=swOn?'drop-shadow(0 0 14px #ffd166)':'none';
+  document.getElementById('swBtn').textContent=swOn?'Skakel AF':'Skakel AAN';
+  document.getElementById('swTxt').innerHTML=swOn?'Die skakelaar is <b>toe</b>. Die lus is <b>geslote</b>. Stroom vloei en die lamp brand! 💡':'Die skakelaar is <b>oop</b>. Daar is \'n gaping. Geen stroom vloei nie.';
+};
+
+// ---------- Geleier of isoleerder ----------
+const S=[['Koper','g'],['Silwer','g'],['Yster spyker','g'],['Soutwater','g'],['Aluminiumfoelie','g'],['Rubber','i'],['Plastiek','i'],['Glas','i'],['Keramiek','i'],['Hout','i'],['Papier','i']];
+let sortDone=0;
+const sb=document.getElementById('sortBox');
+S.sort(()=>Math.random()-.5).forEach(([n,a])=>{
+  const d=document.createElement('div');
+  d.innerHTML=`${n}<button style="background:#2ecc71">Geleier</button><button style="background:#ff5d73">Isoleerder</button>`;
+  const [bg,bi]=d.querySelectorAll('button');
+  const pick=c=>{ if(d.dataset.done) return; d.dataset.done=1; sortDone++;
+    const ok=c===a; d.classList.add(ok?'ok':'no'); if(ok) addStar();
+    d.innerHTML=`${n}: <b>${a==='g'?'geleier':'isoleerder'}</b> ${ok?'✅':'❌'}`;
+    if(sortDone===S.length) document.getElementById('sortTxt').textContent='Klaar! Laai die blad weer om oor te speel.';
+  };
+  bg.onclick=()=>pick('g'); bi.onclick=()=>pick('i');
+  sb.appendChild(d);
+});
 
 // ---------- Planete ----------
 const P=[
@@ -462,6 +772,43 @@ P.forEach((p,i)=>{
 
 // ---------- Woordkaarte ----------
 const K=[
+ ['Gonser','Elektriese toestel wat elektriese energie na klankenergie omskakel','10'],
+ ['Komponente','Dele van \'n elektriese stroombaan','10'],
+ ['Sel','Bron van elektriese energie wat energie stoor en in \'n stroombaan voorsien','10'],
+ ['Battery','Twee of meer selle wat gekoppel is om elektriese energie te voorsien','10'],
+ ['Geleier','Materiaal waardeur elektriese stroom kan vloei','10'],
+ ['Elektriese stroombaan','Stelsel vir die oordrag van energie van een plek na \'n ander','10'],
+ ['Elektriese stroom','Die beweging van elektriese ladings deur \'n geleier','10'],
+ ['Elektriese motor','Skakel elektriese energie na bewegingsenergie om','10'],
+ ['Isolering','Laag om die drade wat die stroom binne-in die draad hou','10'],
+ ['Isoleerder','Materiaal waardeur elektriese stroom nie kan vloei nie','10'],
+ ['Skakelaar','Toestel wat die stroombaan onderbreek of voltooi; beheer die vloei van stroom','10'],
+ ['Lewerings-/uitsettoestel','Komponent wat elektriese energie na \'n ander soort energie omskakel','10'],
+ ['Stroombaandiagram','Diagram van \'n stroombaan met standaard simbole','10'],
+ ['Konvensionele stroom','Vloei van positiewe ladings, van + na −','10'],
+ ['Ware stroom','Vloei van negatiewe ladings, van − na +','10'],
+ ['Elektriese geleier','Materiaal waardeur elektrisiteit kan vloei. Dit gelei elektrisiteit','11'],
+ ['Oordrag','Proses waardeur energie van een deel van \'n stelsel na \'n ander beweeg','11'],
+ ['Interpreteer','Die vermoë om die betekenis van iets te verduidelik','11'],
+ ['Stelsel','Twee of meer onderdele wat saamwerk om \'n spesifieke werk te doen','12'],
+ ['Inset','Komponent wat energie aan die stroombaan voorsien','12'],
+ ['Uitset','Komponent wat \'n resultaat lewer as gevolg van die inset se energie','12'],
+ ['Proses','Die manier waarop insetenergie na uitset-energie verander word','12'],
+ ['Fossielbrandstowwe','Reste van dooie plante en diere wat energie van die Son van miljoene jare gelede stoor','13'],
+ ['Nie-herwinbare hulpbronne','Hulpbronne soos steenkool wat nie vervang kan word as dit opgebruik is nie','13'],
+ ['Kragstasie','Plek waar elektrisiteit opgewek word','13'],
+ ['Turbine','Die draaiende lemme van \'n masjien','13'],
+ ['Opwekker','Masjien wat elektrisiteit opwek','13'],
+ ['Transformator','Masjien wat die hoeveelheid energie wat elektrisiteit dra, verander','13'],
+ ['Stoomketel','Masjien wat water kook','13'],
+ ['Infrastruktuur','Strukture en goed wat nodig is sodat iets behoorlik werk','13'],
+ ['Wattverbruik','Hoeveelheid elektriese krag \'n toestel verg om te werk','13'],
+ ['Geiser','Elektriese toestel wat water vir die huis verhit','13'],
+ ['Onwettige aansluitings','Bedrading nie deur \'n gekwalifiseerde elektrisiën gedoen nie, of teen die elektrisiteitswette','13'],
+ ['Hidroëlektries','Opwek van elektrisiteit met water','13'],
+ ['Herwinbare energiebronne','Energiebronne wat nie opgebruik kan word nie','13'],
+ ['Fotovoltaïese selle','Toestelle wat sonenergie na elektrisiteit omskakel','13'],
+ ['Sonpaneel','\'n Paneel wat uit fotovoltaïese selle bestaan','13'],
  ['Sonnestelsel','Die Son en al die voorwerpe wat daaromheen beweeg','14'],
  ['Ster',"'n Enorme bal brandende gas in die ruimte",'14'],
  ['Planeet',"'n Groot voorwerp wat om die Son wentel",'14'],
@@ -500,7 +847,7 @@ const K=[
  ['Helling',"'n Afdraand wat 2 verskillende vlakke verbind",'17']
 ];
 const kf=document.getElementById('kfilter');
-kf.innerHTML='<option value="">Alle onderwerpe</option><option value="14">Onderwerp 14</option><option value="15">Onderwerp 15</option><option value="16">Onderwerp 16</option><option value="17">Onderwerp 17</option>';
+kf.innerHTML='<option value="">Alle onderwerpe</option><optgroup label="Kwartaal 3"><option value="10">Onderwerp 10</option><option value="11">Onderwerp 11</option><option value="12">Onderwerp 12</option><option value="13">Onderwerp 13</option></optgroup><optgroup label="Kwartaal 4"><option value="14">Onderwerp 14</option><option value="15">Onderwerp 15</option><option value="16">Onderwerp 16</option><option value="17">Onderwerp 17</option></optgroup>';
 let kList=[...K];
 function drawCards(){
   const box=document.getElementById('cards'); box.innerHTML='';
@@ -515,7 +862,7 @@ document.getElementById('shuffle').onclick=()=>{kList.sort(()=>Math.random()-.5)
 drawCards();
 
 // ---------- Toets ----------
-const Q=[
+const Q4=[
  ['Wat is die Son?',["'n Ster","'n Planeet","'n Maan","'n Asteroïde"]],
  ['Hoeveel planete is daar in ons sonnestelsel?',['8','9','7','10']],
  ['Hoe warm is die Son omtrent?',['6 000 °C','600 °C','60 °C','60 000 °C']],
@@ -563,6 +910,76 @@ const Q=[
  ['Wat gebruik robotverkenners vir energie?',['Sonpanele','Petrol','Steenkool','Wind']],
  ['Wat beteken "onbeman"?',['Sonder mense aan boord','Met baie mense','Met robotte en mense','Net een mens']]
 ];
+const Q3=[
+ ['Wat is \'n elektriese stroombaan?',['\'n Stelsel wat energie van een plek na \'n ander dra','\'n Soort gloeilamp','\'n Stuk plastiek','\'n Kragpaal']],
+ ['Watter vorm moet die pad van \'n stroombaan hê?',['\'n Geslote lus','\'n Reguit lyn met \'n gaping','\'n Driehoek met \'n gat','Enige vorm met gapings']],
+ ['Wat is \'n sel?',['\'n Bron wat elektriese energie stoor en voorsien','\'n Draad','\'n Skakelaar','\'n Gonser']],
+ ['Wat is \'n battery?',['Twee of meer selle wat gekoppel is','Een gloeilamp','\'n Soort draad','\'n Isoleerder']],
+ ['Watter twee kante het \'n sel?',['Positief (+) en negatief (−)','Bo en onder','Warm en koud','Links en regs']],
+ ['Waarvan word drade in \'n stroombaan gewoonlik gemaak?',['Koper','Rubber','Glas','Hout']],
+ ['Hoekom is drade met plastiek bedek?',['Om die stroom binne die draad te hou','Om dit mooi te maak','Om dit swaarder te maak','Om meer stroom te laat vloei']],
+ ['Wat is elektriese stroom?',['Die beweging van elektriese ladings deur \'n geleier','\'n Soort battery','Die lig van \'n lamp','Plastiek om \'n draad']],
+ ['Watter energie gee \'n gloeilamp?',['Ligenergie','Klankenergie','Bewegingsenergie','Geen energie']],
+ ['Watter energie gee \'n gonser?',['Klankenergie','Ligenergie','Hitte','Bewegingsenergie']],
+ ['Watter energie gee \'n elektriese motor?',['Bewegingsenergie','Klankenergie','Ligenergie','Chemiese energie']],
+ ['Waarvoor gebruik ons \'n gonser?',['Waarskuwingseine en deurklokkies','Om lig te gee','Om water te kook','Om wiele te draai']],
+ ['Wat gebeur as daar \'n gaping in die stroombaan is?',['Stroom vloei nie','Stroom vloei vinniger','Die lamp brand helderder','Niks verander']],
+ ['Wat doen \'n skakelaar?',['Laat stroom begin of stop','Maak die stroom sterker','Stoor energie','Gee lig']],
+ ['Wat is \'n stroombaandiagram?',['\'n Tekening van \'n stroombaan met standaard simbole','\'n Foto van \'n lamp','\'n Lys toestelle','\'n Kaart van kragpale']],
+ ['Hoe lyk die simbool vir \'n gloeilamp?',['\'n Sirkel met \'n X daarin','\'n Sirkel met \'n M daarin','Twee lyne, een lank en een kort','\'n Halfsirkel']],
+ ['Hoe lyk die simbool vir \'n motor?',['\'n Sirkel met \'n M daarin','\'n Sirkel met \'n X daarin','\'n Reguit lyn','\'n Driehoek']],
+ ['Wat is \'n serie-stroombaan?',['Alles is op een pad','Die stroom het baie paaie','Daar is geen sel nie','Dit het geen drade nie']],
+ ['In watter rigting vloei konvensionele stroom?',['Van + na −','Van − na +','In \'n sirkel sonder rigting','Dit vloei nie']],
+ ['Ware stroom is die vloei van watter ladings?',['Negatiewe ladings','Positiewe ladings','Geen ladings','Protone']],
+ ['Wat is \'n elektriese geleier?',['Materiaal waardeur elektrisiteit kan vloei','Materiaal wat stroom stop','\'n Soort skakelaar','\'n Kragstasie']],
+ ['Watter metale is die beste geleiers?',['Silwer en koper','Yster en goud','Plastiek en rubber','Glas en keramiek']],
+ ['Watter een is \'n isoleerder?',['Rubber','Koper','Silwer','Soutwater']],
+ ['Watter een is \'n geleier?',['Soutwater','Plastiek','Glas','Keramiek']],
+ ['Waarvan is die isoleerders op kragpale gemaak?',['Keramiek of versterkte glas','Koper','Yster','Hout']],
+ ['Hoekom kan ons liggame elektrisiteit gelei?',['Ons bestaan meestal uit water','Ons het metaal in ons bene','Ons het plastiekvel','Ons kan nie']],
+ ['Waarmee blus jy \'n elektriese brand?',['Sand of \'n chemiese brandblusser','Water','Olie','Papier']],
+ ['Wat moet jy doen voor jy water in \'n ketel gooi?',['Prop dit uit en skakel die muurprop af','Skakel dit aan','Raak aan die drade','Niks']],
+ ['Wie moet stukkende isolering vervang?',['\'n Gekwalifiseerde elektrisiën','Enige kind','Niemand','Die buurman sonder opleiding']],
+ ['Wat beteken interpreteer?',['Om die betekenis van iets te verduidelik','Om iets te teken','Om iets te bou','Om iets weg te gooi']],
+ ['Wat is \'n stelsel?',['Twee of meer dele wat saamwerk','Net een ding alleen','\'n Gebreekte masjien','\'n Soort draad']],
+ ['Wat is die inset as jy fiets ry?',['Die fietsryer trap op die pedale','Die wiele draai','Die fiets staan stil','Die wind waai']],
+ ['Wat is die insetkomponent in \'n eenvoudige stroombaan?',['Die battery','Die gloeilamp','Die gonser','Die motor']],
+ ['Wat is die uitset van \'n elektriese ketel?',['Hitte wat die water kook','Lig','Klank','Beweging']],
+ ['Wat is die proses in \'n stelseldiagram?',['Die manier waarop inset na uitset verander','Wat ingaan','Wat uitkom','Die kragprop']],
+ ['Watter stroombaan gee hitte?',['\'n Verwarmer','\'n Flits','\'n Deurklokkie','\'n Speelgoedkarretjie']],
+ ['Waarmee teken jy \'n stroombaandiagram?',['\'n Skerp potlood en \'n liniaal','\'n Kryt','\'n Kwas','Jou vinger']],
+ ['In watter vorm teken ons gewoonlik \'n stroombaan?',['\'n Reghoek','\'n Sirkel','\'n Ster','\'n Driehoek']],
+ ['Watter een is \'n fossielbrandstof?',['Steenkool','Wind','Sonlig','Water']],
+ ['Waar kom die energie in fossielbrandstowwe vandaan?',['Van die Son','Van die Maan','Van die wind','Van plastiek']],
+ ['Wat beteken nie-herwinbaar?',['Dit kan nie vervang word as dit op is nie','Dit raak nooit op nie','Dit is gratis','Dit is nat']],
+ ['Wat word in SA hoofsaaklik in kragstasies gebruik?',['Steenkool','Wind','Sonpanele','Hout']],
+ ['Wat laat die turbine in \'n kragstasie draai?',['Stoom','Ys','Sand','Lig']],
+ ['Wat doen \'n opwekker?',['Dit wek elektrisiteit op','Dit kook water','Dit stoor steenkool','Dit isoleer drade']],
+ ['Wat doen \'n transformator?',['Verander hoeveel energie elektrisiteit dra','Kook water','Brand steenkool','Maak lig']],
+ ['Wat is wattverbruik?',['Hoeveel elektriese krag \'n toestel gebruik','Hoe swaar \'n toestel is','Hoe groot \'n toestel is','Die prys van \'n toestel']],
+ ['Hoeveel watt gebruik \'n ketel ongeveer?',['2 000 W','14 W','100 W','20 W']],
+ ['Watter toestelle gebruik die meeste energie?',['Verwarmingstoestelle','Radio\'s','Klein lampies','Horlosies']],
+ ['Watter siektes kan besoedeling van kragstasies veroorsaak?',['Brongitis en asma','Masels','Verkoue alleen','Geen']],
+ ['Hoeveel minder krag gebruik energiebesparende gloeilampe?',['Tot 75% minder','Tot 5% minder','Dieselfde','Meer']],
+ ['Wat gebruik \'n songeiser om water te verhit?',['Die Son se energie','Steenkool','Gas','Wind']],
+ ['Wat is \'n onwettige aansluiting?',['Bedrading wat nie deur \'n elektrisiën gedoen is nie, of teen die wet','\'n Nuwe kragstasie','\'n Sonpaneel','\'n Gewone ligskakelaar']],
+ ['Hoekom is onwettige aansluitings \'n groot probleem?',['Dit is onveilig en mense kan doodgaan','Dit is te duur','Dit maak te veel lig','Dit is te stil']],
+ ['Watter een is herwinbare energie?',['Windkrag','Steenkool','Olie','Natuurlike gas']],
+ ['Wat beteken hidroëlektries?',['Elektrisiteit opwek met water','Elektrisiteit opwek met steenkool','Elektrisiteit opwek met wind','Elektrisiteit stoor']],
+ ['Waar is \'n hidroëlektriese kragstasie in SA?',['Gariep','Sutherland','Carnarvon','Chesterville']],
+ ['Wat doen fotovoltaïese selle?',['Verander sonlig in elektrisiteit','Verander wind in water','Brand steenkool','Isoleer drade']],
+ ['Wat is \'n windplaas?',['Baie windturbines saam','\'n Plaas met koeie','\'n Steenkoolmyn','\'n Dam']]
+];
+let Q=Q4.concat(Q3);
+function pickTerm(t){Q=t==='3'?Q3:t==='4'?Q4:Q4.concat(Q3);}
+function menu(){
+  return `<p>Watter kwartaal?</p>
+  <button class="btn alt" onclick="pickTerm('3');document.getElementById('quiz').innerHTML=menu()">Kwartaal 3${Q===Q3?' ✔':''}</button>
+  <button class="btn alt" onclick="pickTerm('4');document.getElementById('quiz').innerHTML=menu()">Kwartaal 4${Q===Q4?' ✔':''}</button>
+  <button class="btn alt" onclick="pickTerm('b');document.getElementById('quiz').innerHTML=menu()">Albei${Q!==Q3&&Q!==Q4?' ✔':''}</button>
+  <p>Hoeveel vrae?</p>
+  <button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;
+}
 let order=[],qi=0,score=0,answered=false;
 function startQuiz(n){
   order=Q.map((q,i)=>i).sort(()=>Math.random()-.5).slice(0,n); qi=0; score=0; showQ();
@@ -572,8 +989,7 @@ function showQ(){
   if(qi>=order.length){
     const pct=Math.round(score/order.length*100);
     const msg=pct>=90?'🌟 Fantasties, Nic! Jy is \'n ruimte-kenner!':pct>=70?'🚀 Baie goed! Nog net \'n bietjie oefen.':pct>=50?'👍 Goeie poging! Lees weer die onderwerpe en probeer weer.':'💪 Moenie moed opgee nie! Kyk weer na die woordkaarte.';
-    box.innerHTML=`<h3>Klaar!</h3><p class="big">${score} uit ${order.length} (${pct}%)</p><p>${msg}</p>
-      <button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn alt" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;
+    box.innerHTML=`<h3>Klaar!</h3><p class="big">${score} uit ${order.length} (${pct}%)</p><p>${msg}</p>`+menu();
     return;
   }
   answered=false;
@@ -597,8 +1013,7 @@ function showQ(){
     o.appendChild(b);
   });
 }
-document.getElementById('quiz').innerHTML=`<p>Hoeveel vrae wil jy doen?</p>
-  <button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn alt" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;
+document.getElementById('quiz').innerHTML=menu();
 </script>
 </body>
 </html>
