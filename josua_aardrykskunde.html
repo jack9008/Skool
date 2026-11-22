@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Josua se Aardrykskunde – Kwartaal 3 &amp; 4</title>
+<style>
+  :root{--bg:#0d1f17;--panel:#14302a;--panel2:#1c4038;--text:#eefaf3;--muted:#a7c9b9;
+    --sun:#ffc857;--accent:#5ad1a0;--good:#2ecc71;--bad:#ff5d73;--pink:#ff8fab;--blue:#4cc9f0}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);font-size:19px;line-height:1.55;
+    background:radial-gradient(ellipse at top,#1d4a3c 0%,var(--bg) 65%);min-height:100vh}
+  header{text-align:center;padding:24px 12px 8px;position:relative}
+  header h1{margin:0;font-size:2rem}
+  header p{margin:4px 0 0;color:var(--muted)}
+  .back{position:absolute;left:14px;top:14px;color:var(--muted);text-decoration:none;font-size:.95rem}
+  .stars{color:var(--sun);font-weight:bold}
+  nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;position:sticky;top:0;z-index:5;background:rgba(13,31,23,.92);backdrop-filter:blur(6px)}
+  nav button{border:0;border-radius:999px;padding:10px 16px;font-size:1rem;cursor:pointer;background:var(--panel2);color:var(--text)}
+  nav button.on{background:var(--sun);color:#1a1a1a;font-weight:bold}
+  .navlbl{align-self:center;color:var(--muted);font-size:.85rem;margin-left:6px}
+  main{max-width:1000px;margin:0 auto;padding:16px}
+  section{display:none;animation:fade .3s} section.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  h2{color:var(--sun);margin-top:8px} h3{color:var(--accent);margin-bottom:6px}
+  .card{background:var(--panel);border-radius:16px;padding:16px 20px;margin:14px 0;border:1px solid #2b5a4d}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .big{font-size:1.4rem;font-weight:bold;color:var(--sun)}
+  .tip{background:#3a2a3a;border-left:5px solid var(--pink);padding:10px 14px;border-radius:10px;margin:12px 0}
+  .tip b{color:var(--pink)}
+  .bl{color:var(--muted);font-size:.85rem}
+  table{width:100%;border-collapse:collapse} td,th{padding:8px;border-bottom:1px solid #2b5a4d;text-align:left;vertical-align:top} th{color:var(--accent)}
+  .chips span{display:inline-block;background:var(--panel2);border-radius:99px;padding:6px 12px;margin:4px}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:10px 0}
+  .chain span{background:var(--panel2);border-radius:12px;padding:8px 12px;text-align:center} .chain i{font-style:normal;color:var(--sun);font-size:1.3rem}
+  .emo{font-size:2.4rem;display:block}
+  .animal{cursor:pointer;text-align:center}
+  .animal .more{display:none;margin-top:8px;text-align:left} .animal.open .more{display:block}
+  .order button{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 14px;border-radius:12px;border:2px solid #2b5a4d;background:var(--panel2);color:var(--text);font-size:1rem;cursor:pointer}
+  .order button.done{border-color:var(--good);background:#145a32;cursor:default}
+  .order button.oops{border-color:var(--bad);background:#5c1a26}
+  .orderOut{counter-reset:s;padding-left:0;list-style:none}
+  .orderOut li{counter-increment:s;margin:4px 0} .orderOut li::before{content:counter(s)". ";color:var(--sun);font-weight:bold}
+  .flip{perspective:900px;height:170px;cursor:pointer}
+  .flip .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.done .in{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;backface-visibility:hidden}
+  .front{background:linear-gradient(135deg,#1b7a5a,#2fa37b);font-size:1.4rem;font-weight:bold}
+  .back{background:var(--panel2);transform:rotateY(180deg);font-size:1rem;border:2px solid var(--accent)}
+  select,.btn{font-size:1rem;padding:10px 16px;border-radius:12px;border:0;cursor:pointer}
+  .btn{background:var(--accent);color:#08221a;font-weight:bold} .btn.alt{background:var(--panel2);color:var(--text)}
+  .opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:12px;border:2px solid #2b5a4d;background:var(--panel2);color:var(--text);font-size:1.05rem;cursor:pointer}
+  .opt:hover{border-color:var(--accent)} .opt.right{background:#145a32;border-color:var(--good)} .opt.wrong{background:#5c1a26;border-color:var(--bad)}
+  .bar{height:12px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:10px 0}
+  .bar div{height:100%;background:linear-gradient(90deg,var(--accent),var(--sun))}
+  .fb{font-weight:bold;margin-top:8px;min-height:1.5em}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="josua_vakke.html">⬅ Vakke</a>
+  <h1>🗺️ Josua se Aardrykskunde</h1>
+  <p>Graad 4 SW Geografie · Kwartaal 3 &amp; 4 · <span class="stars" id="starCount">⭐ 0</span> sterre verdien</p>
+</header>
+
+<nav id="nav">
+  <button data-s="tuis" class="on">🏠 Begin</button>
+  <span class="navlbl">Kwartaal 3:</span>
+  <button data-s="kos">🍎 Mense &amp; kos</button>
+  <button data-s="boer">🚜 Maniere van boer</button>
+  <button data-s="saai">🌽 Saai &amp; vee</button>
+  <button data-s="verwerk">🍞 Verwerkte kos</button>
+  <span class="navlbl">Kwartaal 4:</span>
+  <button data-s="gebruik">💧 Water gebruik</button>
+  <button data-s="hulpbron">🌊 Water as hulpbron</button>
+  <button data-s="kry">🚰 Hoe kry ons water?</button>
+  <button data-s="besoedel">⚠️ Besoedeling</button>
+  <button data-s="kaarte">🃏 Woordkaarte</button>
+  <button data-s="toets">🏆 Toets jouself</button>
+</nav>
+
+<main>
+<section id="tuis" class="on">
+  <div class="card">
+    <h2>Hallo Josua! 👋</h2>
+    <ol>
+      <li><b>Lees</b> elke oortjie bo-aan.</li>
+      <li><b>Speel</b>: tik op die diere en sit die brood-stappe in volgorde.</li>
+      <li><b>Woordkaarte</b>: sê die betekenis hardop, tik dan om te kyk.</li>
+      <li><b>Toets jouself</b>. Elke regte antwoord gee 'n ⭐.</li>
+    </ol>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Kwartaal 3 · Onderwerp 3</h3>Voedsel en boerdery in Suid-Afrika<br><span class="bl">bl. 46-63</span></div>
+    <div class="card"><h3>Kwartaal 4 · Onderwerp 4</h3>Water in Suid-Afrika<br><span class="bl">bl. 67-79</span></div>
+  </div>
+</section>
+
+<!-- ===== KWARTAAL 3 ===== -->
+<section id="kos">
+  <h2>🍎 Eenheid 1: Mense en kos (bl. 47-48)</h2>
+  <div class="card">
+    <h3>Hoe kry mense kos?</h3>
+    <div class="grid">
+      <div class="card"><span class="emo">🛒</span><b>Koop</b> by 'n winkel, stalletjie of op straat.</div>
+      <div class="card"><span class="emo">🐄</span>Mense op <b>plase</b> hou diere aan en kweek kos.</div>
+      <div class="card"><span class="emo">🥕</span>Mense in <b>dorpe en stede</b> kan 'n groentetuin of vrugtebome hê.</div>
+      <div class="card"><span class="emo">🍄</span><b>Kosversamelaars</b> vang vis, jag, en pluk vrugte, bessies en sampioene.</div>
+    </div>
+    <ul>
+      <li>Kosversamelaars weet wat gesond is en wat <b>giftig</b> is.</li>
+      <li>Die <b>meeste</b> kos kom van <b>plase</b>. <b>Boere</b> maak ons kos.</li>
+      <li>Meeste vis word in die <b>see</b> gevang. <b>Varswatervis</b> kom uit damme en mere.</li>
+    </ul>
+    <table>
+      <tr><th>Giftig</th><td>Iets wat jou siek kan maak as jy dit eet of drink</td></tr>
+      <tr><th>Varswater</th><td>Water wat nie sout is nie. Dit kom nie uit die see nie.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="boer">
+  <h2>🚜 Eenheid 2: Maniere van boer (bl. 50-51)</h2>
+  <div class="grid">
+    <div class="card"><h3>1. Bestaansboerdery 🏡</h3>
+      <p>Boer om <b>jouself en jou gesin</b> te voed.</p>
+      <ul>
+        <li>Hulle eet die meeste van die kos.</li>
+        <li>Soms verkoop hulle 'n bietjie.</li>
+        <li>Met die geld koop hulle goed soos <b>seep en kospotte</b>.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>2. Kos in dorpe en stede 🏙️</h3>
+      <p>Mense kweek <b>van</b> hul kos.</p>
+      <p>Hulle kan nie alles kweek nie. Hulle moet ook kos <b>koop</b>.</p>
+    </div>
+    <div class="card"><h3>3. Kommersiële boerdery 🏭</h3>
+      <p>Boerdery is 'n <b>besigheid</b> om geld te maak.</p>
+      <ul>
+        <li>Winkelkos kom van groot kommersiële boere.</li>
+        <li>Bv. brood kom van <b>koring</b>.</li>
+        <li>Meestal net <b>een gewas</b>, maar baie daarvan.</li>
+        <li><b>Kontantgewasse</b>: bv. <b>suikerriet</b> en <b>mielies</b>.</li>
+        <li>Hulle hou ook <b>vee</b> aan: skape, beeste, hoenders.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <table>
+      <tr><th>Gewasse</th><td>Plante wat mense plant en kweek om te gebruik</td></tr>
+      <tr><th>Kontantgewasse</th><td>Gewasse wat mense kweek om te verkoop</td></tr>
+      <tr><th>Vee</th><td>Diere wat boere aanhou</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="saai">
+  <h2>🌽 Eenheid 3-5: Saaiboerdery en veeboerdery (bl. 52-59)</h2>
+  <div class="card">
+    <h3>Belangrike gewasse in SA</h3>
+    <table>
+      <tr><th>🌽 Mielies</th><td>Groei in baie dele van SA. Baie mense eet elke dag <b>mieliemeel</b>.</td></tr>
+      <tr><th>🎋 Suikerriet</th><td>Groei waar dit <b>warm</b> is en in die <b>somer reën</b>.</td></tr>
+      <tr><th>🌻 Sonneblomme</th><td>Baie in die <b>Vrystaat</b>. <b>Kookolie</b> word van die sade gemaak.</td></tr>
+    </table>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>🥭 Tropiese vrugte</h3>Groei in <b>warm, nat</b> plekke.<div class="chips"><span>Mango</span><span>Piesang</span><span>Pynappel</span><span>Avokado</span></div></div>
+    <div class="card"><h3>🍑 Sagtevrugte</h3><b>Koue winters, droë somers.</b> Bome verloor blare in die winter.<div class="chips"><span>Druiwe</span><span>Appels</span><span>Perskes</span><span>Pere</span></div></div>
+    <div class="card"><h3>🍊 Sitrusvrugte</h3>Word in die <b>koue wintermaande</b> ryp.<div class="chips"><span>Lemoene</span><span>Suurlemoene</span><span>Nartjies</span></div></div>
+  </div>
+  <div class="card">
+    <h3>Veeboerdery (bl. 55)</h3>
+    <table>
+      <tr><th>Grootvee</th><td>Groot diere, soos <b>beeste</b></td></tr>
+      <tr><th>Kleinvee</th><td><b>Skape</b> en <b>varke</b></td></tr>
+      <tr><th>Pluimvee</th><td>Voëls, soos <b>hoenders</b> en <b>volstruise</b></td></tr>
+    </table>
+    <p>Tik op 'n dier om te sien wat dit gee:</p>
+    <div class="grid">
+      <div class="card animal"><span class="emo">🐑</span><b>Skape</b><div class="more">Wol, vleis</div></div>
+      <div class="card animal"><span class="emo">🐔</span><b>Hoenders</b> (pluimvee)<div class="more">Vleis, eiers</div></div>
+      <div class="card animal"><span class="emo">🦤</span><b>Volstruise</b> (pluimvee)<div class="more">Vere, eiers, volstruisleer, vleis. Die eierdoppe is vir versierings.</div></div>
+      <div class="card animal"><span class="emo">🐖</span><b>Varke</b><div class="more">Leer, vleis. Varke is <b>slim</b> en het ruimte nodig.</div></div>
+      <div class="card animal"><span class="emo">🐄</span><b>Beeste</b><div class="more">Vleis, leer, <b>suiwelprodukte</b> (melk, kaas, botter)</div></div>
+      <div class="card animal"><span class="emo">🐐</span><b>Bokke</b><div class="more">Eet plante wat ander diere nie kan bykom nie.</div></div>
+    </div>
+    <div class="tip"><b>Onthou:</b> 'n Boer moet altyd sorg vir <b>skaduwee en water</b> vir die diere.</div>
+  </div>
+  <div class="card">
+    <h3>Waar boer mense wat? (bl. 58-59)</h3>
+    <ul>
+      <li>Verskillende plante en diere groei goed op verskillende plekke. Dit hang van die <b>klimaat</b> af.</li>
+      <li><b>Suikerriet</b> het 'n warm klimaat en baie reën nodig.</li>
+      <li>Waar dit in die somer <b>hael</b>, kan boere nie vrugte kweek nie. Hael maak gate in die vrugte.</li>
+      <li><b>Suiwelplase</b> en <b>groenteplase</b> is naby stede en dorpe. Die kos moet vars by die winkels kom.</li>
+    </ul>
+    <table>
+      <tr><th>Klimaat</th><td>Die soort weer wat 'n plek deur die jare heen het</td></tr>
+      <tr><th>Hael</th><td>Reëndruppels wat verys tot yskorrels</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="verwerk">
+  <h2>🍞 Eenheid 6-7: Onverwerkte en verwerkte kos (bl. 60-63)</h2>
+  <div class="grid">
+    <div class="card"><h3>🍏 Onverwerk</h3>Natuurlik of <b>rou</b>, nie gaargemaak nie. Bv. vars appels en blaarslaai.</div>
+    <div class="card"><h3>🍟 Verwerk</h3>Verander uit sy rou toestand. Bv. aartappels word in olie gebak tot <b>skyfies</b>.</div>
+  </div>
+  <div class="card">
+    <h3>Hoe word kos verwerk?</h3>
+    <ul>
+      <li><b>By die huis</b>: melk en piesang word 'n melkskommel.</li>
+      <li>Hoender en aartappels moet <b>gaargemaak</b> word.</li>
+      <li><b>In fabrieke</b>: suikerriet ➜ <b>suiker</b>. Koring ➜ <b>meel</b>.</li>
+      <li>Van meel maak ons brood, koek, koekies, pizza, roti, spaghetti en ontbytgraan.</li>
+    </ul>
+    <p><b>Hoekom?</b> Sodat dit <b>veilig</b> is, en <b>lekkerder</b> smaak.</p>
+    <div class="chips"><span>Bak</span><span>Braai</span><span>Kook</span><span>Rooster</span></div>
+  </div>
+  <div class="card">
+    <h3>Van plaas na huis: lemoensap 🍊</h3>
+    <div class="chain"><span>🌳 Groei op plaas</span><i>➜</i><span>✋ Gepluk</span><i>➜</i><span>🏭 Fabriek: uitgedruk, gebottel</span><i>➜</i><span>🚚 Na winkel</span><i>➜</i><span>🛒 Ons koop</span><i>➜</i><span>🥤 Drink!</span></div>
+  </div>
+  <div class="card">
+    <h3>Speletjie: van koringland tot toebroodjie 🥪</h3>
+    <p>Tik die stappe in die regte volgorde.</p>
+    <div class="order" id="orderBox"></div>
+    <ol class="orderOut" id="orderOut"></ol>
+    <p class="fb" id="orderTxt"></p>
+  </div>
+</section>
+
+<!-- ===== KWARTAAL 4 ===== -->
+<section id="gebruik">
+  <h2>💧 Eenheid 1: Gebruike van water (bl. 68-69)</h2>
+  <div class="card">
+    <h3>Elke dag</h3>
+    <div class="grid">
+      <div class="card"><span class="emo">🥤</span>Drink</div>
+      <div class="card"><span class="emo">🛁</span>Bad of stort</div>
+      <div class="card"><span class="emo">🪥</span>Tande borsel</div>
+      <div class="card"><span class="emo">👕</span>Klere was</div>
+      <div class="card"><span class="emo">🍲</span>Kos kook</div>
+      <div class="card"><span class="emo">🚗</span>Die kar was</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Ander gebruike</h3>
+    <div class="chips"><span>Boerdery</span><span>Fabrieke</span><span>Myne</span><span>Krag opwek</span><span>Tuine</span><span>Pret</span></div>
+    <ul>
+      <li>Water help <b>plante</b> in tuine en op plase groei.</li>
+      <li>Ons gebruik water om <b>energie</b> te maak, soos elektrisiteit.</li>
+      <li><b>Fabrieke</b> maak masjiene skoon en koel hulle af met water.</li>
+      <li>Ons kan ook <b>pret</b> hê met water! 🏊</li>
+    </ul>
+    <p><b>Energie</b> = die krag wat dinge laat werk.</p>
+  </div>
+</section>
+
+<section id="hulpbron">
+  <h2>🌊 Eenheid 2: Water as hulpbron (bl. 70-72)</h2>
+  <div class="card">
+    <p><b>Hulpbronne</b> = nuttige goed wat mense nodig het en kan gebruik.</p>
+    <div class="grid">
+      <div class="card"><h3>🏞️ Vars water</h3>Nie sout nie. Mense en diere kan dit drink. In <b>mere, riviere, vleilande, strome</b> en <b>onder die grond</b>.</div>
+      <div class="card"><h3>🌊 Soutwater</h3>Byna <b>al</b> die water in die wêreld is in die <b>oseane</b>. Dit is nie goed vir meeste plante en diere nie.</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Die natuurlike watersiklus</h3>
+    <div class="chain"><span>🌊 See</span><i>➜</i><span>☀️ Verdamping</span><i>➜</i><span>☁️ Wolke</span><i>➜</i><span>🌧️ Reën op land</span><i>➜</i><span>🏞️ Riviere</span><i>➜</i><span>🌊 Terug see toe</span></div>
+    <p><b>Verdamping</b> verander soutwater in varswater. Hitte maak van water 'n gas, <b>damp</b>.</p>
+  </div>
+  <div class="card">
+    <h3>Water opgaar (bl. 71-72)</h3>
+    <p><b>Opgaar</b> = water versamel of bêre, om later te gebruik.</p>
+    <ul>
+      <li>Mense gaar <b>reënwater</b> op in 'n tenk.</li>
+      <li><b>Boere</b> gaar water op in <b>damme</b> vir hul diere en gewasse.</li>
+    </ul>
+    <div class="chips"><span>🚰 Waterbottel</span><span>🛢️ Reënwatertenk</span><span>🗼 Watertoring</span><span>🏞️ Dam</span></div>
+  </div>
+</section>
+
+<section id="kry">
+  <h2>🚰 Eenheid 3: Hoe mense water kry (bl. 73-77)</h2>
+  <div class="grid">
+    <div class="card"><h3>1. Riviere, strome en fonteine 🏞️</h3>Baie mense kry steeds water uit riviere. Hulle dra dit in emmers huis toe.</div>
+    <div class="card"><h3>2. Putte en boorgate 🕳️</h3>
+      <ul>
+        <li>Water <b>sypel in</b> die grond. Dit word tussen rotse opgegaar.</li>
+        <li><b>Put</b> = 'n gat in die grond. Mense laat sak emmers af.</li>
+        <li><b>Boorgat</b> = dieper. Gemaak met 'n boormasjien. <b>Pompe</b> pomp die water uit.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>3. Waterlorries 🚚</h3>Waar daar geen riviere, boorgate of krane is nie. Die lorrie bring elke paar dae water. Mense maak houers vol.</div>
+    <div class="card"><h3>4. Krane 🚰</h3><b>Miljoene</b> mense kry elke dag water uit krane.</div>
+  </div>
+  <div class="card">
+    <table>
+      <tr><th>Watersuiweringsentrum</th><td>Plek waar water skoon en veilig gemaak word om te drink</td></tr>
+      <tr><th>Dam</th><td>Vars water, gewoonlik as mense 'n muur oor 'n rivier bou</td></tr>
+      <tr><th>Opgaardam</th><td>Plek waar skoon water opgegaar word</td></tr>
+      <tr><th>Pompstasie</th><td>Gebou met pompe wat water deur pype stoot</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="besoedel">
+  <h2>⚠️ Eenheid 4: Besoedeling en afvalwater (bl. 78-79)</h2>
+  <div class="card">
+    <h3>Hoe word water vuil?</h3>
+    <ol>
+      <li><b>Seep en skoonmaakmiddels</b> uit huise vloei in riviere.</li>
+      <li><b>Skoonmaakstowwe</b> het <b>chemikalieë</b>. Dit maak water onveilig om te drink.</li>
+      <li>Mense verbrand <b>brandstof</b>. Chemikalieë gaan in die lug. Reën bring dit in riviere en damme.</li>
+      <li><b>Toiletafval</b> kan in 'n rivier lek. Dit het skadelike <b>bakterieë</b>.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h3>Fabrieke en plase 🏭🚜</h3>
+    <ul>
+      <li>Fabrieke se afvalwater het skadelike chemikalieë. Dit vloei uit dreine in riviere.</li>
+      <li>Boere gebruik <b>kunsmis</b> en <b>gif teen insekte</b>. Dit het chemikalieë.</li>
+      <li>Mense gooi chemikalieë in dreine en toilette. Dit beland in riviere.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Vuil water word weer skoon (bl. 79)</h3>
+    <div class="chain"><span>🚽 Riool uit huise</span><i>➜</i><span>🔧 Pype</span><i>➜</i><span>🏭 Rioolwatersuiweringsaanleg</span><i>➜</i><span>💧 Skoon water</span><i>➜</i><span>🏞️ Terug in rivier of see</span></div>
+    <p>Water skoon en veilig maak = water <b>herwin</b>.</p>
+    <table>
+      <tr><th>Chemikalieë</th><td>Stowwe wat ons in huise, fabrieke en op plase gebruik. Sommige is giftig.</td></tr>
+      <tr><th>Bakterieë</th><td>Baie klein lewe wat in ons liggaam kan kom en ons siek maak</td></tr>
+      <tr><th>Riool</th><td>Afval uit toilette en dreine</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="kaarte">
+  <h2>🃏 Woordkaarte</h2>
+  <p>Lees die woord. Sê die betekenis hardop. Tik dan om te kyk!</p>
+  <p><select id="kfilter"><option value="">Albei kwartale</option><option value="3">Kwartaal 3</option><option value="4">Kwartaal 4</option></select> <button class="btn alt" id="shuffle">🔀 Skommel</button></p>
+  <div class="grid" id="cards"></div>
+</section>
+
+<section id="toets">
+  <h2>🏆 Toets jouself</h2>
+  <div class="card" id="quiz"></div>
+</section>
+</main>
+<footer>Gebaseer op Juffrou Natasha se Opsommings · Platinum Handboek · Graad 4 SW Geografie Kwartaal 3 &amp; 4</footer>
+
+<script>
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); document.getElementById(b.dataset.s).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+let stars=+(localStorage.getItem('josuaGeoStars')||0);
+function addStar(){stars++;localStorage.setItem('josuaGeoStars',stars);showStars();}
+function showStars(){document.getElementById('starCount').textContent='⭐ '+stars;}
+showStars();
+
+document.querySelectorAll('.animal').forEach(a=>a.onclick=()=>a.classList.toggle('open'));
+
+// koring tot toebroodjie
+const STEPS=['🚜 Boere ploeg die landerye','🌱 \'n Masjien plant die koringsaad','🌿 Jong koringplantjies groei','🌾 Die koring word groot en blom','🚜 \'n Stroper oes die koringkorrels','🏭 Die koring gaan na \'n fabriek en word meel','🥣 Die bakkery meng meel, water en suurdeeg','🍞 Die deeg word in groot oonde gebak','🚚 Vragmotors neem die brood na winkels','🛒 Mense koop brood in die winkel','🥪 Ons maak \'n toebroodjie!'];
+let next=0;
+function drawOrder(){
+  next=0; const box=document.getElementById('orderBox'), out=document.getElementById('orderOut');
+  box.innerHTML=''; out.innerHTML=''; document.getElementById('orderTxt').textContent='';
+  STEPS.map((s,i)=>[s,i]).sort(()=>Math.random()-.5).forEach(([s,i])=>{
+    const b=document.createElement('button'); b.textContent=s;
+    b.onclick=()=>{ if(b.classList.contains('done')) return;
+      if(i===next){b.classList.add('done');next++;const li=document.createElement('li');li.textContent=s;out.appendChild(li);
+        if(next===STEPS.length){addStar();document.getElementById('orderTxt').innerHTML='🎉 Reg! +1 ⭐ <button class="btn alt" onclick="drawOrder()">Weer</button>';}}
+      else{b.classList.add('oops');setTimeout(()=>b.classList.remove('oops'),500);}
+    };
+    box.appendChild(b);
+  });
+}
+drawOrder();
+
+const K=[
+ ['Kosversamelaar','Iemand wat kos wat in die natuur groei, versamel en eet','3'],
+ ['Giftig','Iets wat jou siek kan maak as jy dit eet of drink','3'],
+ ['Varswater','Water wat nie sout is nie. Dit kom nie uit die see nie','3'],
+ ['Gewasse','Plante wat mense plant en kweek om te gebruik','3'],
+ ['Bestaansboere','Boere wat kweek en diere aanhou om hulself en hul gesin te voed','3'],
+ ['Kommersiële boere','Boere wie se boerdery \'n besigheid is om geld te maak','3'],
+ ['Kontantgewasse','Gewasse wat mense kweek om te verkoop','3'],
+ ['Vee','Diere wat deur boere aangehou word','3'],
+ ['Tropiese vrugte','Vrugte van bome wat in warm, nat plekke groei','3'],
+ ['Sagtevrugte','Vrugte van bome wat hul blare in die winter verloor','3'],
+ ['Sitrusvrugte','Vrugte wat in koue winters ryp word','3'],
+ ['Pluimvee','Voëls waarmee geboer word, soos hoenders en volstruise','3'],
+ ['Produk','Iets wat van iets anders gemaak word, bv. wol van \'n skaap','3'],
+ ['Suiwelprodukte','Produkte wat van melk gemaak word, soos botter en kaas','3'],
+ ['Klimaat','Die soort weer wat \'n plek deur die jare heen het','3'],
+ ['Hael','Wanneer reëndruppels verys om yskorrels te vorm','3'],
+ ['Onverwerk','Iets wat natuurlik of rou is, bv. vars appels','3'],
+ ['Verwerk','Iets uit sy rou toestand in iets anders verander, bv. aartappels tot skyfies','3'],
+ ['Energie','Die krag wat dinge laat werk','4'],
+ ['Hulpbronne','Nuttige goed wat mense in hul lewe nodig het en kan gebruik','4'],
+ ['Vars water','Water wat mense en diere kan drink','4'],
+ ['Sout water','Water wat sout bevat. Nie goed vir meeste plante en diere nie','4'],
+ ['Verdamping','Hitte verander \'n vloeistof in \'n gas, wat damp genoem word','4'],
+ ['Opgaar','Om water te versamel of te bêre','4'],
+ ['Boorgat','\'n Soort put. Mense boor gate in die grond om water te kry','4'],
+ ['Watersuiweringsentrum','Plek waar water skoon en veilig gemaak word om te drink','4'],
+ ['Dam','Vars water, gewoonlik as mense \'n muur oor \'n rivier bou','4'],
+ ['Opgaardam','\'n Plek waar skoon water opgegaar word','4'],
+ ['Pompstasie','\'n Gebou met pompe wat water deur pype stoot','4'],
+ ['Chemikalieë','Stowwe wat ons in huise, fabrieke en plase gebruik. Sommige is giftig','4'],
+ ['Bakterieë','Baie klein lewe wat in ons liggaam kan kom en ons siek maak','4'],
+ ['Riool','Afval wat van toilette en dreine kom','4'],
+ ['Rioolwatersuiweringsaanleg','Plek waar besoedelde water skoon gemaak word','4']
+];
+const kf=document.getElementById('kfilter'); let kList=[...K];
+function drawCards(){const box=document.getElementById('cards');box.innerHTML='';
+  kList.filter(k=>!kf.value||k[2]===kf.value).forEach(k=>{const d=document.createElement('div');d.className='flip';
+    d.innerHTML=`<div class="in"><div class="face front">${k[0]}</div><div class="face back">${k[1]}</div></div>`;
+    d.onclick=()=>d.classList.toggle('done');box.appendChild(d);});}
+kf.onchange=drawCards;
+document.getElementById('shuffle').onclick=()=>{kList.sort(()=>Math.random()-.5);drawCards();};
+drawCards();
+
+const Q3=[
+ ['Wat is \'n kosversamelaar?',['Iemand wat kos in die natuur versamel en eet','Iemand wat kos in \'n winkel verkoop','\'n Boer met baie koeie','\'n Fabriek']],
+ ['Waarvandaan kom die meeste van ons kos?',['Van plase','Uit die see','Uit die woud','Uit fabrieke alleen']],
+ ['Waar word die meeste vis gevang?',['In die see','In damme','In riviere','In mere']],
+ ['Wat beteken giftig?',['Iets wat jou siek kan maak','Iets wat baie lekker is','Iets wat gesond is','Iets wat soet is']],
+ ['Wat is varswater?',['Water wat nie sout is nie','Seewater','Vuil water','Water met suiker']],
+ ['Wat is \'n bestaansboer?',['Boer om jouself en jou gesin te voed','Boer om baie geld te maak','Iemand wat in \'n winkel werk','Iemand wat net vis vang']],
+ ['Wat koop bestaansboere met die geld wat hulle maak?',['Goed soos seep en kospotte','Groot trekkers','Nuwe plase','Vliegtuie']],
+ ['Wat is \'n kommersiële boer?',['\'n Boer wie se boerdery \'n besigheid is','\'n Boer wat net vir sy gesin boer','\'n Kosversamelaar','\'n Visser']],
+ ['Wat is kontantgewasse?',['Gewasse wat mense kweek om te verkoop','Gewasse wat net die gesin eet','Wilde plante','Giftige plante']],
+ ['Watter twee is kontantgewasse?',['Suikerriet en mielies','Sampioene en bessies','Gras en blare','Rose en tulpe']],
+ ['Waarvan kom brood?',['Koring','Suikerriet','Sonneblomme','Mango\'s']],
+ ['Wat eet baie mense in SA elke dag?',['Mieliemeel','Pynappel','Kaviaar','Sushi']],
+ ['Waar groei suikerriet goed?',['Waar dit warm is en in die somer reën','Waar dit sneeu','In die woestyn','Op hoë berge']],
+ ['Wat word van sonneblomsade gemaak?',['Kookolie','Suiker','Meel','Melk']],
+ ['In watter provinsie is daar baie sonneblomme?',['Vrystaat','Wes-Kaap','Gauteng','Limpopo']],
+ ['Watter een is \'n tropiese vrug?',['Piesang','Appel','Lemoen','Druif']],
+ ['Waar groei tropiese vrugte?',['In warm, nat plekke','In koue plekke','In die see','In die woestyn']],
+ ['Watter een is \'n sagtevrug?',['Perske','Mango','Nartjie','Pynappel']],
+ ['Wanneer word sitrusvrugte ryp?',['In die koue wintermaande','In die warm somer','In die lente','Nooit']],
+ ['Watter een is \'n sitrusvrug?',['Suurlemoen','Pruim','Peer','Avokado']],
+ ['Wat is grootvee?',['Groot diere, soos beeste','Hoenders','Skape','Bye']],
+ ['Wat is pluimvee?',['Voëls soos hoenders en volstruise','Beeste','Varke','Bokke']],
+ ['Wat kry ons van skape?',['Wol en vleis','Eiers','Melk en kaas','Vere']],
+ ['Wat is suiwelprodukte?',['Melk, kaas en botter','Wol en leer','Eiers en vere','Vleis en vis']],
+ ['Watter dier gee ons suiwelprodukte?',['Beeste','Hoenders','Volstruise','Varke']],
+ ['Waarvoor word volstruiseierdoppe gebruik?',['Versierings','Om te eet','Om brood te bak','Om water te stoor']],
+ ['Wat moet \'n boer altyd vir sy diere hê?',['Skaduwee en water','Speelgoed','\'n Televisie','Skoene']],
+ ['Waarom kan boere nie vrugte kweek waar dit in die somer hael nie?',['Hael maak gate in die vrugte','Hael maak vrugte soet','Hael is te warm','Vrugte hou van hael']],
+ ['Waarom is suiwelplase naby stede?',['Die melk moet vinnig by die winkels wees','Die koeie hou van stede','Daar is meer gras','Dis goedkoper']],
+ ['Wat is klimaat?',['Die soort weer wat \'n plek deur die jare het','Die weer vandag','\'n Soort vrug','\'n Plaasdier']],
+ ['Wat is onverwerkte kos?',['Kos wat rou en natuurlik is','Skyfies','Brood','Koek']],
+ ['Wat word van koring gemaak?',['Meel','Suiker','Olie','Kaas']],
+ ['Wat word van suikerriet gemaak?',['Suiker','Meel','Melk','Wol']],
+ ['Waarom verwerk ons kos?',['Sodat dit veilig is en lekkerder smaak','Sodat dit vrot word','Sodat dit duurder is','Om dit weg te gooi']],
+ ['Watter een is NIE \'n manier om kos gaar te maak nie?',['Vries','Bak','Braai','Kook']],
+ ['Wat gebeur eerste met \'n lemoen vir lemoensap?',['Dit groei aan \'n boom op \'n plaas','Dit gaan na die winkel','Dit word gebottel','Ons drink dit']]
+];
+const Q4=[
+ ['Wat is energie?',['Die krag wat dinge laat werk','\'n Soort water','\'n Rivier','\'n Dam']],
+ ['Watter een is \'n daaglikse gebruik van water?',['Tande borsel','Brood bak in \'n fabriek','\'n Myn grawe','Krag opwek']],
+ ['Waarvoor gebruik fabrieke water?',['Om masjiene skoon te maak en af te koel','Om te swem','Om kos te plant','Om te verf']],
+ ['Wat is hulpbronne?',['Nuttige goed wat mense nodig het en gebruik','Vullis','Siektes','Giftige stowwe']],
+ ['Waar is byna al die water in die wêreld?',['In die oseane','In riviere','In damme','In krane']],
+ ['Wat is vars water?',['Water wat mense en diere kan drink','Seewater','Riool','Water met seep']],
+ ['Waar kry ons vars water?',['Mere, riviere, vleilande en onder die grond','Net in die see','In die oseane','In die woestyn']],
+ ['Wat verander soutwater in varswater?',['Verdamping','Vries','Wind','Riool']],
+ ['Wat is verdamping?',['Hitte verander water in \'n gas (damp)','Water word ys','Water vloei in die see','Water word sout']],
+ ['Waar begin en eindig die natuurlike watersiklus?',['By die see','In \'n kraan','In \'n dam','In \'n bottel']],
+ ['Wat beteken opgaar?',['Water versamel of bêre','Water weggooi','Water kook','Water drink']],
+ ['Waarom gaar boere water op in damme?',['Daar moet altyd water wees vir diere en gewasse','Om te swem','Om vis te verkoop','Om die dam mooi te maak']],
+ ['Wat is \'n put?',['\'n Gat in die grond om water te kry','\'n Soort kraan','\'n Waterlorrie','\'n Rivier']],
+ ['Hoe verskil \'n boorgat van \'n put?',['Dit is dieper en word met \'n masjien geboor','Dit is vlakker','Dit is in die see','Dit het geen water nie']],
+ ['Wat gebruik mense om water uit \'n boorgat te kry?',['Pompe','Emmers aan \'n tou','Sponse','Lepels']],
+ ['Waar word ondergrondse water opgegaar?',['In openinge tussen rotse','In die wolke','In bome','In die see']],
+ ['Wanneer kry mense water by \'n waterlorrie?',['As daar geen riviere, boorgate of krane is nie','Elke keer as dit reën','Net in die stad','Nooit']],
+ ['Hoe gereeld bring die waterlorrie water?',['Elke paar dae','Elke uur','Een keer per jaar','Nooit']],
+ ['Waar kry miljoene mense elke dag water?',['Uit krane','Uit die see','Uit wolke','Uit putte alleen']],
+ ['Wat is \'n watersuiweringsentrum?',['Plek waar water skoon en veilig gemaak word','\'n Swembad','\'n Rivier','\'n Waterlorrie']],
+ ['Hoe word \'n dam gewoonlik gemaak?',['Mense bou \'n muur oor \'n rivier','Mense grawe \'n put','Dit reën in \'n bottel','Mense maak \'n kraan oop']],
+ ['Wat is \'n pompstasie?',['\'n Gebou met pompe wat water deur pype stoot','\'n Plek vir karre','\'n Winkel','\'n Skool']],
+ ['Wat is chemikalieë?',['Stowwe wat ons gebruik; sommige is giftig','Skoon water','Kos','Bome']],
+ ['Wat is bakterieë?',['Baie klein lewe wat ons siek kan maak','Groot diere','Plante','Klippe']],
+ ['Wat het toiletafval in wat skadelik is?',['Bakterieë','Suiker','Sand','Klippe']],
+ ['Watter een besoedel water?',['Seep en skoonmaakmiddels','Reën','Sonlig','Bome']],
+ ['Hoe kom chemikalieë uit die lug in riviere?',['Reën dryf dit uit die lug in riviere en damme','Die wind blaas dit weg','Die son brand dit op','Dit kan nie']],
+ ['Wat gebruik boere wat water kan besoedel?',['Kunsmis en gif teen insekte','Skaduwee','Hekke','Trekkers se ligte']],
+ ['Wat is riool?',['Afval uit toilette en dreine','Skoon drinkwater','Reënwater','Seewater']],
+ ['Waar word vuil water skoon gemaak?',['By \'n rioolwatersuiweringsaanleg','In die see','In \'n put','In die kombuis']],
+ ['Wat beteken water herwin?',['Water skoon en veilig maak om weer te gebruik','Water weggooi','Water vries','Water sout maak']],
+ ['Waarheen gaan die skoon water van die rioolaanleg?',['Terug in riviere of die see','In die lug','In die woestyn','In vullisblikke']]
+];
+let Q=Q3.concat(Q4);
+function pickTerm(t){Q=t==='3'?Q3:t==='4'?Q4:Q3.concat(Q4);document.getElementById('quiz').innerHTML=menu();}
+function menu(){return `<p>Watter kwartaal?</p>
+  <button class="btn alt" onclick="pickTerm('3')">Kwartaal 3${Q===Q3?' ✔':''}</button>
+  <button class="btn alt" onclick="pickTerm('4')">Kwartaal 4${Q===Q4?' ✔':''}</button>
+  <button class="btn alt" onclick="pickTerm('b')">Albei${Q!==Q3&&Q!==Q4?' ✔':''}</button>
+  <p>Hoeveel vrae?</p>
+  <button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;}
+let order=[],qi=0,score=0,answered=false;
+function startQuiz(n){order=Q.map((q,i)=>i).sort(()=>Math.random()-.5).slice(0,n);qi=0;score=0;showQ();}
+function showQ(){
+  const box=document.getElementById('quiz');
+  if(qi>=order.length){const pct=Math.round(score/order.length*100);
+    const msg=pct>=90?'🌟 Fantasties, Josua!':pct>=70?'🚀 Baie goed! Nog net \'n bietjie oefen.':pct>=50?'👍 Goeie poging! Lees weer en probeer weer.':'💪 Moenie moed opgee nie! Kyk weer na die woordkaarte.';
+    box.innerHTML=`<h3>Klaar!</h3><p class="big">${score} uit ${order.length} (${pct}%)</p><p>${msg}</p>`+menu();return;}
+  answered=false;
+  const q=Q[order[qi]],right=q[1][0],opts=[...q[1]].sort(()=>Math.random()-.5);
+  box.innerHTML=`<div>Vraag ${qi+1} van ${order.length} · Telling: ${score}</div><div class="bar"><div style="width:${qi/order.length*100}%"></div></div><h3>${q[0]}</h3><div id="opts"></div><div class="fb" id="fb"></div>`;
+  const o=document.getElementById('opts');
+  opts.forEach(t=>{const b=document.createElement('button');b.className='opt';b.textContent=t;
+    b.onclick=()=>{if(answered)return;answered=true;const fb=document.getElementById('fb');
+      if(t===right){b.classList.add('right');score++;addStar();fb.textContent='✅ Reg! +1 ⭐';}
+      else{b.classList.add('wrong');[...o.children].find(x=>x.textContent===right).classList.add('right');fb.textContent='❌ Die antwoord is: '+right;}
+      const nx=document.createElement('button');nx.className='btn';nx.style.marginTop='10px';
+      nx.textContent=qi+1<order.length?'Volgende ➜':'Sien my telling';nx.onclick=()=>{qi++;showQ();};
+      fb.appendChild(document.createElement('br'));fb.appendChild(nx);};
+    o.appendChild(b);});
+}
+document.getElementById('quiz').innerHTML=menu();
+</script>
+</body>
+</html>

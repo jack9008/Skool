@@ -3,26 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nic se Leerwerk</title>
+<title>Nic en Josua se Leerwerk</title>
 <style>
   body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
     font-family:"Segoe UI",Roboto,Arial,sans-serif;color:#eef2ff;text-align:center;padding:20px;box-sizing:border-box;
     background:radial-gradient(ellipse at top,#1b2457 0%,#0b1026 60%)}
   .emoji{font-size:5rem}
-  h1{margin:0;font-size:2.6rem}
+  h1{margin:0;font-size:2.4rem}
   p{color:#a9b3d9;margin:0;font-size:1.2rem}
-  .go{display:inline-block;padding:18px 40px;border-radius:999px;background:#ffb703;color:#1a1a1a;font-size:1.5rem;font-weight:bold;
-    text-decoration:none;transition:transform .2s}
-  .go:hover{transform:scale(1.06)}
-  .small{position:fixed;bottom:14px;font-size:.9rem}
-  .small a{color:#a9b3d9}
+  .row{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+  a.kid{display:block;width:260px;padding:28px 20px;border-radius:20px;text-decoration:none;color:#eef2ff;
+    background:#151c3d;border:2px solid #2a356d;font-size:1.5rem;font-weight:bold;transition:transform .2s,border-color .2s}
+  a.kid:hover{transform:translateY(-4px);border-color:#ffb703}
+  a.kid span{display:block;font-size:3rem}
+  a.kid small{display:block;font-size:1rem;color:#a9b3d9;font-weight:normal;margin-top:6px}
+  a.kid b{display:inline-block;margin-top:12px;padding:8px 22px;border-radius:999px;background:#ffb703;color:#1a1a1a;font-size:1.1rem}
 </style>
 </head>
 <body>
   <div class="emoji">🎒</div>
-  <h1>Nic se Leerwerk</h1>
-  <p>Graad 6</p>
-  <a class="go" href="vakke.html">Begin ➜</a>
-  <div class="small"><a href="josua.html">Josua se NWT (Graad 4)</a></div>
+  <h1>Leerwerk</h1>
+  <p>Kies jou naam</p>
+  <div class="row">
+    <a class="kid" href="vakke.html"><span>🪐</span>Nic se Leerwerk<small>Graad 6</small><b>Begin ➜</b></a>
+    <a class="kid" href="josua_vakke.html"><span>🌍</span>Josua se Leerwerk<small>Graad 4</small><b>Begin ➜</b></a>
+  </div>
 </body>
 </html>
