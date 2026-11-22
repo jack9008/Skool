@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chess Openings for Nic and Josua</title><link rel="stylesheet" href="chess.css"></head>
+<body>
+<header><a class="back" href="../index.html">⬅ Leerwerk</a>
+<h1>♞ Chess Openings</h1><p>For Nic and Josua · Watch the moves, then play them yourself</p></header>
+<main>
+  <div class="card">
+    <h2>How to use this</h2>
+    <ol>
+      <li>Press <b>▶ Play</b> to watch the moves, or step with <b>◀ ▶</b> (or the arrow keys).</li>
+      <li>Read the note under each move. It says <b>why</b> the move is good.</li>
+      <li>Set up a real board and play the line yourself, without looking.</li>
+      <li>Use <b>🔄 Flip</b> to see the board from Black's side.</li>
+    </ol>
+  </div>
+
+  <div id="app"></div>
+
+  <div class="grid">
+    <div class="card"><h3>The pieces</h3>
+      <table style="width:100%;border-collapse:collapse">
+        <tr><td>♙ Pawn</td><td>1 point</td><td class="bl">One step forward (two on its first move). Captures diagonally.</td></tr>
+        <tr><td>♘ Knight (N)</td><td>3</td><td class="bl">Jumps in an L shape.</td></tr>
+        <tr><td>♗ Bishop (B)</td><td>3</td><td class="bl">Moves diagonally.</td></tr>
+        <tr><td>♖ Rook (R)</td><td>5</td><td class="bl">Moves in straight lines.</td></tr>
+        <tr><td>♕ Queen (Q)</td><td>9</td><td class="bl">Rook and bishop together.</td></tr>
+        <tr><td>♔ King (K)</td><td>∞</td><td class="bl">One step any way. Keep it safe!</td></tr>
+      </table>
+    </div>
+    <div class="card"><h3>Reading the moves</h3>
+      <ul>
+        <li><code>e4</code> = a pawn moves to e4.</li>
+        <li><code>Nf3</code> = a knight moves to f3.</li>
+        <li><code>Bxc6</code> = the bishop <b>takes</b> on c6 (x means capture).</li>
+        <li><code>O-O</code> = castle short. <code>O-O-O</code> = castle long.</li>
+        <li><code>+</code> = check. <code>#</code> = checkmate.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Open games: 1.e4 e5</h2><div class="grid"><a class="op" href="italian.html"><b>🇮🇹 Italian Game</b><code>e4 e5 Nf3 Nc6 Bc4 Bc5</code><br><span class="bl">Bishop to c4 aims straight at Black&#x27;s weak f7 square.</span><br><span class="tag">Giuoco Piano</span><span class="tag">Two Knights (Fried Liver try)</span><span class="tag">Evans Gambit</span></a><a class="op" href="ruy-lopez.html"><b>🇪🇸 Ruy Lopez (Spanish)</b><code>e4 e5 Nf3 Nc6 Bb5 a6</code><br><span class="bl">The bishop pins pressure on the knight that guards e5.</span><br><span class="tag">Closed (Morphy)</span><span class="tag">Berlin Defence</span><span class="tag">Exchange Variation</span></a><a class="op" href="scotch.html"><b>🏴 Scotch Game</b><code>e4 e5 Nf3 Nc6 d4 exd4</code><br><span class="bl">White opens the centre right away with d4.</span><br><span class="tag">Mieses (4...Nf6)</span><span class="tag">Classical (4...Bc5)</span></a><a class="op" href="kings-gambit.html"><b>👑 King&#x27;s Gambit</b><code>e4 e5 f4 exf4 Nf3 g5</code><br><span class="bl">An old, wild attack: White gives the f-pawn.</span><br><span class="tag">Accepted (Kieseritzky)</span><span class="tag">Declined (Classical)</span></a></div><h2>Other answers to 1.e4</h2><div class="grid"><a class="op" href="sicilian.html"><b>⚔️ Sicilian Defence</b><code>e4 c5 Nf3 d6 d4 cxd4</code><br><span class="bl">The most popular reply to 1.e4. Sharp and unbalanced.</span><br><span class="tag">Najdorf</span><span class="tag">Dragon</span><span class="tag">Alapin (2.c3)</span></a><a class="op" href="french.html"><b>🇫🇷 French Defence</b><code>e4 e6 d4 d5 e5 c5</code><br><span class="bl">Black builds a strong pawn chain and strikes back later.</span><br><span class="tag">Advance</span><span class="tag">Winawer</span><span class="tag">Exchange</span></a><a class="op" href="caro-kann.html"><b>🛡️ Caro-Kann Defence</b><code>e4 c6 d4 d5 Nc3 dxe4</code><br><span class="bl">Rock solid. Like the French, but the bishop gets out.</span><br><span class="tag">Classical</span><span class="tag">Advance</span></a><a class="op" href="scandinavian.html"><b>🇸🇪 Scandinavian Defence</b><code>e4 d5 exd5 Qxd5 Nc3 Qa5</code><br><span class="bl">Black attacks e4 on move one.</span><br><span class="tag">Main line (...Qa5)</span><span class="tag">Modern (2...Nf6)</span></a></div><h2>Queen's pawn: 1.d4</h2><div class="grid"><a class="op" href="queens-gambit.html"><b>♛ Queen&#x27;s Gambit</b><code>d4 d5 c4 e6 Nc3 Nf6</code><br><span class="bl">White offers the c-pawn to win the centre.</span><br><span class="tag">Declined (QGD)</span><span class="tag">Accepted (QGA)</span><span class="tag">Slav</span></a><a class="op" href="london.html"><b>🇬🇧 London System</b><code>d4 d5 Bf4 Nf6 e3 e6</code><br><span class="bl">One set-up against almost anything. Easy to learn.</span><br><span class="tag">vs ...d5</span><span class="tag">vs King&#x27;s Indian set-up</span></a><a class="op" href="kings-indian.html"><b>🐉 King&#x27;s Indian Defence</b><code>d4 Nf6 c4 g6 Nc3 Bg7</code><br><span class="bl">Black lets White take the centre, then attacks it.</span><br><span class="tag">Classical</span><span class="tag">Sämisch</span></a><a class="op" href="nimzo-indian.html"><b>📌 Nimzo-Indian Defence</b><code>d4 Nf6 c4 e6 Nc3 Bb4</code><br><span class="bl">Black pins the c3 knight to stop e4.</span><br><span class="tag">Rubinstein (4.e3)</span><span class="tag">Classical (4.Qc2)</span></a></div><h2>Flank openings</h2><div class="grid"><a class="op" href="english.html"><b>🏰 English Opening</b><code>c4 e5 Nc3 Nf6 g3 d5</code><br><span class="bl">1.c4 controls d5 from the side.</span><br><span class="tag">Reversed Sicilian (1...e5)</span><span class="tag">Symmetrical</span></a></div><h2>Watch out!</h2><div class="grid"><a class="op" href="traps.html"><b>🪤 Beginner Traps</b><code>e4 e5 Bc4 Nc6 Qh5 Nf6</code><br><span class="bl">Fast checkmates every beginner must know, so they never fall for them.</span><br><span class="tag">Scholar&#x27;s Mate</span><span class="tag">Fool&#x27;s Mate</span><span class="tag">Légal&#x27;s Mate</span></a></div>
+</main>
+<footer>Tip: start with the Italian Game and the London System. Then learn one defence against 1.e4 and one against 1.d4.</footer>
+<script>window.OPENING={"name": "Golden rules", "ideas": ["Control the centre with pawns (e4, d4) and pieces.", "Develop knights and bishops before moving the queen.", "Castle early to keep the king safe.", "Do not move the same piece twice without a good reason.", "Connect your rooks."], "lines": [{"name": "A model opening", "idea": "Watch how both sides follow the golden rules. Press Play.", "moves": [["e2e4", "e4"], ["e7e5", "e5"], ["g1f3", "Nf3"], ["b8c6", "Nc6"], ["f1c4", "Bc4"], ["f8c5", "Bc5"], ["e1g1", "O-O"], ["g8f6", "Nf6"], ["d2d3", "d3"], ["d7d6", "d6"], ["c2c3", "c3"], ["e8g8", "O-O"]], "notes": {"1": "Rule 1: take the centre.", "3": "Rule 2: develop a knight, with a threat.", "5": "Develop the bishop.", "7": "Rule 3: castle early.", "9": "Open a path for the other bishop.", "12": "Both sides are ready. Now the middlegame begins!"}}]};</script>
+<script src="chess.js"></script>
+</body></html>
