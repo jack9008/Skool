@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nic se Aardrykskunde – Kwartaal 4</title>
+<title>Nic se Aardrykskunde – Kwartaal 3 &amp; 4</title>
 <style>
   :root{--bg:#0d1f17;--panel:#14302a;--panel2:#1c4038;--text:#eefaf3;--muted:#a7c9b9;
     --sun:#ffc857;--accent:#5ad1a0;--good:#2ecc71;--bad:#ff5d73;--pink:#ff8fab}
@@ -67,17 +67,24 @@
   @media (max-width:600px){.vs,.dots{grid-template-columns:1fr}.bars .row{grid-template-columns:90px 1fr 70px}}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+  .navlbl{align-self:center;color:var(--muted);font-size:.85rem;margin-left:6px}
 </style>
 </head>
 <body>
 <header>
   <a class="back" href="vakke.html">⬅ Vakke</a>
   <h1>🗺️ Nic se Aardrykskunde</h1>
-  <p>Graad 6 SW Geografie · Kwartaal 4 · <span class="stars" id="starCount">⭐ 0</span> sterre verdien</p>
+  <p>Graad 6 SW Geografie · Kwartaal 3 &amp; 4 · <span class="stars" id="starCount">⭐ 0</span> sterre verdien</p>
 </header>
 
 <nav id="nav">
   <button data-s="tuis" class="on">🏠 Begin</button>
+  <span class="navlbl">Kwartaal 3:</span>
+  <button data-s="klimaat">🌡️ Klimaat</button>
+  <button data-s="reenwoud">🌴 Reënwoude</button>
+  <button data-s="woestyn">🏜️ Warmwoestyne</button>
+  <button data-s="naald">🌲 Naaldwoude</button>
+  <span class="navlbl">Kwartaal 4:</span>
   <button data-s="bev">👥 Bevolking</button>
   <button data-s="hoekom">📍 Hoekom daar?</button>
   <button data-s="land">🌾 Landelik &amp; stedelik</button>
@@ -90,7 +97,17 @@
 <main>
 <section id="tuis" class="on">
   <div class="card">
-    <h2>Onderwerp 4: Bevolking. Hoekom mense woon waar hulle woon</h2>
+    <h2>Kwartaal 3 · Onderwerp 3: Klimaat en plantegroei</h2>
+    <p class="bl">bl. 48-73</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Eenheid 1</h3>Klimaat oor die wêreld heen<br><span class="bl">bl. 50-54</span></div>
+    <div class="card"><h3>Eenheid 2</h3>Tropiese reënwoude<br><span class="bl">bl. 55-59</span></div>
+    <div class="card"><h3>Eenheid 3</h3>Warmwoestyne<br><span class="bl">bl. 60-66</span></div>
+    <div class="card"><h3>Eenheid 4</h3>Naaldwoude<br><span class="bl">bl. 67-71</span></div>
+  </div>
+  <div class="card">
+    <h2>Kwartaal 4 · Onderwerp 4: Bevolking. Hoekom mense woon waar hulle woon</h2>
     <p class="bl">bl. 74-97</p>
     <ol>
       <li><b>Lees</b> elke oortjie bo-aan.</li>
@@ -105,6 +122,145 @@
     <div class="card"><h3>Eenheid 3</h3>Landelike en stedelike gebiede<br><span class="bl">bl. 87-89</span></div>
     <div class="card"><h3>Eenheid 4</h3>Mense oor die wêreld heen<br><span class="bl">bl. 90-93</span></div>
     <div class="card"><h3>Eenheid 5</h3>Rio de Janeiro: 'n gevallestudie<br><span class="bl">bl. 94</span></div>
+  </div>
+</section>
+
+<!-- ===== KWARTAAL 3 ===== -->
+<section id="klimaat">
+  <h2>🌡️ Eenheid 1: Klimaat oor die wêreld heen (bl. 50-54)</h2>
+  <div class="vs">
+    <div class="card"><h3>☀️ Weer</h3>Temperatuur, reën en wind op <b>een spesifieke dag</b>.</div>
+    <div class="card"><h3>📅 Klimaat</h3>Die weer in 'n gebied oor 'n <b>lang tydperk</b> (bv. 'n hele jaar).</div>
+  </div>
+  <div class="card">
+    <h3>Klimaat word beskryf deur</h3>
+    <table>
+      <tr><th>Temperatuur</th><td>Warm, matig of koud</td></tr>
+      <tr><th>Reënval</th><td>Nat of droog</td></tr>
+    </table>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>💧 Nat areas</h3><span class="big">meer as 1 000 mm</span><br>reën per jaar</div>
+    <div class="card"><h3>🏜️ Droë areas</h3><span class="big">minder as 250 mm</span><br>reën per jaar</div>
+  </div>
+  <div class="card">
+    <h3>Klimaatstreke</h3>
+    <table>
+      <tr><th>🥶 Koud</th><td><b>Onder 10 °C</b></td><td>Temperatuur meeste van die jaar laag</td></tr>
+      <tr><th>🙂 Matig</th><td><b>10 °C - 30 °C</b></td><td>Nie te hoog of te laag nie</td></tr>
+      <tr><th>🥵 Warm</th><td><b>25 °C en hoër</b></td><td>Temperatuur meeste van die jaar hoog</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Seisoene in die twee halfronde</h3>
+    <table>
+      <tr><th></th><th>Noordelike Halfrond</th><th>Suidelike Halfrond (SA)</th></tr>
+      <tr><th>Januarie</th><td>❄️ Winter</td><td>☀️ Somer</td></tr>
+      <tr><th>Julie</th><td>☀️ Somer</td><td>❄️ Winter</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="reenwoud">
+  <h2>🌴 Eenheid 2: Tropiese reënwoude (bl. 55-59)</h2>
+  <div class="card">
+    <ul>
+      <li>Meeste reënwoude is <b>langs die ewenaar</b>.</li>
+      <li>Daar reën dit baie, en dit is warm.</li>
+      <li>Die klimaat is <b>humied</b> = warm en nat lug. <b>Altyd warm en nat</b>.</li>
+      <li><b>Reënval- en temperatuurgrafieke</b> wys die klimaat vir elke maand van die jaar.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Plante en diere</h3>
+    <p>Die warm, nat klimaat laat <b>baie soorte</b> plante groei: lae plante, hoë bome, en plante wat teen ander opklim.</p>
+    <div class="grid">
+      <div class="card place"><span class="letter">🌿</span><b>Slingerplante</b><div class="more">Klim teen hoë bome op om <b>sonlig</b> te kry.</div></div>
+      <div class="card place"><span class="letter">🦜</span><b>Kleurryke papegaaie</b><div class="more">Woon in die <b>boonste lae</b> van die reënwoud.</div></div>
+      <div class="card place"><span class="letter">🐸</span><b>Gifpylpaddas</b><div class="more">Van <b>Suid-Amerika</b>. Gee <b>gif deur hul vel</b> af om hulself te beskerm.</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Ontbossing (bl. 59) 🪓</h3>
+    <p><b>Ontbossing</b> = bome word afgesaag en woude vernietig.</p>
+    <div class="chips"><span>Houtkappery</span><span>Boerdery</span><span>Mynbou</span><span>Padbouery</span></div>
+    <p><b>Houtkappery</b> = bome afsaag om die hout te gebruik.</p>
+  </div>
+</section>
+
+<section id="woestyn">
+  <h2>🏜️ Eenheid 3: Warmwoestyne (bl. 60-66)</h2>
+  <div class="card">
+    <ul>
+      <li><b>Woestyne</b> = droë gebiede, <b>minder as 250 mm</b> reën per jaar.</li>
+      <li>Sommige is warm, ander koud.</li>
+      <li>Die grootste warmwoestyn is die <b>Sahara</b> in Noord-Afrika.</li>
+      <li>Dikwels maande lank geen reën.</li>
+      <li>Temperatuur meestal <b>20 °C - 25 °C</b>. Soms tot <b>50 °C</b>, en baie koud in die aande.</li>
+    </ul>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>🌵 Hoe plante oorleef</h3>
+      <ol><li><b>Lang wortels</b></li><li><b>Stoor water</b> in stingels of blare</li><li><b>Skerp punte of gif</b> sodat hulle nie geëet word nie</li></ol></div>
+    <div class="card"><h3>🦎 Hoe diere oorleef</h3>
+      <p>Hulle <b>grawe gate</b> in die grond en rus in die koel, donker gate, weg van die son.</p></div>
+  </div>
+  <div class="card">
+    <h3>Hoe mense in die woestyn leef</h3>
+    <table>
+      <tr><th>1. Toeareg (Sahara)</th><td><b>Nomadies</b>, al duisende jare. Hou skape, bokke en kamele. Eet vleis, drink melk. Maak tente van diervelle. Ken die roetes.</td></tr>
+      <tr><th>2. Australiese inboorlinge</th><td>Nomades. Jag woestyndiere en eet plante. Weet waar en wanneer dit reën. Dra gereedskap saam. <b>200 jaar gelede</b> het <b>Europese setlaars</b> die land oorgeneem en hul lewe verander.</td></tr>
+      <tr><th>3. Oases</th><td>Plekke met <b>permanente water</b>. Mense bou nedersettings daar. Hulle plant olywe, vye en <b>dadelpalms</b>.</td></tr>
+      <tr><th>4. Woestynbewoners</th><td>Lank gelede: putte en waterkanale. Vandag: ondergrondse pype, pompe, en vragwaens met water.</td></tr>
+    </table>
+    <div class="tip"><b>Dadelpalm</b> is baie nuttig: vrugte om te eet, hout uit die stam, tou van die blare vir dakke.</div>
+  </div>
+  <div class="card">
+    <h3>Plante en diere in die woestyn</h3>
+    <p>Tik om meer te lees.</p>
+    <div class="grid">
+      <div class="card place"><span class="letter">🌸</span><b>Sturt se woestynertjie</b><div class="more">Australië. Meeste van die jaar 'n <b>saad</b>. Ontkiem net in die reënseisoen en maak nuwe sade.</div></div>
+      <div class="card place"><span class="letter">🐪</span><b>Dromedariskameel</b><div class="more">Arabiese woestyn. <b>1 bult</b> wat <b>vet</b> stoor. <b>3-4 dae</b> sonder water. Harde bek om doringplante te eet.</div></div>
+      <div class="card place"><span class="letter">🦦</span><b>Meerkatte</b><div class="more">Kalahari. Lang kloue grawe insekte uit. Leef in groepe en waarsku mekaar. Slang- en skerpioengif maak hulle nie seer nie.</div></div>
+      <div class="card place"><span class="letter">🌵</span><b>Vatkaktus</b><div class="more">Noord-Amerika. Vet blare stoor water. Steeksels beskerm dit. Inheemse Amerikaners het die water gedrink en die punte as <b>vishoeke</b> gebruik.</div></div>
+      <div class="card place"><span class="letter">🌿</span><b>Welwitschia</b><div class="more">Namibië. Lae houtstam met <b>twee lang blare</b> wat dou en mis opvang. Kan <b>meer as 100 jaar</b> oud word.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="naald">
+  <h2>🌲 Eenheid 4: Naaldwoude (bl. 67-71)</h2>
+  <div class="card">
+    <div class="stat"><b>± 15%</b>van die Aarde se land</div>
+    <ul>
+      <li>Die wêreld se <b>grootste</b> woude.</li>
+      <li>Dikwels waar daar <b>mere</b> is.</li>
+      <li><b>Kort somers</b>, <b>lang, koue winters</b> met baie sneeu.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Plante en diere</h3>
+    <ul>
+      <li>Lang, maer <b>naaldbome</b>, en struike laag op die grond.</li>
+      <li>Plante groei <b>stadig</b>. Sommige woude is half gevries.</li>
+      <li>Diere loop ver vir kos.</li>
+    </ul>
+    <div class="chain"><span>😴 Hiberneer<br><small>slaap die winter deur</small></span><span>🦢 Migreer<br><small>trek weg vir 'n seisoen</small></span><span>🌰 Stoor kos<br><small>vir die winter</small></span></div>
+  </div>
+  <div class="card">
+    <h3>Naaldbome (dennebome) 🌲</h3>
+    <ul>
+      <li>Dra <b>kegels</b> in plaas van blomme.</li>
+      <li>Dun <b>naaldblare</b> wat nie onder sneeu en ys breek nie.</li>
+      <li>Dik <b>bas</b> beskerm teen koue.</li>
+      <li><b>Gom</b> seël die boom as dit beskadig word.</li>
+      <li><b>Swart sparden</b>: takke groei afwaarts, sodat sneeu afgly.</li>
+    </ul>
+  </div>
+  <div class="grid">
+    <div class="card place"><span class="letter">🐿️</span><b>Russiese vlieënde eekhoring</b><div class="more">Siberië. Webbe tussen die pote help dit van tak tot tak sweef. Soek snags kos. Bly in bome langs riviere.</div></div>
+    <div class="card place"><span class="letter">🦉</span><b>Groot grys uil</b><div class="more">Eet meestal <b>knaagdiere</b> (rotte en muise). Vlieg amper stil. Duik deur sneeu om <b>prooi</b> te vang.</div></div>
+    <div class="card place"><span class="letter">🦌</span><b>Elk</b><div class="more">Noord-Amerika. Die <b>grootste takbokke</b>. Spesiale hare hou hulle warm in die winter.</div></div>
   </div>
 </section>
 
@@ -270,7 +426,8 @@
 
 <section id="kaarte">
   <h2>🃏 Woordkaarte</h2>
-  <p>Lees die woord. Sê die betekenis hardop. Tik dan om te kyk! <button class="btn alt" id="shuffle">🔀 Skommel</button></p>
+  <p>Lees die woord. Sê die betekenis hardop. Tik dan om te kyk!</p>
+  <p><select id="kfilter" onchange="pickCards()" style="font-size:1rem;padding:10px 16px;border-radius:12px;border:0"><option value="">Albei kwartale</option><option value="3">Kwartaal 3</option><option value="4">Kwartaal 4</option></select> <button class="btn alt" id="shuffle">🔀 Skommel</button></p>
   <div class="grid" id="cards"></div>
 </section>
 
@@ -279,7 +436,7 @@
   <div class="card" id="quiz"></div>
 </section>
 </main>
-<footer>Gebaseer op Juffrou Natasha se Opsommings · Platinum Handboek · Graad 6 SW Geografie Kwartaal 4</footer>
+<footer>Gebaseer op Juffrou Natasha se Opsommings · Platinum Handboek · Graad 6 SW Geografie Kwartaal 3 &amp; 4</footer>
 
 <script>
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
@@ -316,7 +473,27 @@ function calc(){const p=+document.getElementById('cPop').value,a=+document.getEl
 document.querySelectorAll('.place').forEach(p=>p.onclick=()=>p.classList.toggle('open'));
 
 // woordkaarte
-const K=[
+const K3=[
+ ['Weer','Die temperatuur, reënval en wind op \'n spesifieke dag'],
+ ['Klimaat','Die soort weer oor \'n lang tydperk in \'n gebied'],
+ ['Tropiese reënwoud','\'n Woud in \'n gebied wat die grootste deel van die jaar warm en nat is'],
+ ['Humied','Wanneer die lug in \'n gebied warm en nat voel'],
+ ['Plantegroei','Die plante, bosse en bome wat in \'n gebied groei'],
+ ['Natuurlewe','Diere en plante wat in die natuur voorkom'],
+ ['Ontbossing','Die skoonmaak van woudgebiede'],
+ ['Houtkappery','Die afsaag van bome om hul hout te gebruik'],
+ ['Warmwoestyn','Landgebied waar baie min reën val en temperature baie hoog is'],
+ ['Lewenstyl','Manier van lewe'],
+ ['Nomadies','Mense wat van plek tot plek trek op soek na water en weiding'],
+ ['Europese setlaars','Mense wat van Europa gekom het om in \'n ander land te woon'],
+ ['Oase','\'n Plek in die woestyn waar jy water kan vind'],
+ ['Naaldwoud','Woud met bome wat sade in kegels dra eerder as in blomme'],
+ ['Oorleef','Om aan te hou leef'],
+ ['Hiberneer','Slaap of rus die hele winter lank'],
+ ['Migreer','Trek na \'n ander gebied in \'n sekere seisoen'],
+ ['Prooi','\'n Dier wat deur ander diere gejag en doodgemaak word vir kos']
+];
+const K4=[
  ['Bevolking','Al die mense wat in \'n plek of land bly'],
  ['Bevolkingsdigtheid','Die getal mense in \'n gebied'],
  ['Vestig','Gaan woon'],
@@ -332,7 +509,8 @@ const K=[
  ['Nedersetting','\'n Plek waar mense woon, soos \'n dorp of stad'],
  ['Slaaf','\'n Mens wat deur ander besit word en sonder betaling vir hulle werk']
 ];
-let kList=[...K];
+let kList=K3.concat(K4);
+function pickCards(){const v=document.getElementById('kfilter').value;kList=v==='3'?[...K3]:v==='4'?[...K4]:K3.concat(K4);drawCards();}
 function drawCards(){const box=document.getElementById('cards');box.innerHTML='';
   kList.forEach(k=>{const d=document.createElement('div');d.className='flip';
     d.innerHTML=`<div class="in"><div class="face front">${k[0]}</div><div class="face back">${k[1]}</div></div>`;
@@ -341,7 +519,60 @@ document.getElementById('shuffle').onclick=()=>{kList.sort(()=>Math.random()-.5)
 drawCards();
 
 // toets (eerste antwoord is reg)
-const Q=[
+const Q3=[
+ ['Wat is weer?',['Temperatuur, reën en wind op een spesifieke dag','Die weer oor baie jare','\'n Soort woud','\'n Woestyn']],
+ ['Wat is klimaat?',['Die soort weer oor \'n lang tydperk in \'n gebied','Die weer vandag','Die wind vanoggend','\'n Soort plant']],
+ ['Hoeveel reën kry \'n nat area per jaar?',['Meer as 1 000 mm','Minder as 250 mm','Net 10 mm','Geen']],
+ ['Hoeveel reën kry \'n droë area per jaar?',['Minder as 250 mm','Meer as 1 000 mm','5 000 mm','2 000 mm']],
+ ['Wat is \'n koue klimaat?',['Onder 10 °C','Tussen 10 °C en 30 °C','25 °C en hoër','50 °C']],
+ ['Wat is \'n matige klimaat?',['Tussen 10 °C en 30 °C','Onder 10 °C','Bo 40 °C','Onder 0 °C']],
+ ['Watter seisoen is dit in SA in Januarie?',['Somer','Winter','Herfs','Lente']],
+ ['Watter seisoen is dit in die Noordelike Halfrond in Januarie?',['Winter','Somer','Herfs','Lente']],
+ ['In Julie is dit winter in watter halfrond?',['Die Suidelike Halfrond','Die Noordelike Halfrond','Albei','Geen']],
+ ['Waar is die meeste tropiese reënwoude?',['Langs die ewenaar','By die Noordpool','In die Sahara','In Siberië']],
+ ['Wat beteken humied?',['Die lug voel warm en nat','Die lug is koud en droog','Dit sneeu','Daar is geen wind']],
+ ['Hoe is die klimaat in \'n reënwoud?',['Altyd warm en nat','Altyd koud en droog','Warm en droog','Koud met sneeu']],
+ ['Wat wys \'n reënval- en temperatuurgrafiek?',['Die klimaat vir elke maand van die jaar','Hoeveel mense daar woon','Waar die berge is','Hoe oud die bome is']],
+ ['Hoekom klim slingerplante teen bome op?',['Om sonlig te kry','Om water te soek','Om weg te kruip','Om warm te bly']],
+ ['Waar in die reënwoud woon kleurryke papegaaie?',['In die boonste lae','Onder die grond','In riviere','Op die bodem']],
+ ['Hoe beskerm gifpylpaddas hulself?',['Hulle gee gif deur hul vel af','Hulle hardloop vinnig','Hulle vlieg weg','Hulle grawe gate']],
+ ['Wat is ontbossing?',['Bome word afgesaag en woude vernietig','Nuwe bome word geplant','Dit reën baie','Diere migreer']],
+ ['Watter een is NIE \'n oorsaak van ontbossing nie?',['Swem','Houtkappery','Mynbou','Padbouery']],
+ ['Wat is houtkappery?',['Bome afsaag om die hout te gebruik','Bome plant','Hout verf','Huise skilder']],
+ ['Wat is die wêreld se grootste warmwoestyn?',['Sahara','Kalahari','Namib','Siberië']],
+ ['Waar is die Sahara?',['Noord-Afrika','Suid-Amerika','Australië','Rusland']],
+ ['Hoe warm kan dit in sommige woestyne word?',['Tot 50 °C','Net 5 °C','Tot 100 °C','Nooit bo 20 °C']],
+ ['Hoe is woestynaande?',['Baie koud','Baie warm','Altyd nat','Altyd sneeu']],
+ ['Hoe oorleef woestynplante?',['Lang wortels en water in stingels of blare','Hulle drink seewater','Hulle groei net in die nag','Hulle het geen wortels']],
+ ['Hoe ontsnap woestyndiere die warm son?',['Hulle grawe gate en rus in die koel donker','Hulle swem','Hulle klim berge','Hulle trek na die see']],
+ ['Wat beteken nomadies?',['Trek van plek tot plek vir water en weiding','Bly altyd op een plek','Woon in \'n stad','Werk in \'n fabriek']],
+ ['Watter diere hou die Toeareg aan?',['Skape, bokke en kamele','Koeie en varke','Pikkewyne','Olifante']],
+ ['Waarvan maak die Toeareg tente?',['Diervelle','Plastiek','Hout','Glas']],
+ ['Wat het 200 jaar gelede met die Australiese inboorlinge gebeur?',['Europese setlaars het hul land oorgeneem','Hulle het na Europa getrek','Hulle het \'n stad gebou','Niks']],
+ ['Wat is \'n oase?',['\'n Plek in die woestyn met water','\'n Berg van sand','\'n Soort kameel','\'n Woud']],
+ ['Watter plant is baie nuttig in \'n oase?',['Die dadelpalm','Die dennebom','Die roos','Die welwitschia']],
+ ['Waarvoor word dadelpalmblare gebruik?',['Tou vir dakke','Om te eet','As vishoeke','Om vuur te maak']],
+ ['Hoeveel bulte het \'n dromedariskameel?',['1','2','3','Geen']],
+ ['Wat stoor \'n kameel in sy boggel?',['Vet','Water','Sand','Kos']],
+ ['Hoe lank kan \'n dromedaris sonder water klaarkom?',['3 tot 4 dae','3 maande','1 uur','\'n Jaar']],
+ ['In watter woestyn woon meerkatte?',['Kalahari','Sahara','Arabiese woestyn','Australiese woestyn']],
+ ['Waarvoor het inheemse Amerikaners vatkaktus-punte gebruik?',['Vishoeke','Pyle','Naalde om klere te maak','Speelgoed']],
+ ['Waar groei die welwitschia?',['Namibië','Australië','Sahara','Siberië']],
+ ['Hoe oud kan \'n welwitschia word?',['Meer as 100 jaar','1 jaar','10 dae','5 jaar']],
+ ['Wat doen Sturt se woestynertjie die meeste van die jaar?',['Dit bly \'n saad','Dit blom','Dit groei groot','Dit trek weg']],
+ ['Hoeveel van die Aarde se land is naaldwoud?',['Omtrent 15%','Omtrent 90%','Omtrent 1%','Omtrent 50%']],
+ ['Hoe is die klimaat waar naaldwoude groei?',['Kort somers en lang, koue winters','Altyd warm en nat','Baie droog en warm','Geen winter']],
+ ['Waarin dra naaldbome hul sade?',['Kegels','Blomme','Vrugte','Peule']],
+ ['Waarom het naaldbome dun naaldblare?',['Hulle breek nie onder sneeu en ys nie','Hulle lyk mooi','Hulle hou die son weg','Hulle val elke dag af']],
+ ['Waarom groei die swart sparden se takke afwaarts?',['Sneeu gly maklik af','Om nader aan water te wees','Om diere te vang','Om meer son te kry']],
+ ['Wat beteken hiberneer?',['Slaap of rus die hele winter','Trek na \'n ander plek','Kos soek','Gate grawe']],
+ ['Wat beteken migreer?',['Trek in \'n sekere seisoen na \'n ander gebied','Slaap die winter deur','Kos stoor','Bly altyd op een plek']],
+ ['Hoe beweeg die Russiese vlieënde eekhoring van boom na boom?',['Webbe tussen sy pote help hom sweef','Hy spring met lang bene','Hy swem','Hy klim af en loop']],
+ ['Wat eet die groot grys uil meestal?',['Knaagdiere soos rotte en muise','Vrugte','Gras','Vis']],
+ ['Wat is prooi?',['\'n Dier wat deur ander gejag word vir kos','\'n Dier wat jag','\'n Plant','\'n Soort nes']],
+ ['Wat is die grootste takbokke?',['Elk','Springbokke','Kamele','Meerkatte']]
+];
+const Q4=[
  ['Wat is bevolking?',['Al die mense wat in \'n plek woon','Die grootte van \'n land','Die getal diere in \'n park','Die weer in \'n plek']],
  ['Wat beteken vestig?',['Gaan woon','Weggaan','Boer','Handel dryf']],
  ['Omtrent hoeveel mense woon in SA?',['51 miljoen','5 miljoen','7 miljard','500 000']],
@@ -391,8 +622,15 @@ const Q=[
  ['Waarom groei koffie goed in Brasilië?',['Die klimaat is warm en nat','Dit is koud','Dit is droog','Dit sneeu']],
  ['Wat is Rio vandag?',['\'n Besige handelsentrum met baie toeriste','\'n Klein dorpie','\'n Woestyn','\'n Plaas']]
 ];
+let Q=Q3.concat(Q4);
+function pickTerm(t){Q=t==='3'?Q3:t==='4'?Q4:Q3.concat(Q4);document.getElementById('quiz').innerHTML=menu();}
 let order=[],qi=0,score=0,answered=false;
-function menu(){return `<p>Hoeveel vrae wil jy doen?</p><button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn alt" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;}
+function menu(){return `<p>Watter kwartaal?</p>
+  <button class="btn alt" onclick="pickTerm('3')">Kwartaal 3${Q===Q3?' ✔':''}</button>
+  <button class="btn alt" onclick="pickTerm('4')">Kwartaal 4${Q===Q4?' ✔':''}</button>
+  <button class="btn alt" onclick="pickTerm('b')">Albei${Q!==Q3&&Q!==Q4?' ✔':''}</button>
+  <p>Hoeveel vrae?</p>
+  <button class="btn" onclick="startQuiz(10)">10 vrae</button> <button class="btn" onclick="startQuiz(20)">20 vrae</button> <button class="btn" onclick="startQuiz(Q.length)">Alle ${Q.length} vrae</button>`;}
 function startQuiz(n){order=Q.map((q,i)=>i).sort(()=>Math.random()-.5).slice(0,n);qi=0;score=0;showQ();}
 function showQ(){
   const box=document.getElementById('quiz');
